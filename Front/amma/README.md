@@ -59,3 +59,6 @@ font-size: 12pt;
 no lugar de 
 font-size: 20px;
 ```
+
+### Fonte :a:
+Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=true&selection.family=Baloo+2:wght@400;500;600;700;800#standard-styles) <sub>(definida no `index.css`)</sub>
