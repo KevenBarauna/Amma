@@ -62,3 +62,7 @@ font-size: 20px;
 
 ### Fonte :a:
 Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=true&selection.family=Baloo+2:wght@400;500;600;700;800#standard-styles) <sub>(definida no `index.css`)</sub>
+
+### Menções :page_with_curl:
+ Ícones do [Flaticon](https://www.flaticon.com/br/)
+- Background login [Foto de fauxels no Pexels](https://www.pexels.com/pt-br/)
