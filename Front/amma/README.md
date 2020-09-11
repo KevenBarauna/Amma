@@ -18,6 +18,14 @@ Este projeto foi iniciado com o [Create React App](https://github.com/facebook/c
 ### Requisistos: :pencil:
 - [Node js](https://nodejs.org/en/)
 
+### Tecnologias: :mag:
+- [react-bootstrap](https://react-bootstrap.github.io/getting-started/introduction)  
+
+
+```
+npm install react-bootstrap bootstrap
+```
+
 
 ### Iniciar o projeto :outbox_tray:
 No diretório do projeto, você pode executar:<br>
