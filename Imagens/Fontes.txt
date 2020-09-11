@@ -7,3 +7,5 @@ Adm - https://www.flaticon.com/br/icone-gratis/aperto-de-mao_1006657
 dashboard - https://www.flaticon.com/br/icone-gratis/admin_1548774?term=admin&page=1&position=7
 aviso - 
 sair - https://www.flaticon.com/br/icone-gratis/cancelar_1182766?term=close&page=1&position=19
+
+background - Foto de fauxels no Pexels
