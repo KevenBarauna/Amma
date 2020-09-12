@@ -1,0 +1,15 @@
+.modal-adicionar-container{
+    position: fixed;
+    background-color: brown;
+    height: 100%;
+    width: 100%;
+    background-image: url('./../../assets/image/background-adicionar.jpg');
+    background-size: cover;/*ONLY MOBILE */
+}
+
+.modal-adicionar-transparent{
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.363);
+    height: 100%;
+    width: 100%;
+}
