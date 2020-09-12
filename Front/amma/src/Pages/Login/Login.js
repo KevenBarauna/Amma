@@ -10,7 +10,6 @@ const Login = () => {
     const dispatch = useDispatch();
 
     function onsubmit() {
-        alert('$ Olhar console')
         dispatch(usuarioAction.buscarTodosUsuarios());
     }
 
