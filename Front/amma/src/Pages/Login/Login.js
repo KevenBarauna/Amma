@@ -1,12 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import './Login.css';
 import imagemLogo from './../../assets/image/logo.png'
+import './Login.css';
+import usuarioAction from './../../Actions/UsuarioAction';
+
 
 const Login = () => {
+    const dispatch = useDispatch();
 
     function onsubmit() {
         alert('$ Olhar console')
+        dispatch(usuarioAction.buscarTodosUsuarios());
     }
 
     return (
