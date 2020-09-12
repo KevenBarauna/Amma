@@ -7,7 +7,12 @@ export const LOADING = {
     FECHAR_LOADING: "FECHAR_LOADING",
 };
 
+export const TICKET = {
+    TIPO_TICKET: "TIPO_TICKET",
+};
+
 export default {
     USUARIO,
     LOADING,
+    TICKET,
 }
