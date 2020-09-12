@@ -45,7 +45,7 @@ const Login = () => {
                             Ainda não tem conta?
                     </Form.Text>
                         <div className='login-button'>
-                            <Button variant="primary" className='btn-padrao' type="submit" onClick={() => onsubmit()}>
+                            <Button variant="primary" className='btn-padrao' onClick={() => onsubmit()}>
                                 Entrar
                         </Button>
                         </div>
