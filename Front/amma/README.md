@@ -23,6 +23,7 @@ Este projeto foi iniciado com o [Create React App](https://github.com/facebook/c
 - [react-router-dom](https://reactrouter.com/web/guides/quick-start)
 - [Redux](https://redux.js.org/basics/usage-with-react)
 - [Axios](https://www.npmjs.com/package/axios)
+- [React Select](https://react-select.com/home)
 
 
 ```
@@ -31,6 +32,7 @@ npm install react-router-dom
 npm install --save redux
 npm install react-redux
 npm install --save axios
+npm install react-select
 ```
 
 
