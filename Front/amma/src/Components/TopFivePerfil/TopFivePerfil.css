@@ -1,0 +1,72 @@
+.TopFivePerfil-container{
+    margin-top: 40px;
+}
+
+.TopFivePerfil-notificacao{
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.TopFivePerfil-titulo-notificacao{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: 8px;
+}
+
+.TopFivePerfil-div-notificacao{
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+.TopFivePerfil-container-list{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+}
+
+.ListTopFive-row{
+    margin-bottom: 20px;
+}
+
+
+.ListTopFive-simbolo{
+    height: 50px;
+    width: 50px;
+    /* background-color: violet; */
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.ListTopFive-titulo{
+    color: #000000;
+    height: 60%;
+    font-size: 14pt;
+}
+
+.ListTopFive-sub-titulo{
+    color: #777777;
+    height: 50%;
+    font-size: 8pt;
+}
+
+.ListTopFive-Amar{
+    background-color: var(--cor-azul-n1);
+}
+
+.ListTopFive-Manter{
+    background-color: var(--cor-verde-n1);
+}
+
+.ListTopFive-Melhorar{
+    background-color: var(--cor-amarelo-n1);
+}
+
+.ListTopFive-Abandonar{
+    background-color: var(--cor-vermelho-n1);
+}
+
+
+
+

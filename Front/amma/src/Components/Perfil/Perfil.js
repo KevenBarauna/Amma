@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import './Perfil.css';
 import imagemTemp from './../../assets/image/temp2.png';
 import imagemMenu from './../../assets/image/menu-icone.svg';
+import TopFivePerfil from './../TopFivePerfil/TopFivePerfil';
 
 
 const Perfil = () => {
@@ -21,10 +22,13 @@ const Perfil = () => {
                         </div>
                         <div className='perfil-nome'>
                             Keven Baraúna
-                     </div>
+                        </div>
                         <div className='perfil-cargo'>
                             Coder II
-                     </div>
+                        </div>
+                        <div>
+                            <TopFivePerfil />
+                        </div>
                     </div>
                 </Col>
 
