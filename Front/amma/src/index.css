@@ -17,6 +17,7 @@ code {
 /* INICIO GLOBAL */
 #root{
   height: 100%;
+  width: 84%;
 }
 
 p{
@@ -27,6 +28,15 @@ p{
 .row{
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.col{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.col-sm{
+  padding-left: 0px;
+  padding-right: 0px;
 }
 /* FIM GLOBAL */
 
