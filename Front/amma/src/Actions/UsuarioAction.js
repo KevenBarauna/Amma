@@ -17,8 +17,23 @@ const buscarTodosUsuarios = (user) => dispatch => {
         .finally(dispatch(loadingAction.fecharLoading()))
 }
 
+const buscarTopTicket = (user) => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    usuarioService.buscarTopTicket()
+        .then(response => {
+            dispatch({
+                type: USUARIO.TOP_TICKET,
+                payload: response.data
+            });
+        })
+        .catch(erro => exibirMensagemErro(erro))
+        .finally(dispatch(loadingAction.fecharLoading()))
+}
+
+
 
 
 export default {
     buscarTodosUsuarios,
+    buscarTopTicket,
 }

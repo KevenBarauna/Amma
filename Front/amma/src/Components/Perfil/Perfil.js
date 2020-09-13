@@ -12,7 +12,7 @@ const Perfil = () => {
         <Row>
             <Col sm={2} className='perfil-coluna-principal'>
                 <input type='checkbox' id='chec' className='perfilT-checkbox' />
-                <label for='chec' className='perfilT-label'>
+                <label htmlFor='chec' className='perfilT-label'>
                     <img src={imagemMenu} alt='Perfil' style={{ height: '30px', cursor: 'pointer' }} />
                 </label>
                 <Col id='perfil-teste' className='perfil-coluna-sub-principal'>

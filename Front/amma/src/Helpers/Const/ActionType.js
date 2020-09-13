@@ -1,5 +1,6 @@
 export const USUARIO = {
     DADOS_USER: "DADOS_USER",
+    TOP_TICKET: "TOP_TICKET",
 };
 
 export const LOADING = {

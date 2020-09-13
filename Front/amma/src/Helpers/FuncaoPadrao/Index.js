@@ -3,5 +3,5 @@ export function exibirMensagemErro(erro) {
 }
 
 export function exibirDadosRedux(action) {
-    console.log('$ Redux: - ', action)
+    console.log(`$ Redux: ${action.type} - `, action.payload)
 }

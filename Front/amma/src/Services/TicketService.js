@@ -1,9 +1,7 @@
 import axios from "axios";
-
+import { TiposTicketMock } from './../Helpers/Const/ConstMock';
 const API_HOST = process.env.REACT_APP_API_SERVER;
 const CONTROLLER_TICKET = 'ticket';
-
-const buscarTiposTicketMock = [{ id: '1', nome: 'Amar' }, { id: '2', nome: 'Manter' }, { id: '3', nome: 'Melhorar' }, { id: '4', nome: 'Abandonar' }]
 
 export const buscarTiposTicket = () => {
     return new Promise((resolve, reject) => {
@@ -17,7 +15,7 @@ export const buscarTiposTicket = () => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({ data: buscarTiposTicketMock })
+                resolve({ data: TiposTicketMock })
             )
     })
 }
