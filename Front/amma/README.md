@@ -78,3 +78,4 @@ Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=
  Ícones do [Flaticon](https://www.flaticon.com/br/)
 - Background login [Foto de fauxels no Pexels](https://www.pexels.com/pt-br/)
 - Background login [Foto de Polina Zimmerman no Pexels](https://www.pexels.com/pt-br/foto/escrita-escrevendo-redacao-papel-3782235/)
+- [Ícone](https://www.flaticon.com/br/autores/freepik) Menu perfil 
