@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink, withRouter } from "react-router-dom";
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import { NavLink } from "react-router-dom";
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './Menu.css'
 import imagemTemp from './../../assets/image/temp.png';

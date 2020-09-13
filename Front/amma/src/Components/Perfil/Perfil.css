@@ -4,3 +4,29 @@
     height: 100%;
     position: absolute;
 }
+
+.perfil-imagem-jogador{
+    border-color: chocolate;
+    border-style: solid;
+    border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 55px;
+}
+
+.perfil-imagem{
+    height: 110px;
+    margin-left: 12%;
+    margin-top: 9%;
+    margin-bottom: auto;
+}
+
+.perfil-nome{
+    text-align: center;
+}
+
+.perfil-cargo{
+    text-align: center;
+}
