@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
-import Menu from './../Components/Menu/Menu';
+import rota from './../Helpers/Const/Links'
+import Menu from './../Components/MenuTopo/Menu';
 import Perfil from './../Components/Perfil/Perfil';
 import Home from './../Pages/Home/Home';
 import Login from './../Pages/Login/Login';
@@ -17,11 +17,11 @@ const MainRoute = () => {
             <Perfil />
             <Switch>
                 <Route path='/' component={Home} exact />
-                <Route path={'/home'} component={Home} />
-                <Route path={'/login'} component={Login} />
-                <Route path={'/adicionar'} component={Adicionar} />
-                <Route path={'/404'} component={Loading} />
-                <Redirect to={'/404'} />
+                <Route path={rota.home} component={Home} />
+                <Route path={rota.login} component={Login} />
+                <Route path={rota.Sugestões} component={Adicionar} />
+                <Route path={rota.pageNotFound} component={Loading} />
+                <Redirect to={rota.pageNotFound} />
             </Switch>
         </BrowserRouter >
     );
