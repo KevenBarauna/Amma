@@ -7,6 +7,7 @@ import Home from './../Pages/Home/Home';
 import Login from './../Pages/Login/Login';
 import Adicionar from './../Pages/Adicionar/Adicionar';
 import Loading from './../Components/Carregando/Loading';
+import pageNotFound from './../Pages/NotFound404/pageNotFound';
 
 const MainRoute = () => {
 
@@ -20,7 +21,7 @@ const MainRoute = () => {
                 <Route path={rota.home} component={Home} />
                 <Route path={rota.login} component={Login} />
                 <Route path={rota.Sugestões} component={Adicionar} />
-                <Route path={rota.pageNotFound} component={Loading} />
+                <Route path={rota.pageNotFound} component={pageNotFound} />
                 <Redirect to={rota.pageNotFound} />
             </Switch>
         </BrowserRouter >
