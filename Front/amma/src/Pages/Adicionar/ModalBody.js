@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, OverlayTrigger, Tooltip, Row } from 'react-bootstrap';
 import Select from 'react-select';
 import { useSelector } from 'react-redux';
+import TooltipAjuda from './../../Helpers/Const/TooltipAjuda';
+import imagemAjuda from './../../assets/image/ajuda.png';
 
 const ModalBody = () => {
 
@@ -15,23 +17,25 @@ const ModalBody = () => {
     const [exibirNome, setExibirNome] = useState(false);
 
     const handleCategoria = (value) => {
-        console.log(value);
         setCategoria(value)
     }
 
+    var showUser = document.getElementById("showUser");
+
     const handleSubmit = () => {
-        console.log('$ SUBMIT');
-        console.log('$ titulo ', titulo);
-        console.log('$ categoria ', categoria);
-        console.log('$ descricao ', descricao);
-        console.log('$ exibirNome ', exibirNome);
+        setExibirNome(showUser.checked ? true : false)
+        console.log('$ Submit...');
+        console.log('$ titulo: ', titulo);
+        console.log('$ categoria: ', categoria);
+        console.log('$ descricao: ', descricao);
+        console.log('$ exibirNome: ', exibirNome);
     }
 
     return (
         <Form>
-            <Form.Row>
+            <Form.Row style={{ marginTop: '30px' }} >
                 <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Título</Form.Label>
+                    <Form.Label>* Título</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Nome do card"
@@ -40,13 +44,12 @@ const ModalBody = () => {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Categoria</Form.Label>
+                    <Form.Label>* Categoria</Form.Label>
                     <Select
                         id='select-categoria'
                         placeholder='Selecione'
                         isSearchable={false}
                         label
-                        //value={}
                         noOptionsMessage={() => 'Nenhuma opção disponível'}
                         onChange={handleCategoria}
                         options={tiposCategoria?.map(tipo => {
@@ -61,16 +64,22 @@ const ModalBody = () => {
 
             <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Descrição</Form.Label>
-                <Form.Control as="textarea" rows="4" onChange={e => setDescricao(e.target.value)} />
+                <Form.Control as="textarea" rows="4" placeholder="Fale mais sobre seu ticket.." onChange={e => setDescricao(e.target.value)} />
             </Form.Group>
 
             <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Mostrar meu nome" onChange={e => setExibirNome(e.target)} />
+                <Row>
+                    <Form.Check type="checkbox" label="Anonimato" id="showUser" />
+                    <OverlayTrigger overlay={<Tooltip>{TooltipAjuda.anomino}</Tooltip>}>
+                        <img src={imagemAjuda} alt='Ajuda' className='tooltipo-ajuda' />
+                    </OverlayTrigger>
+                </Row>
             </Form.Group>
 
-            <Button variant="primary" onClick={() => handleSubmit()}>
+            <Button variant="danger" className='btn-padrao' style={{ marginBottom: '30px' }} onClick={() => handleSubmit()}>
                 Salvar
             </Button>
+
         </Form>
     );
 }

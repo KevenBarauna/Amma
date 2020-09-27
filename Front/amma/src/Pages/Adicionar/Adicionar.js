@@ -19,9 +19,9 @@ const Adicionar = () => {
     return (
         <div className='modal-adicionar-container'>
             <div className='modal-adicionar-transparent'>
-                <Modal.Dialog size="lg">
+                <Modal.Dialog size="xl">
                     <Modal.Header closeButton>
-                        <Modal.Title>Adicionar</Modal.Title>
+                        <Modal.Title>Adicionar novo item</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
@@ -29,6 +29,7 @@ const Adicionar = () => {
                     </Modal.Body>
 
                     <Modal.Footer>
+                        Atenção: não é possível editar o ticket depois de salvar.
                     </Modal.Footer>
                 </Modal.Dialog>
             </div>

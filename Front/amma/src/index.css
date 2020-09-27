@@ -69,4 +69,11 @@ p{
   border-color: #f25c5c;
   font-weight: 500;
 }
+
+.tooltipo-ajuda{
+  height: 25px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+} 
 /* FIM PADRÃO */
