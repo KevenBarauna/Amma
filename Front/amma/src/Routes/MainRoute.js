@@ -9,6 +9,7 @@ import Adicionar from './../Pages/Adicionar/Adicionar';
 import Loading from './../Components/Carregando/Loading';
 import pageNotFound from './../Pages/NotFound404/pageNotFound';
 import Dashboard from './../Pages/Dashboard/Dashboard';
+import CriarConta from './../Pages/CriarConta/CriarConta';
 
 const MainRoute = () => {
 
@@ -23,6 +24,7 @@ const MainRoute = () => {
                 <Route path={rota.login} component={Login} />
                 <Route path={rota.Sugestões} component={Adicionar} />
                 <Route path={rota.dashboard} component={Dashboard} />
+                <Route path={rota.novaConta} component={CriarConta} />
                 <Route path={rota.pageNotFound} component={pageNotFound} />
                 <Redirect to={rota.pageNotFound} />
             </Switch>

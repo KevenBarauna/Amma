@@ -1,6 +1,6 @@
 
 import { USUARIO } from './../Helpers/Const/ActionType';
-import { exibirMensagemErro } from './../Helpers/FuncaoPadrao/Index';
+import { exibirMensagemErro, exibirMensagemSucesso } from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
 
@@ -30,10 +30,20 @@ const buscarTopTicket = (user) => dispatch => {
         .finally(dispatch(loadingAction.fecharLoading()))
 }
 
+const adicionarUsuario = (user) => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    usuarioService.adicionarUsuario()
+        .then(response => {
+            exibirMensagemSucesso(response)
+        })
+        .catch(erro => exibirMensagemErro(erro))
+        .finally(dispatch(loadingAction.fecharLoading()))
+}
 
 
 
 export default {
     buscarTodosUsuarios,
     buscarTopTicket,
+    adicionarUsuario,
 }

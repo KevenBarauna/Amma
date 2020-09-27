@@ -12,6 +12,10 @@ export default class Link {
         return '/login';
     }
 
+    static get novaConta() {
+        return '/novaConta';
+    }
+
     static get dashboard() {
         return '/dashboard';
     }

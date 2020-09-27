@@ -38,7 +38,25 @@ export const buscarTopTicket = (usuario) => {
     })
 }
 
+export const adicionarUsuario = (usuario) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "GET",
+            url: `${API_HOST}${CONTROLLER_USER}/adicionarNovoUsuario`,
+            headers: { "content-type": "application/json", },
+            data: JSON.stringify(usuario),
+        })
+            .then(res =>
+                resolve(res)
+            )
+            .catch(error =>
+                reject(error)
+            )
+    })
+}
+
 export default {
     buscarTodosUsuarios,
     buscarTopTicket,
+    adicionarUsuario,
 }
