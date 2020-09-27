@@ -15,7 +15,7 @@ const Menu = () => {
                         <img src={imagemLogo} alt='Perfil' style={{ height: '30px', cursor: 'pointer' }} />
                     </Link>
                 </Col>
-                <Col className='Menu-itens'><Link to={rota.home}>Dashboard</Link></Col>
+                <Col className='Menu-itens'><Link to={rota.dashboard}>Dashboard</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Sugestões}>Sugestões</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Sobre}>Sobre</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Avisos}>Avisos</Link></Col>

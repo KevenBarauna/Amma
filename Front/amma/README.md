@@ -26,6 +26,7 @@ Este projeto foi iniciado com o [Create React App](https://github.com/facebook/c
 
 - [React Select](https://react-select.com/home)
 - [React SideNav](https://reactjsexample.com/react-side-nav-component/) (REMOVIDO)
+- [react-chartjs-2](https://www.npmjs.com/package/react-chartjs-2)
 
 
 ```
@@ -36,6 +37,7 @@ npm install react-redux
 npm install --save axios
 npm install react-select
 npm install --save react @trendmicro/react-sidenav (REMOVIDO)
+npm install --save react-chartjs-2 chart.js
 ```
 
 
