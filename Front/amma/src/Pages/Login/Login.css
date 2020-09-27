@@ -1,13 +1,10 @@
 .login-fundo{
-    min-height: 100vh;
-    min-width: 100%;
+    background-image: url('./../../assets/image/background-login.jpg');
+    position: fixed;
+    background-color: brown;
     height: 100%;
     width: 100%;
-     background-size: cover;/*ONLY MOBILE */
-    display: block;
-    overflow: hidden;
-    background-image: url('./../../assets/image/background-login.jpg');
-    /* background-color: var(--cor-preto); */
+    background-size: cover;/*ONLY MOBILE */
 }
 
 .login-container{
@@ -19,8 +16,8 @@
     background-color: rgba(255, 255, 255, 0.548);
     min-height: 80%;
     height: 80%;
-    min-width: 60%;
-    width: 60%;
+    min-width: 50%;
+    width: 50%;
     border-radius: 8px;
 }
 
@@ -32,13 +29,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 25%;
-}
-
-.login-titulo{
-    text-align: center;
-    font-size: 42pt;
-    font-weight: 700;
-    margin-left: 16px;
 }
 
 #login-imagem-logo{
@@ -54,4 +44,6 @@
 .login-button{
     text-align: center;
     margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

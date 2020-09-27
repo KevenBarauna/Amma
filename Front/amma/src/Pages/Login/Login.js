@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import imagemLogo from './../../assets/image/logo.png'
@@ -9,8 +9,15 @@ import usuarioAction from './../../Actions/UsuarioAction';
 const Login = () => {
     const dispatch = useDispatch();
 
+    const [usuario, setUsuario] = useState('');
+    const [senha, setSenha] = useState('');
+
+
     function onsubmit() {
         dispatch(usuarioAction.buscarTodosUsuarios());
+        console.log('$ usuário: ', usuario)
+        console.log('$ senha: ', senha)
+
     }
 
     return (
@@ -20,14 +27,13 @@ const Login = () => {
                     <Form>
                         <div className='login-logo'>
                             <img src={imagemLogo} alt='Imagem logo' id='login-imagem-logo'></img>
-                            <h2 className='login-titulo'>Amma</h2>
                         </div>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Usuário</Form.Label>
+                            <Form.Label>Nome</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Usuário de rede"
-                                onChange={(event) => console.log('$ Usuário', event.target.value)}
+                                onChange={e => setUsuario(e.target.value)}
                             />
                         </Form.Group>
 
@@ -36,17 +42,14 @@ const Login = () => {
                             <Form.Control
                                 type="password"
                                 placeholder="Senha"
-                                onChange={(event) => console.log('$ Senha', event.target.value)}
+                                onChange={e => setSenha(e.target.value)}
                             />
                         </Form.Group>
 
-                        <Form.Text className="text-muted login-criar-conta">
-                            Ainda não tem conta?
-                    </Form.Text>
                         <div className='login-button'>
                             <Button variant="primary" className='btn-padrao' onClick={() => onsubmit()}>
                                 Entrar
-                        </Button>
+                            </Button>
                         </div>
                     </Form>
                 </div>
