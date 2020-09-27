@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiAmma.DAO;
 using ApiAmma.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,28 +13,28 @@ namespace ApiAmma.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        private static List<Usuario> usuarios = new List<Usuario>();
+
+        UsuarioDAO userDao = new UsuarioDAO();
 
         [HttpGet]
         [Route("buscarTodosUsuarios")]
-        public List<Usuario> buscarTodosUsuarios()
+        public List<UsuarioModel> buscarTodosUsuarios()
         {
-            return usuarios;
+            return userDao.SelectAll();
         }
 
         [HttpPost]
         [Route("adicionarNovoUsuario")]
-        public Usuario adicionarNovoUsuario([FromBody]Usuario usuario)
+        public bool adicionarNovoUsuario([FromBody]UsuarioModel usuario)
         {
-            usuarios.Add(usuario);
-            return usuario;
+            return userDao.Insert(usuario); ;
         }
 
         [HttpDelete]
         [Route("removerUsuario")]
-        public void removerUsuario([FromBody]Usuario usuario)
+        public void removerUsuario([FromBody]UsuarioModel usuario)
         {
-            usuarios.RemoveAt(usuarios.IndexOf(usuarios.First(x => x.Equals(usuario))));
+            //usuarios.RemoveAt(usuarios.IndexOf(usuarios.First(x => x.Equals(usuario))));
         }
     }
 }

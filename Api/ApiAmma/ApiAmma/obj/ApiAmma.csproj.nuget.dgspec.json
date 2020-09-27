@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\9 - Amma\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj": {}
+    "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\10 - Ama back\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj": {}
   },
   "projects": {
-    "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\9 - Amma\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj": {
+    "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\10 - Ama back\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\9 - Amma\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj",
+        "projectUniqueName": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\10 - Ama back\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj",
         "projectName": "ApiAmma",
-        "projectPath": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\9 - Amma\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj",
+        "projectPath": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\10 - Ama back\\Amma\\Api\\ApiAmma\\ApiAmma\\ApiAmma.csproj",
         "packagesPath": "C:\\Users\\keven.barauna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\9 - Amma\\Amma\\Api\\ApiAmma\\ApiAmma\\obj\\",
+        "outputPath": "C:\\Users\\keven.barauna\\Documents\\_Projetos\\_Pessoal\\10 - Ama back\\Amma\\Api\\ApiAmma\\ApiAmma\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -58,6 +58,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [
