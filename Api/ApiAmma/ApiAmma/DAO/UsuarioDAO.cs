@@ -25,7 +25,7 @@ namespace ApiAmma.DAO
         {
             try
             {
-                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{tema},{idAvatar},{cargo}) VALUES (@{user.nome},@{user.senha},@{user.codTema},@{user.idAvatar},@{user.cargo})";
+                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{tema},{idAvatar},{cargo}) VALUES (@nome,@senha,@tema,@idAvatar,@cargo)";
 
                 cmd.Parameters.AddWithValue("@nome", user.nome);
                 cmd.Parameters.AddWithValue("@senha", user.senha);

@@ -25,7 +25,7 @@ namespace ApiAmma.Controllers
 
         [HttpPost]
         [Route("adicionarNovoUsuario")]
-        public bool adicionarNovoUsuario([FromBody]UsuarioModel usuario)
+        public bool adicionarNovoUsuario(UsuarioModel usuario)
         {
             return userDao.Insert(usuario); ;
         }
