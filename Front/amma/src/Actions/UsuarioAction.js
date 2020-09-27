@@ -32,7 +32,7 @@ const buscarTopTicket = (user) => dispatch => {
 
 const adicionarUsuario = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
-    usuarioService.adicionarUsuario()
+    usuarioService.adicionarUsuario(user)
         .then(response => {
             exibirMensagemSucesso(response)
         })

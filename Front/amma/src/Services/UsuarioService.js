@@ -39,9 +39,10 @@ export const buscarTopTicket = (usuario) => {
 }
 
 export const adicionarUsuario = (usuario) => {
+    console.log('$ service', usuario)
     return new Promise((resolve, reject) => {
         axios({
-            method: "GET",
+            method: "POST",
             url: `${API_HOST}${CONTROLLER_USER}/adicionarNovoUsuario`,
             headers: { "content-type": "application/json", },
             data: JSON.stringify(usuario),

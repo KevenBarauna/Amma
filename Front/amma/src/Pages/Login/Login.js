@@ -4,6 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 import imagemLogo from './../../assets/image/logo.png'
 import './Login.css';
 import usuarioAction from './../../Actions/UsuarioAction';
+import rota from './../../Helpers/Const/Links';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -44,6 +46,12 @@ const Login = () => {
                                 placeholder="Senha"
                                 onChange={e => setSenha(e.target.value)}
                             />
+                        </Form.Group>
+
+                        <Form.Group className='login-criar-conta'>
+                            <Link to={rota.novaConta}>
+                                <Form.Label className='login-criar-conta'>Criar conta</Form.Label>
+                            </Link>
                         </Form.Group>
 
                         <div className='login-button'>
