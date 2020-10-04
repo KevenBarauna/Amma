@@ -3,6 +3,7 @@ import { Row } from 'react-bootstrap';
 import './Dashboard.css'
 import GraficoPizzaGenerico from './../../Components/GraficoPizza/ContainerGrafico';
 import GraficoBarra from './../../Components/GraficoBarra/ContainerGrafico';
+import CardSugestao from './../../Components/CardSugestao/Index';
 
 const Dashboard = () => {
 
@@ -33,6 +34,19 @@ const Dashboard = () => {
         { votos: '18', titulo: 'Loren ipisum ', tipo: '2' },
     ]
 
+    const usuario = { nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', imagem: null, favoritos: [1, 3, 5] };
+
+    const ticket = [
+        { id: 1, titulo: 'Home office', descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s trys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', data: '04/10/2020', votos: 1 },
+        { id: 2, titulo: 'Game Changer', descricao: 'A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim utilizado na produção gráfica para preencher os espaços de texto em publicações para testar e ajustar aspectos visuais antes de utilizar conteúdo real.', data: '10/12/2020', votos: 0 },
+        { id: 3, titulo: 'Microsof Teams', descricao: 'Lorem ing industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500ss', data: '05/08/2020', votos: 6 },
+        { id: 4, titulo: 'Água', descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500ss', data: '01/01/2021', votos: 10 },
+        { id: 5, titulo: 'Hub Salvador', descricao: '', data: '12/10/2020', votos: 1 },
+        { id: 6, titulo: 'Lixeira', descricao: 'O cuidado em identificar pontos críticos na adoção de políticas descentralizadoras estimula a padronização dos níveis de motivação departamental.', data: '04/10/2021', votos: 35 },
+
+    ]
+
+
 
     return (
         <>
@@ -54,6 +68,13 @@ const Dashboard = () => {
                 dados={dataGraficoBarra}
                 titulo={'Votos'}
             />
+            {ticket.map((item, index) => (
+                <CardSugestao
+                    key={index}
+                    usuario={usuario}
+                    ticket={item}
+                />
+            ))}
         </>
     );
 }

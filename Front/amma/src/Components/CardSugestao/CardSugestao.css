@@ -1,0 +1,77 @@
+.CardSugestao-row{
+    background-color: rgb(246, 245, 251);
+    width: 80%;
+    margin-left: 25px;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(65, 65, 65, 0.1);
+}
+
+
+.CardSugestao-imagem-jogador{
+    border-color: #eeeeee;
+    background-color: #ffffff;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px;
+    margin-left: 2%;
+}
+
+.CardSugestao-imagem{
+    height: 70px;
+    margin-left: 12%;
+    margin-top: 9%;
+    margin-bottom: auto;
+}
+
+.CardSugestao-linha{
+    background-color: rgb(197, 197, 199);
+    width: 2px;
+    flex-grow: 0.003;
+}
+
+.CardSugestao-col{
+    margin-left: 1%;
+    margin-right: 1%;
+    flex-grow: 0;
+}
+
+.CardSugestao-tocket{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.CardSugestao-nomeUsuario{
+    font-weight: 700;
+}
+
+.CardSugestao-col-usuario{
+    align-self: center;
+}
+
+.CardSugestao-ticket-titulo{
+    font-weight: 500;
+}
+
+.CardSugestao-ticket-votos{
+    align-self: center;
+}
+
+.CardSugestao-favorito{
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+}
+
+.CardSugestao-numero-voto{
+    height: 100%;
+    align-items: center;
+    margin-left: 10px;
+    font-weight: 800;
+}
+
