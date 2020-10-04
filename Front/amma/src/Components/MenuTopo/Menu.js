@@ -20,7 +20,7 @@ const Menu = () => {
                 <Col className='Menu-itens'><Link to={rota.Sobre}>Sobre</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Avisos}>Avisos</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Adm}>Adm</Link></Col>
-                <Col className='Menu-itens'>Sair</Col>
+                <Col className='Menu-itens'><Link to={rota.login}>Login</Link></Col>
                 <Col className='Menu-itens'>{null}</Col>
             </Row>
         </div>

@@ -10,6 +10,7 @@ const CriarConta = () => {
     const dispatch = useDispatch();
 
     const [usuario, setUsuario] = useState('');
+    const [cargo, setCargo] = useState('');
     const [senha, setSenha] = useState('');
     const [senhaConfirme, setSenhaConfirme] = useState('');
 
@@ -17,7 +18,7 @@ const CriarConta = () => {
     function onsubmit() {
         senha !== senhaConfirme
             ? alert('Senhas diferentes')
-            : dispatch(usuarioAction.adicionarUsuario({ nome: usuario, senha: senha, }));
+            : dispatch(usuarioAction.adicionarUsuario({ nome: usuario, cargo: cargo, senha: senha, }));
     }
 
     return (
@@ -30,6 +31,15 @@ const CriarConta = () => {
                         type="text"
                         placeholder="Usuário de rede"
                         onChange={e => setUsuario(e.target.value)}
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Cargo</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Cargo atual"
+                        onChange={e => setCargo(e.target.value)}
                     />
                 </Form.Group>
 
