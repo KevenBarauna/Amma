@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Amma/static/css/main.b30257bb.chunk.css",
+    "main.js": "/Amma/static/js/main.9a4d58d7.chunk.js",
+    "main.js.map": "/Amma/static/js/main.9a4d58d7.chunk.js.map",
+    "runtime-main.js": "/Amma/static/js/runtime-main.2c491f3c.js",
+    "runtime-main.js.map": "/Amma/static/js/runtime-main.2c491f3c.js.map",
+    "static/css/2.d9ad5f5c.chunk.css": "/Amma/static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.92bea6f1.chunk.js": "/Amma/static/js/2.92bea6f1.chunk.js",
+    "static/js/2.92bea6f1.chunk.js.map": "/Amma/static/js/2.92bea6f1.chunk.js.map",
+    "index.html": "/Amma/index.html",
+    "precache-manifest.f9571e95557c3784a14e35ee65888abe.js": "/Amma/precache-manifest.f9571e95557c3784a14e35ee65888abe.js",
+    "service-worker.js": "/Amma/service-worker.js",
+    "static/css/2.d9ad5f5c.chunk.css.map": "/Amma/static/css/2.d9ad5f5c.chunk.css.map",
+    "static/css/main.b30257bb.chunk.css.map": "/Amma/static/css/main.b30257bb.chunk.css.map",
+    "static/js/2.92bea6f1.chunk.js.LICENSE.txt": "/Amma/static/js/2.92bea6f1.chunk.js.LICENSE.txt",
+    "static/media/Adicionar.css": "/Amma/static/media/background-adicionar.35dc4816.jpg",
+    "static/media/Login.css": "/Amma/static/media/background-login.5336c4fc.jpg",
+    "static/media/logo.png": "/Amma/static/media/logo.74929503.png",
+    "static/media/sino.png": "/Amma/static/media/sino.d17d014a.png",
+    "static/media/temp2.png": "/Amma/static/media/temp2.514825b8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c491f3c.js",
+    "static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.92bea6f1.chunk.js",
+    "static/css/main.b30257bb.chunk.css",
+    "static/js/main.9a4d58d7.chunk.js"
+  ]
+}
