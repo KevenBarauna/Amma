@@ -34,7 +34,6 @@ const TopoFivePerfil = () => {
             </Row>
             <div className='TopFivePerfil-container-list'>
                 {topTicketUsuario?.map((dados, index) => (
-
                     <ListTopFive
                         key={index}
                         tipoTicket={dados.tipoTicket}

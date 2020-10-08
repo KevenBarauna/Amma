@@ -4,6 +4,19 @@ import { exibirMensagemErro, exibirMensagemSucesso } from './../Helpers/FuncaoPa
 import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
 
+const verificarLogin = (user) => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    usuarioService.verificarLogin()
+        .then(response => {
+            dispatch({
+                type: USUARIO.DADOS_USER,
+                payload: response.data
+            });
+        })
+        .catch(erro => exibirMensagemErro(erro))
+        .finally(dispatch(loadingAction.fecharLoading()))
+}
+
 const buscarTodosUsuarios = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
     usuarioService.buscarTodosUsuarios()
@@ -43,6 +56,7 @@ const adicionarUsuario = (user) => dispatch => {
 
 
 export default {
+    verificarLogin,
     buscarTodosUsuarios,
     buscarTopTicket,
     adicionarUsuario,

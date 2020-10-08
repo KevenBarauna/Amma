@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import imagemLogo from './../../assets/image/logo.png'
 import './CriarConta.css';
 import usuarioAction from './../../Actions/UsuarioAction';
 

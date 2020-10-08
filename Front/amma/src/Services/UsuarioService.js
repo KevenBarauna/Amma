@@ -1,8 +1,27 @@
 import axios from "axios";
-import { TOP_TICKET_PERFIL } from './../Helpers/Const/ConstMock';
+import { usuarioServiceMock } from './../Helpers/Const/ConstMock';
+
 
 const API_HOST = process.env.REACT_APP_API_SERVER;
 const CONTROLLER_USER = 'usuario';
+
+export const verificarLogin = (user) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "POST",
+            url: `${API_HOST}${CONTROLLER_USER}/verificarLogin`,
+            headers: { "content-type": "application/json", },
+            data: JSON.stringify(user),
+        })
+            .then(res =>
+                resolve(res)
+            )
+            .catch(error =>
+                //reject(error)
+                resolve({data: usuarioServiceMock(user, 'verificarLogin')})
+            )
+    })
+}
 
 export const buscarTodosUsuarios = () => {
     return new Promise((resolve, reject) => {
@@ -15,7 +34,8 @@ export const buscarTodosUsuarios = () => {
                 resolve(res)
             )
             .catch(error =>
-                reject(error)
+                //reject(error)
+                resolve({data: usuarioServiceMock(null,'buscarTodosUsuarios')})
             )
     })
 }
@@ -33,13 +53,12 @@ export const buscarTopTicket = (usuario) => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({ data: TOP_TICKET_PERFIL })
+                resolve({data: usuarioServiceMock(usuario, 'buscarTopTicket')})
             )
     })
 }
 
 export const adicionarUsuario = (usuario) => {
-    console.log('$ service', usuario)
     return new Promise((resolve, reject) => {
         axios({
             method: "POST",
@@ -51,12 +70,14 @@ export const adicionarUsuario = (usuario) => {
                 resolve(res)
             )
             .catch(error =>
-                reject(error)
+                //reject(error)
+                resolve({data: usuarioServiceMock(usuario,'adicionarUsuario')})
             )
     })
 }
 
 export default {
+    verificarLogin,
     buscarTodosUsuarios,
     buscarTopTicket,
     adicionarUsuario,

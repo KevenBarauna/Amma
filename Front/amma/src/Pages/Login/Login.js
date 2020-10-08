@@ -16,7 +16,7 @@ const Login = () => {
 
 
     function onsubmit() {
-        dispatch(usuarioAction.buscarTodosUsuarios());
+        dispatch(usuarioAction.verificarLogin());
         console.log('$ usuário: ', usuario)
         console.log('$ senha: ', senha)
 
