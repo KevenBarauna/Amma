@@ -21,53 +21,56 @@ const CriarConta = () => {
     }
 
     return (
-        <div className='criarConta-container'>
-            <div className='criarConta-titulo'>Criar nova conta</div>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Nome</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Usuário de rede"
-                        onChange={e => setUsuario(e.target.value)}
-                    />
-                </Form.Group>
+        <div className='criarConta-fundo'>
+            <div className='criarConta-container-transparente'/>
+            <div className='criarConta-container'>
+                <div className='criarConta-titulo'>Criar nova conta</div>
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Nome</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Usuário de rede"
+                            onChange={e => setUsuario(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Cargo</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Cargo atual"
-                        onChange={e => setCargo(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Cargo</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Cargo atual"
+                            onChange={e => setCargo(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Senha</Form.Label>
-                    <Form.Control
-                        type="password"
-                        autoComplete="false"
-                        placeholder="Senha"
-                        onChange={e => setSenha(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Senha</Form.Label>
+                        <Form.Control
+                            type="password"
+                            autoComplete="false"
+                            placeholder="Digite uma senha"
+                            onChange={e => setSenha(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Confirmação de senha</Form.Label>
-                    <Form.Control
-                        type="password"
-                        autoComplete="false"
-                        placeholder="Confirmação de senha"
-                        onChange={e => setSenhaConfirme(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Confirmação de senha</Form.Label>
+                        <Form.Control
+                            type="password"
+                            autoComplete="false"
+                            placeholder="Digite uma senha novamente"
+                            onChange={e => setSenhaConfirme(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <div className='criarConta-button'>
-                    <Button variant="primary" className='btn-padrao' onClick={() => onsubmit()}>
-                        Criar conta
+                    <div className='criarConta-button'>
+                        <Button variant="danger" className='btn-padrao' onClick={() => onsubmit()}>
+                            Criar conta
                 </Button>
-                </div>
-            </Form>
+                    </div>
+                </Form>
+            </div>
         </div>
     );
 }

@@ -2,8 +2,6 @@
     margin-left: 83.3%;
     /* height: 100%; */
     position: absolute;
-    background-color: transparent;
-
 }
 
 .perfil-coluna-sub-principal{
@@ -50,6 +48,12 @@
     padding: 15px;
     position: initial;
     margin-left: 80%;
+}
+
+.perfil-container{
+    height: 95vh;
+    background-color: #ffffff;
+    padding-top: 20px;
 }
 
 input[type="checkbox"]:checked ~ #perfil-teste{

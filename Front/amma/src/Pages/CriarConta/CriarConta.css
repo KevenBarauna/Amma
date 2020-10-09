@@ -5,11 +5,21 @@
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(255, 255, 255, 0.548);
-    min-height: 80%;
-    height: 80%;
     min-width: 50%;
     width: 50%;
     border-radius: 8px;
+}
+
+.criarConta-fundo{
+    background-image: url('./../../assets/image/background-login.jpg');
+    background-color: rgb(255, 255, 255);
+    height: 95vh;
+    width: 100%;
+    background-size: cover;
+}
+
+.criarConta-container-transparente{
+    height: 3%;
 }
 
 .criarConta-titulo{

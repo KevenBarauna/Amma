@@ -58,4 +58,4 @@ Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=
  - [Avatar](https://www.flaticon.com/br/packs/fairytale-42?k=1599781706295)
  Background do [Pexels](https://www.pexels.com/pt-br/)
 - Background adicionar [Startup Stock Photos](https://www.pexels.com/pt-br/foto/brainstorm-comodo-complexo-complicado-212286/)
-- Background login [??]()
+- Background login - Foto de fauxels no Pexels
