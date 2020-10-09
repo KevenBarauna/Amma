@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import imagemLoading from './../../assets/image/loading.gif'
 import './Loading.css'
 
 const Loading = () => {
@@ -10,7 +11,9 @@ const Loading = () => {
     return (
         exibirLoading === true ?
             <div className='loading-container'>
-                <h1 className='loading-titulo'>Carregando..</h1>
+                <div className='loading-container-imagem'>
+                    <img className='loading-imagem' src={imagemLoading} alt='Ícone loading' />
+                </div>
             </div>
             : (null)
     );

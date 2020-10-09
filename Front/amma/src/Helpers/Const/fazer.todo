@@ -1,0 +1,22 @@
+Imagem:
+ - Localizar imagem de fundo das telas:
+   - Login
+   - Criar conta
+
+Tela:
+ Inicio fazer igual ao Vai&Volta
+ Login, responsividade.
+ Remover tela 'Sobre'
+
+
+ Código:
+ Add tooltip do Material ui
+ Fazer mock de todos os Services
+
+ Fazer:
+  Mensagem de erro.
+  Tela loading na tela inteira
+  Tela loading de component especifico.
+  Design tela de avisos.
+  Design tela Adm.
+  Fazer gif do loading com a logo

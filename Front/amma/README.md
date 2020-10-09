@@ -54,6 +54,7 @@ Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=
  - [Ícone favorito](ttps://www.flaticon.com/br/icone-gratis/ame_2913252)
  - [Ícone Notificação](https://www.flaticon.com/br/icone-gratis/sino_1156949?term=notification&page=1&position=3)
  - [Logo](https://www.linkedin.com/in/keven-bara%C3%BAna-2a9a47173/)
+ - [Ícone loading](https://www.linkedin.com/in/keven-bara%C3%BAna-2a9a47173/)
  - [Avatar](https://www.flaticon.com/br/packs/fairytale-42?k=1599781706295)
  Background do [Pexels](https://www.pexels.com/pt-br/)
 - Background adicionar [Startup Stock Photos](https://www.pexels.com/pt-br/foto/brainstorm-comodo-complexo-complicado-212286/)
