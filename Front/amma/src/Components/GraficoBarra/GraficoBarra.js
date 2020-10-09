@@ -1,24 +1,15 @@
 
 import React, { useCallback } from 'react';
 import { Bar } from 'react-chartjs-2';
+import {coresTicketsPorId} from './../../Helpers/Const/appConst';
 
 const GraficoBarra = props => {
     const { dados, titulo } = props;
 
     const descricao = [];
     const porcentagem = [];
-    const cor = [
-        '#216B47',
-        '#91EEC1',
-        '#49EB9C',
-        '#416B57',
-        '#39B87A',
-        '#236B3F',
-        '#96EEB8',
-        '#4DEB8A',
-        '#436B53',
-        '#3CB86C'
-    ];
+    const coresPadrao = coresTicketsPorId
+    const cores = [];
 
 
     const consultarDatos = useCallback(() => {
@@ -27,14 +18,18 @@ const GraficoBarra = props => {
                 porcentagem.push(item.votos);
                 const legenda = `${item.titulo} ${item.tipo}`;
                 descricao.push(legenda);
+                cores.push(coresPadrao[parseInt(item?.tipo) -1 ] || coresPadrao[4])
             });
             return {
                 labels: descricao,
                 datasets: [
                     {
                         data: porcentagem,
-                        backgroundColor: cor,
-                        hoverBackgroundColor: cor,
+                        borderWidth: 1,
+                        backgroundColor: cores,
+                        borderColor: 'rgb(15, 255, 167)',
+                        hoverBackgroundColor: 'rgb(11,207,230)',
+                        hoverBorderColor: 'rgb(15, 163, 255)',
                     },
                 ],
             };
@@ -46,12 +41,12 @@ const GraficoBarra = props => {
             datasets: [
                 {
                     data: porcentagem,
-                    backgroundColor: cor[4],
-                    hoverBackgroundColor: cor,
+                    backgroundColor: coresPadrao[4],
+                    hoverBackgroundColor: coresPadrao,
                 },
             ],
         };
-    }, [dados, cor, descricao, porcentagem]);
+    }, [dados, coresPadrao, descricao, porcentagem]);
 
     return (
         <Bar
@@ -64,13 +59,7 @@ const GraficoBarra = props => {
                     padding: 1,
                 },
                 legend: {
-                    labels: {
-                        fontSize: 10,
-                        padding: 5,
-                        boxWidth: 20,
-                    },
-                    position: 'bottom',
-                    align: 'center',
+                    display: false,
                     onHover(e) {
                         e.target.style.cursor = 'pointer';
                     },

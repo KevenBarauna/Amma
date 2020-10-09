@@ -1,5 +1,6 @@
 
 import React, { useCallback } from 'react';
+import {coresTickets} from './../../Helpers/Const/appConst';
 import { Doughnut } from 'react-chartjs-2';
 
 const GraficoPizzaGenerico = props => {
@@ -7,13 +8,7 @@ const GraficoPizzaGenerico = props => {
 
     const descricao = [];
     const porcentagem = [];
-    const cor = [
-        '#c6f295',
-        '#e4292f',
-        '#facf62',
-        '#33a3f9',
-        '#767676',
-    ];
+    const cor = coresTickets;
 
 
     const consultarDatos = useCallback(() => {

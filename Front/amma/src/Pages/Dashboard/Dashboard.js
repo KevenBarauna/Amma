@@ -8,30 +8,30 @@ import CardSugestao from './../../Components/CardSugestao/Index';
 const Dashboard = () => {
 
     const dataPendente = [
-        { porcentagem: '30', legenda: 'Pendente' },
         { porcentagem: '70', legenda: 'Solucionado' },
+        { porcentagem: '30', legenda: 'Pendente' },
     ]
 
     const dataCategorias = [
         { porcentagem: '30', legenda: 'Adicionar' },
-        { porcentagem: '10', legenda: 'Manter' },
+        { porcentagem: '10', legenda: 'Abandonar' },
         { porcentagem: '50', legenda: 'Melhorar' },
-        { porcentagem: '10', legenda: 'Abandonar' }
+        { porcentagem: '10', legenda: 'Manter' },
     ]
 
     const dataSolucionado = []
 
     const dataGraficoBarra = [
-        { votos: '50', titulo: 'Loren ipisum ', tipo: '1' },
-        { votos: '43', titulo: 'Loren ipisum ', tipo: '2' },
-        { votos: '41', titulo: 'Loren ipisum ', tipo: '1' },
-        { votos: '41', titulo: 'Loren ipisum ', tipo: '4' },
-        { votos: '30', titulo: 'Loren ipisum ', tipo: '2' },
-        { votos: '29', titulo: 'Loren ipisum ', tipo: '1' },
-        { votos: '28', titulo: 'Loren ipisum ', tipo: '4' },
-        { votos: '22', titulo: 'Loren ipisum ', tipo: '4' },
-        { votos: '20', titulo: 'Loren ipisum ', tipo: '1' },
-        { votos: '18', titulo: 'Loren ipisum ', tipo: '2' },
+        { votos: '50', titulo: 'Home office', tipo: '1' },
+        { votos: '43', titulo: 'Game Changer', tipo: '2' },
+        { votos: '41', titulo: 'Microsof Teams', tipo: '1' },
+        { votos: '41', titulo: 'Água', tipo: '4' },
+        { votos: '30', titulo: 'Hub Salvador', tipo: '2' },
+        { votos: '29', titulo: 'Lixeira', tipo: '1' },
+        { votos: '28', titulo: 'Mouse', tipo: '4' },
+        { votos: '22', titulo: 'Cadeira', tipo: '4' },
+        { votos: '20', titulo: 'Monitor', tipo: '1' },
+        { votos: '18', titulo: 'Café', tipo: '2' },
     ]
 
     const usuario = { nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', imagem: null, favoritos: [1, 3, 5] };
