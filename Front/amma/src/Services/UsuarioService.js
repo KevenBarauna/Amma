@@ -18,7 +18,7 @@ export const verificarLogin = (user) => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({data: usuarioServiceMock(user, 'verificarLogin')})
+                resolve({ data: usuarioServiceMock(user, 'verificarLogin') })
             )
     })
 }
@@ -37,7 +37,7 @@ export const buscarTopTicket = (usuario) => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({data: usuarioServiceMock(usuario, 'buscarTopTicket')})
+                resolve({ data: usuarioServiceMock(usuario, 'buscarTopTicket') })
             )
     })
 }
@@ -55,7 +55,7 @@ export const adicionarUsuario = (usuario) => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({data: usuarioServiceMock(usuario,'adicionarUsuario')})
+                resolve({ data: usuarioServiceMock(usuario, 'adicionarUsuario') })
             )
     })
 }

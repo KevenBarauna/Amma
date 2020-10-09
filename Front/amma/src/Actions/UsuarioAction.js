@@ -5,7 +5,7 @@ import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
 
 const verificarLogin = (user) => dispatch => {
-    dispatch(loadingAction.exibirLoading())
+    dispatch(loadingAction.exibirLoading());
     usuarioService.verificarLogin(user)
         .then(response => {
             dispatch({
@@ -14,7 +14,8 @@ const verificarLogin = (user) => dispatch => {
             });
         })
         .catch(erro => exibirMensagemErro(erro))
-        .finally(dispatch(loadingAction.fecharLoading()))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
+
 }
 
 const buscarTopTicket = (user) => dispatch => {
@@ -27,7 +28,7 @@ const buscarTopTicket = (user) => dispatch => {
             });
         })
         .catch(erro => exibirMensagemErro(erro))
-        .finally(dispatch(loadingAction.fecharLoading()))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
 const adicionarUsuario = (user) => dispatch => {
@@ -37,7 +38,7 @@ const adicionarUsuario = (user) => dispatch => {
             exibirMensagemSucesso(response)
         })
         .catch(erro => exibirMensagemErro(erro))
-        .finally(dispatch(loadingAction.fecharLoading()))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
 

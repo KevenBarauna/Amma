@@ -10,7 +10,7 @@ const exibirLoading = () => dispatch => {
 
 const fecharLoading = () => dispatch => {
     dispatch({
-        type: LOADING.EXIBIR_LOADING,
+        type: LOADING.FECHAR_LOADING,
         payload: false
     });
 }
