@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import imagemLogo from './../../assets/image/logo.png'
+import imagemLogo from './../../assets/image/logoAmma.png'
 import './Login.css';
 import usuarioAction from './../../Actions/UsuarioAction';
 import rota from './../../Helpers/Const/Links';
@@ -19,13 +19,13 @@ const Login = () => {
         dispatch(usuarioAction.verificarLogin());
         console.log('$ usuário: ', usuario)
         console.log('$ senha: ', senha)
-
     }
 
     return (
         <div className='login-fundo'>
+            <div className='login-container-transparente' />
             <div>
-                <div className='login-container'>
+                <div className='login-container-form'>
                     <Form>
                         <div className='login-logo'>
                             <img src={imagemLogo} alt='Imagem logo' id='login-imagem-logo'></img>

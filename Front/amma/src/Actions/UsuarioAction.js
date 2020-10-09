@@ -6,20 +6,7 @@ import usuarioService from './../Services/UsuarioService';
 
 const verificarLogin = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
-    usuarioService.verificarLogin()
-        .then(response => {
-            dispatch({
-                type: USUARIO.DADOS_USER,
-                payload: response.data
-            });
-        })
-        .catch(erro => exibirMensagemErro(erro))
-        .finally(dispatch(loadingAction.fecharLoading()))
-}
-
-const buscarTodosUsuarios = (user) => dispatch => {
-    dispatch(loadingAction.exibirLoading())
-    usuarioService.buscarTodosUsuarios()
+    usuarioService.verificarLogin(user)
         .then(response => {
             dispatch({
                 type: USUARIO.DADOS_USER,
@@ -32,7 +19,7 @@ const buscarTodosUsuarios = (user) => dispatch => {
 
 const buscarTopTicket = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
-    usuarioService.buscarTopTicket()
+    usuarioService.buscarTopTicket(user)
         .then(response => {
             dispatch({
                 type: USUARIO.TOP_TICKET,
@@ -57,7 +44,6 @@ const adicionarUsuario = (user) => dispatch => {
 
 export default {
     verificarLogin,
-    buscarTodosUsuarios,
     buscarTopTicket,
     adicionarUsuario,
 }

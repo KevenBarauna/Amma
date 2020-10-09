@@ -23,22 +23,6 @@ export const verificarLogin = (user) => {
     })
 }
 
-export const buscarTodosUsuarios = () => {
-    return new Promise((resolve, reject) => {
-        axios({
-            method: "GET",
-            url: `${API_HOST}${CONTROLLER_USER}/buscarTodosUsuarios`,
-            headers: { "content-type": "application/json", },
-        })
-            .then(res =>
-                resolve(res)
-            )
-            .catch(error =>
-                //reject(error)
-                resolve({data: usuarioServiceMock(null,'buscarTodosUsuarios')})
-            )
-    })
-}
 
 export const buscarTopTicket = (usuario) => {
     return new Promise((resolve, reject) => {
@@ -78,7 +62,6 @@ export const adicionarUsuario = (usuario) => {
 
 export default {
     verificarLogin,
-    buscarTodosUsuarios,
     buscarTopTicket,
     adicionarUsuario,
 }
