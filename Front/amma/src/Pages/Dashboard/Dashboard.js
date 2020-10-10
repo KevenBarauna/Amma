@@ -1,5 +1,5 @@
-import React, {useCallback,useEffect} from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import usuarioAction from './../../Actions/UsuarioAction';
 import ticketAction from './../../Actions/TicketAction';
@@ -11,9 +11,6 @@ import CardSugestao from './../../Components/CardSugestao/Index';
 const Dashboard = () => {
     const dispatch = useDispatch();
 
-    const usuario = useSelector(
-        state => state.usuarioReducer.usuario
-    );
     const dataPendente = useSelector(
         state => state.ticketReducer.graficoPendente
     );
@@ -26,10 +23,7 @@ const Dashboard = () => {
     const dataGraficoBarra = useSelector(
         state => state.ticketReducer.graficoBarras
     );
-    const ticket = useSelector(
-        state => state.ticketReducer.novosTickets
-    );
-    
+
     const primeiroAcesso = useCallback(() => {
         dispatch(usuarioAction.buscarTicketsFavoritos());
         dispatch(ticketAction.buscarTiposTicket());
@@ -64,13 +58,7 @@ const Dashboard = () => {
                 dados={dataGraficoBarra}
                 titulo={'Votos'}
             />
-            {ticket.map((item, index) => (
-                <CardSugestao
-                    key={index}
-                    usuario={usuario}
-                    ticket={item}
-                />
-            ))}
+            <CardSugestao />
         </>
     );
 }
