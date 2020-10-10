@@ -2,8 +2,9 @@ import { USUARIO } from './../Helpers/Const/ActionType';
 import { exibirDadosRedux } from './../Helpers/FuncaoPadrao/Index';
 
 const INITIAL_STATE = {
-    usuario: null,
+    usuario: { nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', imagem: null, favoritos: [1, 3, 5] },
     topTicket: [],
+    ticketsFavoritos: [],
 };
 
 export default function UsuarioReducer(state = INITIAL_STATE, action) {
@@ -19,6 +20,12 @@ export default function UsuarioReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 topTicket: action.payload
+            };
+        case USUARIO.TICKETS_FAVORITOS:
+            exibirDadosRedux(action)
+            return {
+                ...state,
+                ticketsFavoritos: action.payload
             };
         default:
             return state;

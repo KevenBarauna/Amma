@@ -1,6 +1,6 @@
 .modal-adicionar-container{
     position: fixed;
-    background-color: brown;
+    background-color: rgb(255, 255, 255);
     height: 100%;
     width: 100%;
     background-image: url('./../../assets/image/background-adicionar.jpg');

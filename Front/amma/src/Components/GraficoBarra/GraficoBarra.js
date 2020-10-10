@@ -28,7 +28,7 @@ const GraficoBarra = props => {
                         borderWidth: 1,
                         backgroundColor: cores,
                         borderColor: 'rgb(15, 255, 167)',
-                        hoverBackgroundColor: 'rgb(11,207,230)',
+                        hoverBackgroundColor: 'rgb(210,100,130)',
                         hoverBorderColor: 'rgb(15, 163, 255)',
                     },
                 ],
@@ -46,7 +46,7 @@ const GraficoBarra = props => {
                 },
             ],
         };
-    }, [dados, coresPadrao, descricao, porcentagem]);
+    }, [dados, coresPadrao, cores,descricao, porcentagem]);
 
     return (
         <Bar

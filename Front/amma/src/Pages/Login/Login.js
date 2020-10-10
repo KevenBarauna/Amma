@@ -26,7 +26,8 @@ const Login = () => {
     }
 
     const alterarTela = () => {
-        window.location.href = rota.dashboard;
+        //window.location.href = rota.dashboard;
+        window.history.pushState("object or string", "Title", rota.dashboard);
     }
 
     return (

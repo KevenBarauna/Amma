@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import './CardSugestao.css';
 import imagemTemp from './../../assets/image/temp2.png';
@@ -10,6 +11,10 @@ const CardSugestao = (props) => {
         usuario,
         ticket,
     } = props
+
+    const ticketsFavoritos = useSelector(
+        state => state.usuarioReducer.ticketsFavoritos
+    );
 
     return (
         <div className='CardSugestao-row'>
@@ -37,7 +42,7 @@ const CardSugestao = (props) => {
                 <Col className='CardSugestao-linha' />
                 <Col sm={1} lg={1} md={1} xs={1} className='CardSugestao-ticket-votos'>
                     <Row>
-                        <div> <img className='CardSugestao-favorito' src={usuario?.favoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Menu' /></div>
+                        <div> <img className='CardSugestao-favorito' src={ticketsFavoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Menu' /></div>
                         <div className='CardSugestao-numero-voto'>{ticket?.votos}</div>
                     </Row>
                 </Col>

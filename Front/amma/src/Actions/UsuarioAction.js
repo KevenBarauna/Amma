@@ -12,9 +12,11 @@ const verificarLogin = (user) => dispatch => {
                 type: USUARIO.DADOS_USER,
                 payload: response.data
             });
+            salvarUsuarioLocalStorage(user)
         })
         .catch(erro => exibirMensagemErro(erro))
         .finally(() => dispatch(loadingAction.fecharLoading()))
+
 
 }
 
@@ -24,6 +26,19 @@ const buscarTopTicket = (user) => dispatch => {
         .then(response => {
             dispatch({
                 type: USUARIO.TOP_TICKET,
+                payload: response.data
+            });
+        })
+        .catch(erro => exibirMensagemErro(erro))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
+}
+
+const buscarTicketsFavoritos = (user) => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    usuarioService.buscarTicketsFavoritos(user?.id)
+        .then(response => {
+            dispatch({
+                type: USUARIO.TICKETS_FAVORITOS,
                 payload: response.data
             });
         })
@@ -41,10 +56,17 @@ const adicionarUsuario = (user) => dispatch => {
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
+const salvarUsuarioLocalStorage = (user) => {
+    localStorage.setItem('usuario', JSON.stringify({ nome: user.nome, token: 'TOKENTESTEMOCK', id: '1' }))
+}
+
+
+
 
 
 export default {
     verificarLogin,
+    buscarTicketsFavoritos,
     buscarTopTicket,
     adicionarUsuario,
 }

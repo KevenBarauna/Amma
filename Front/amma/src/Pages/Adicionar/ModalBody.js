@@ -8,7 +8,7 @@ import imagemAjuda from './../../assets/image/ajuda.png';
 const ModalBody = () => {
 
     const tiposCategoria = useSelector(
-        state => state.TicketReducer.tipoTicket
+        state => state.ticketReducer.tipoTicket
     );
 
     const [titulo, setTitulo] = useState('');
