@@ -46,6 +46,19 @@ const buscarTicketsFavoritos = (user) => dispatch => {
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
+const favoritarTicket = (user, idTicket) => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    usuarioService.favoritarTicket(user?.id, idTicket)
+        .then(response => {
+            dispatch({
+                type: USUARIO.TICKETS_FAVORITOS,
+                payload: response.data
+            });
+        })
+        .catch(erro => exibirMensagemErro(erro))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
+}
+
 const adicionarUsuario = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
     usuarioService.adicionarUsuario(user)
@@ -61,12 +74,10 @@ const salvarUsuarioLocalStorage = (user) => {
 }
 
 
-
-
-
 export default {
     verificarLogin,
     buscarTicketsFavoritos,
     buscarTopTicket,
+    favoritarTicket,
     adicionarUsuario,
 }

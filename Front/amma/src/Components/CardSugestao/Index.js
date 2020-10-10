@@ -1,12 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import usuarioAction from './../../Actions/UsuarioAction'
 import './CardSugestao.css';
 import imagemTemp from './../../assets/image/temp2.png';
 import imagemfavoritoTrue from './../../assets/image/favorito-true.png';
 import imagemfavoritoFalse from './../../assets/image/favorito-false.png';
 
 const CardSugestao = (props) => {
+    const dispatch = useDispatch();
     const {
         usuario,
         ticket,
@@ -15,6 +17,10 @@ const CardSugestao = (props) => {
     const ticketsFavoritos = useSelector(
         state => state.usuarioReducer.ticketsFavoritos
     );
+
+    const handleClickFavorito = (idFavorito) => {
+        dispatch(usuarioAction.favoritarTicket(usuario,idFavorito));
+    }
 
     return (
         <div className='CardSugestao-row'>
@@ -42,7 +48,7 @@ const CardSugestao = (props) => {
                 <Col className='CardSugestao-linha' />
                 <Col sm={1} lg={1} md={1} xs={1} className='CardSugestao-ticket-votos'>
                     <Row>
-                        <div> <img className='CardSugestao-favorito' src={ticketsFavoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Menu' /></div>
+                        <div onClick={() => handleClickFavorito(ticket?.id)}> <img className='CardSugestao-favorito' src={ticketsFavoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Menu' /></div>
                         <div className='CardSugestao-numero-voto'>{ticket?.votos}</div>
                     </Row>
                 </Col>

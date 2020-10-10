@@ -1,6 +1,7 @@
 
 //--------------------------------------------------------------------------------------------\\
 export const usuarioServiceMock = (user, service) => {
+    let favoritos = [1, 3, 5];
     switch (service) {
         case 'verificarLogin':
             return {
@@ -28,7 +29,10 @@ export const usuarioServiceMock = (user, service) => {
                 { tipoTicket: { id: '4', nome: 'Abandonar' }, titulo: 'Reunião 8h', data: '11/10/2020' },
             ];
         case 'buscarTicketsFavoritos':
-            return [1, 3, 5, 6, 7, 9, 23];
+            return favoritos;
+        case 'favoritarTicket':
+            favoritos.push(user);
+            return favoritos
         case 'adicionarUsuario':
             return { mensagem: 'Usuário cadastrado com sucesso!' }
         default:

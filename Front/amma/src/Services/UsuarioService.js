@@ -78,9 +78,28 @@ export const adicionarUsuario = (usuario) => {
     })
 }
 
+export const favoritarTicket = (idUsuario, idTicket) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "POST",
+            url: `${API_HOST}${CONTROLLER_USER}/favoritarTicket`,
+            headers: { "content-type": "application/json", },
+            data: JSON.stringify(idUsuario,idTicket),
+        })
+            .then(res =>
+                resolve(res)
+            )
+            .catch(error =>
+                //reject(error)
+                resolve({ data: usuarioServiceMock(idTicket, 'favoritarTicket') })
+            )
+    })
+}
+
 export default {
     verificarLogin,
     buscarTopTicket,
     buscarTicketsFavoritos,
     adicionarUsuario,
+    favoritarTicket,
 }
