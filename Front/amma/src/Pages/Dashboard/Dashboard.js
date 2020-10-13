@@ -23,6 +23,15 @@ const Dashboard = () => {
     const dataGraficoBarra = useSelector(
         state => state.ticketReducer.graficoBarras
     );
+    const ticketsFavoritos = useSelector(
+        state => state.usuarioReducer.ticketsFavoritos
+    );
+    const todosTickets = useSelector(
+        state => state.ticketReducer.novosTickets
+    );
+    const usuario = useSelector(
+        state => state.usuarioReducer.usuario
+    );
 
     const primeiroAcesso = useCallback(() => {
         dispatch(usuarioAction.buscarTicketsFavoritos());
@@ -58,7 +67,14 @@ const Dashboard = () => {
                 dados={dataGraficoBarra}
                 titulo={'Votos'}
             />
-            <CardSugestao />
+            {todosTickets.map((ticket, index) => (
+                <CardSugestao
+                    ticketsFavoritos={ticketsFavoritos}
+                    ticket={ticket}
+                    usuario={usuario}
+                    codRender={1}
+                />
+            ))}
         </>
     );
 }

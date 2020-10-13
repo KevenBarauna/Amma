@@ -53,6 +53,8 @@ Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=
  - [Ícone ajuda]()
  - [Ícone favorito](ttps://www.flaticon.com/br/icone-gratis/ame_2913252)
  - [Ícone Notificação](https://www.flaticon.com/br/icone-gratis/sino_1156949?term=notification&page=1&position=3)
+ - [Ícone apagar](https://www.flaticon.com/br/icone-gratis/apagar_3389157?term=apagar&page=1&position=9)
+ - [Ícone aprovado](https://www.flaticon.com/br/icone-gratis/carraca_716225)
  - [Logo](https://www.linkedin.com/in/keven-bara%C3%BAna-2a9a47173/)
  - [Ícone loading](https://www.linkedin.com/in/keven-bara%C3%BAna-2a9a47173/)
  - [Avatar](https://www.flaticon.com/br/packs/fairytale-42?k=1599781706295)

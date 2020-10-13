@@ -6,7 +6,7 @@ Imagem:
 Tela:
  Inicio fazer igual ao Vai&Volta
  Login, responsividade. - OK
- Remover tela 'Sobre'
+ Remover tela 'Sobre' e ADD tutorial
 
 
  Código:
@@ -20,3 +20,7 @@ Tela:
   Design tela de avisos.
   Design tela Adm.
   Fazer gif do loading com a logo - OK
+
+ TELA SUGESTAO - RESPONSIVIDADE  - SE ROLAR MOUSE O MENU Sobre
+ TELA SUGESTAO - MOSTRAR NA PARTE DE BAIXO O CARD COM FOTO NOME E ETC.
+ TELA DE ADIMIN - MOSTRAR TODOS OS CARD COM BOTAO DE APAGAR NO LUGAR DO CORACAO. - > MODAL COM JUSTIFICATIVA.
