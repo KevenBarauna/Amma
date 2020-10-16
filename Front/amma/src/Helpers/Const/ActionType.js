@@ -18,8 +18,13 @@ export const TICKET = {
     NOVOS_TICKETS: "NOVOS_TICKETS",
 };
 
+export const GERENCIAR = {
+    TODOS_TICKETS: "TODOS_TICKETS",
+};
+
 export default {
     USUARIO,
     LOADING,
     TICKET,
+    GERENCIAR,
 }

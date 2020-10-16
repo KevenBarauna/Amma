@@ -44,7 +44,7 @@ const Adicionar = () => {
         card.usuario.cargo = usuario?.cargo;
         card.titulo = titulo;
         card.descricao = descricao;
-        if (exibirNome == true) {
+        if (exibirNome === true) {
             card.usuario.nome = null;
             card.usuario.cargo = null;
         }

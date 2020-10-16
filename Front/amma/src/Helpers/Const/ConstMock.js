@@ -93,7 +93,25 @@ export const ticketServiceMock = (service) => {
 }
 
 
+//--------------------------------------------------------------------------------------------\\
+export const sugestaoServiceMock = (service) => {
+    switch (service) {
+        case 'buscarTodosTickets':
+            return [
+                { id: 1, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Home office', descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s trys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', data: '04/10/2020', votos: 1 },
+                { id: 2, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Game Changer', descricao: 'A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim utilizado na produção gráfica para preencher os espaços de texto em publicações para testar e ajustar aspectos visuais antes de utilizar conteúdo real.', data: '10/12/2020', votos: 0 },
+                { id: 3, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Microsof Teams', descricao: 'Lorem ing industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500ss', data: '05/08/2020', votos: 6 },
+                { id: 4, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Água', descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500 em Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500ss', data: '01/01/2021', votos: 10 },
+                { id: 5, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Hub Salvador', descricao: '', data: '12/10/2020', votos: 1 },
+                { id: 6, usuario:{id:'1', idImagem: '1', nome: 'PessoaService', cargo: 'Programador'}, titulo: 'Lixeira', descricao: 'O cuidado em identificar pontos críticos na adoção de políticas descentralizadoras estimula a padronização dos níveis de motivação departamental.', data: '04/10/2021', votos: 35 },
+            ];
+        default:
+            return null;
+    }
+}
+
 export default {
     ticketServiceMock,
     usuarioServiceMock,
+    sugestaoServiceMock,
 }

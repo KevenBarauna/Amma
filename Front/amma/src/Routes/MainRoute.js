@@ -10,6 +10,7 @@ import Loading from './../Components/Carregando/Loading';
 import pageNotFound from './../Pages/NotFound404/pageNotFound';
 import Dashboard from './../Pages/Dashboard/Dashboard';
 import CriarConta from './../Pages/CriarConta/CriarConta';
+import Gerenciar from './../Pages/Gerenciar/Index'
 
 const MainRoute = () => {
 
@@ -17,7 +18,7 @@ const MainRoute = () => {
         < BrowserRouter >
             <Loading />
             <Menu />
-            <Perfil />
+            {/* <Perfil /> */}
             <Switch>
                 <Route path='/' component={Home} exact />
                 <Route path={rota.home} component={Home} />
@@ -25,6 +26,7 @@ const MainRoute = () => {
                 <Route path={rota.Sugestões} component={Adicionar} />
                 <Route path={rota.dashboard} component={Dashboard} />
                 <Route path={rota.novaConta} component={CriarConta} />
+                <Route path={rota.Adm} component={Gerenciar} />
                 <Route path={rota.pageNotFound} component={pageNotFound} />
                 <Redirect to={rota.pageNotFound} />
             </Switch>
