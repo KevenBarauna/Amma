@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
+import {mensagemFlash} from './../../Helpers/FuncaoPadrao/Index';
 import './CriarConta.css';
 import usuarioAction from './../../Actions/UsuarioAction';
 
@@ -16,7 +17,7 @@ const CriarConta = () => {
 
     function onsubmit() {
         senha !== senhaConfirme
-            ? alert('Senhas diferentes')
+            ? mensagemFlash('error','Senhas diferentes',null,null)
             : dispatch(usuarioAction.adicionarUsuario({ nome: usuario, cargo: cargo, senha: senha, }));
     }
 

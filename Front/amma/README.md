@@ -25,6 +25,7 @@ Este projeto foi iniciado com o [Create React App](https://github.com/facebook/c
 - [React Select](https://react-select.com/home)
 - [React-chartjs-2](https://www.npmjs.com/package/react-chartjs-2)
 - [Github-pages](https://www.npmjs.com/package/gh-pages)
+- [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 
 ```
 npm install react-bootstrap bootstrap
@@ -35,6 +36,7 @@ npm install --save axios
 npm install react-select
 npm install --save react-chartjs-2 chart.js
 npm install gh-pages --save-dev
+npm install --save sweetalert2
 ```
 
 
