@@ -18,7 +18,7 @@ const MainRoute = () => {
         < BrowserRouter >
             <Loading />
             <Menu />
-            {/* <Perfil /> */}
+            <Perfil />
             <Switch>
                 <Route path='/' component={Home} exact />
                 <Route path={rota.home} component={Home} />

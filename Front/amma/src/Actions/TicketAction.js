@@ -1,6 +1,6 @@
 
 import { TICKET } from './../Helpers/Const/ActionType';
-import { exibirMensagemErro } from './../Helpers/FuncaoPadrao/Index';
+import { AlertaModal } from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import ticketService from './../Services/TicketService';
 
@@ -13,7 +13,7 @@ const buscarTiposTicket = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar os tipos de tickets'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -26,7 +26,7 @@ const buscarGraficoPendente = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar dados dos grágicos pendente'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -39,7 +39,7 @@ const buscarGraficoCategorias = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar dados dos grágicos de categorias'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -52,7 +52,7 @@ const buscarGraficoSolucionados = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar dados dos grágicos solucionados'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -65,7 +65,7 @@ const buscarGraficoTopTicket = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar dados dos grágicos top ticket'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -78,7 +78,7 @@ const buscarNovosTickets = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro em buscar tickets'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 

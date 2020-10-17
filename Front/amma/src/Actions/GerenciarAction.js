@@ -1,6 +1,6 @@
 
 import { GERENCIAR } from './../Helpers/Const/ActionType';
-import { exibirMensagemErro } from './../Helpers/FuncaoPadrao/Index';
+import { AlertaModal } from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import gerenciarService from './../Services/GerenciarService';
 
@@ -13,7 +13,7 @@ const buscarTodosTickets = () => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao buscar todos os tickets'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 

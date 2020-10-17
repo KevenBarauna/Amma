@@ -1,6 +1,7 @@
 
 import { USUARIO } from './../Helpers/Const/ActionType';
-import { exibirMensagemErro, exibirMensagemSucesso } from './../Helpers/FuncaoPadrao/Index';
+import { AlertaModal } from './../Helpers/FuncaoPadrao/Index';
+import {exibirMensagemSucesso} from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
 
@@ -14,7 +15,7 @@ const verificarLogin = (user) => dispatch => {
             });
             salvarUsuarioLocalStorage(user)
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro na verificação do login'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 
 
@@ -29,7 +30,7 @@ const buscarTopTicket = (user) => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao buscar top ticket'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -42,7 +43,7 @@ const buscarTicketsFavoritos = (user) => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao buscar tickets favoritos'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -55,7 +56,7 @@ const favoritarTicket = (user, idTicket) => dispatch => {
                 payload: response.data
             });
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao favoritar ticket'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
@@ -65,7 +66,7 @@ const adicionarUsuario = (user) => dispatch => {
         .then(response => {
             exibirMensagemSucesso(response)
         })
-        .catch(erro => exibirMensagemErro(erro))
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao adicionar usuário'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
