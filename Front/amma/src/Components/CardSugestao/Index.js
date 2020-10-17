@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
-import usuarioAction from './../../Actions/UsuarioAction'
+import usuarioAction from './../../Actions/UsuarioAction';
+import gerenciarAction from './../../Actions/GerenciarAction';
 import './CardSugestao.css';
 import { AlertaModal, mensagemFlash } from './../../Helpers/FuncaoPadrao/Index';
 import imagemTemp from './../../assets/image/temp2.png';
@@ -23,8 +24,8 @@ const CardSugestao = (props) => {
         dispatch(usuarioAction.favoritarTicket(usuario, idFavorito));
     }
 
-    const handleAprovarTicket = () => {
-        mensagemFlash('success', 'Ticket aprovador com sucesso!');
+    const handleAprovarTicket = (idTicket) => {
+        dispatch(gerenciarAction.aprovarTicket(idTicket));
     }
 
     const handleApagarTicket = () => {
@@ -55,8 +56,8 @@ const CardSugestao = (props) => {
         //ID = 3
         return (
             <>
-                <div onClick={() => handleApagarTicket()}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Menu' /></div>
-                <div onClick={() => handleAprovarTicket()}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Menu' /></div>
+                <div onClick={() => handleApagarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Menu' /></div>
+                <div onClick={() => handleAprovarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Menu' /></div>
             </>
         );
     };

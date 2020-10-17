@@ -2,6 +2,7 @@ import React, {useCallback,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CardSugestao from './../../Components/CardSugestao/Index';
 import gerenciarAction from './../../Actions/GerenciarAction';
+import './Gerenciar.css'
 
 const Gerenciar = () => {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const Gerenciar = () => {
 
     
     const primeiroAcesso = useCallback(() => {
-        dispatch(gerenciarAction.buscarTodosTickets());
+        dispatch(gerenciarAction.buscarTodosTicketsPendentes());
     }, [dispatch]);
     useEffect(() => {
         primeiroAcesso();
@@ -27,7 +28,7 @@ const Gerenciar = () => {
 
     return (
         <div >
-            <h2>Aprove ou reprove os novos tickets</h2>
+            <h2 className='gerenciar-titulo'>Aprove ou reprove os novos tickets</h2>
             {todosTickets.map((ticket, index) => (
                 <CardSugestao
                     key={index}

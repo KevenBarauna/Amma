@@ -1,6 +1,6 @@
 
 import { USUARIO } from './../Helpers/Const/ActionType';
-import { AlertaModal } from './../Helpers/FuncaoPadrao/Index';
+import { AlertaModal, mensagemFlash } from './../Helpers/FuncaoPadrao/Index';
 import {exibirMensagemSucesso} from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
@@ -55,6 +55,7 @@ const favoritarTicket = (user, idTicket) => dispatch => {
                 type: USUARIO.TICKETS_FAVORITOS,
                 payload: response.data
             });
+            mensagemFlash('success', 'Ticket marcado com sucesso', null,null)
         })
         .catch(erro => AlertaModal('error', erro, null,'Erro ao favoritar ticket'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
