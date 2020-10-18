@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Col } from 'react-bootstrap';
 import './Perfil.css';
-import imagemTemp from './../../assets/image/temp2.png';
+import { selecionarImagemAvatar } from './../../Helpers/FuncaoPadrao/ImagemUsuario';
 import TopFivePerfil from './../TopFivePerfil/TopFivePerfil';
 
 
@@ -12,28 +12,32 @@ const Perfil = () => {
         state => state.usuarioReducer.usuario
     );
 
+    const tempAlterarAvatar = () => {
+        alert('Abrir página altererar avatar')
+    }
+
     return (
         <>
-        {usuario !== null ?
-        <Col sm={2} className='perfil-coluna-principal'>
-            <Col id='perfil-teste' className='perfil-coluna-sub-principal'>
-                <div className='perfil-container'>
-                    <div className='perfil-imagem-jogador'>
-                        <img className='perfil-imagem' src={imagemTemp} alt='Menu' />
-                    </div>
-                    <div className='perfil-nome'>
-                        Keven Baraúna
+            {usuario !== null ?
+                <Col sm={2} className='perfil-coluna-principal'>
+                    <Col className='perfil-coluna-sub-principal'>
+                        <div className='perfil-container'>
+                            <div className='perfil-imagem-jogador' onClick={() => tempAlterarAvatar()}>
+                                <img className='perfil-imagem' src={selecionarImagemAvatar(usuario?.idAvatar)} alt='Menu' />
+                            </div>
+                            <div className='perfil-nome'>
+                                {usuario?.nome}
+                            </div>
+                            <div className='perfil-cargo'>
+                                {usuario?.cargo}
+                            </div>
+                            <div>
+                                <TopFivePerfil />
+                            </div>
                         </div>
-                    <div className='perfil-cargo'>
-                        Coder II
-                        </div>
-                    <div>
-                        <TopFivePerfil />
-                    </div>
-                </div>
-            </Col>
-        </Col>
-          :null}
+                    </Col>
+                </Col>
+                : null}
         </>
     );
 }

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
-import imagemNotificacao from './../../assets/image/sino.png';
 import './TopFivePerfil.css';
 import ListTopFive from './ListTopFive';
 import usuarioAction from './../../Actions/UsuarioAction';
@@ -26,11 +25,8 @@ const TopoFivePerfil = () => {
         <Col className='TopFivePerfil-container'>
             <Row>
                 <div className='TopFivePerfil-titulo-notificacao'>
-                    Segestões
+                    Melhores segestões:
                </div>
-                <div className='TopFivePerfil-div-notificacao'>
-                    <img src={imagemNotificacao} alt='notificação' className='TopFivePerfil-notificacao' />
-                </div>
             </Row>
             <div className='TopFivePerfil-container-list'>
                 {topTicketUsuario?.map((dados, index) => (

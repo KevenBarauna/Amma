@@ -11,11 +11,9 @@
 }
 
 .criarConta-fundo{
-    background-image: url('./../../assets/image/background-login.jpg');
-    background-color: rgb(255, 255, 255);
+    background-color: var(--cor-background);
     height: 95vh;
     width: 100%;
-    background-size: cover;
 }
 
 .criarConta-container-transparente{
