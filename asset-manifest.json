@@ -1,32 +1,36 @@
 {
   "files": {
-    "main.css": "/Amma/static/css/main.044225ae.chunk.css",
-    "main.js": "/Amma/static/js/main.111cd6d5.chunk.js",
-    "main.js.map": "/Amma/static/js/main.111cd6d5.chunk.js.map",
+    "main.css": "/Amma/static/css/main.3cea67bd.chunk.css",
+    "main.js": "/Amma/static/js/main.811530e0.chunk.js",
+    "main.js.map": "/Amma/static/js/main.811530e0.chunk.js.map",
     "runtime-main.js": "/Amma/static/js/runtime-main.2c491f3c.js",
     "runtime-main.js.map": "/Amma/static/js/runtime-main.2c491f3c.js.map",
     "static/css/2.d9ad5f5c.chunk.css": "/Amma/static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.10eaa6be.chunk.js": "/Amma/static/js/2.10eaa6be.chunk.js",
-    "static/js/2.10eaa6be.chunk.js.map": "/Amma/static/js/2.10eaa6be.chunk.js.map",
+    "static/js/2.7ae6d53f.chunk.js": "/Amma/static/js/2.7ae6d53f.chunk.js",
+    "static/js/2.7ae6d53f.chunk.js.map": "/Amma/static/js/2.7ae6d53f.chunk.js.map",
     "index.html": "/Amma/index.html",
-    "precache-manifest.5b3eec0755b46fce16430cc0f57369bc.js": "/Amma/precache-manifest.5b3eec0755b46fce16430cc0f57369bc.js",
+    "precache-manifest.980b7b6c24e3aab52afb324c37adb8b4.js": "/Amma/precache-manifest.980b7b6c24e3aab52afb324c37adb8b4.js",
     "service-worker.js": "/Amma/service-worker.js",
     "static/css/2.d9ad5f5c.chunk.css.map": "/Amma/static/css/2.d9ad5f5c.chunk.css.map",
-    "static/css/main.044225ae.chunk.css.map": "/Amma/static/css/main.044225ae.chunk.css.map",
-    "static/js/2.10eaa6be.chunk.js.LICENSE.txt": "/Amma/static/js/2.10eaa6be.chunk.js.LICENSE.txt",
+    "static/css/main.3cea67bd.chunk.css.map": "/Amma/static/css/main.3cea67bd.chunk.css.map",
+    "static/js/2.7ae6d53f.chunk.js.LICENSE.txt": "/Amma/static/js/2.7ae6d53f.chunk.js.LICENSE.txt",
     "static/media/Adicionar.css": "/Amma/static/media/background-adicionar.35dc4816.jpg",
-    "static/media/Login.css": "/Amma/static/media/background-login.5336c4fc.jpg",
+    "static/media/CriarConta.css": "/Amma/static/media/background-login.8de297e6.jpg",
     "static/media/favorito-false.png": "/Amma/static/media/favorito-false.18fd3b59.png",
     "static/media/favorito-true.png": "/Amma/static/media/favorito-true.ff0291bf.png",
+    "static/media/icone-apagar.svg": "/Amma/static/media/icone-apagar.f1724431.svg",
+    "static/media/icone-aprovado.svg": "/Amma/static/media/icone-aprovado.d38f798d.svg",
+    "static/media/loading.gif": "/Amma/static/media/loading.780196e7.gif",
     "static/media/logo.png": "/Amma/static/media/logo.74929503.png",
+    "static/media/logoAmma.png": "/Amma/static/media/logoAmma.358527c5.png",
     "static/media/sino.png": "/Amma/static/media/sino.d17d014a.png",
     "static/media/temp2.png": "/Amma/static/media/temp2.514825b8.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2c491f3c.js",
     "static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.10eaa6be.chunk.js",
-    "static/css/main.044225ae.chunk.css",
-    "static/js/main.111cd6d5.chunk.js"
+    "static/js/2.7ae6d53f.chunk.js",
+    "static/css/main.3cea67bd.chunk.css",
+    "static/js/main.811530e0.chunk.js"
   ]
 }
