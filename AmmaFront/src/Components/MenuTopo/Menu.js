@@ -11,16 +11,16 @@ const Menu = () => {
         <div className='Menu-container'>
             <Row className='Menu-row'>
                 <Col className='Menu-itens'>
-                    <Link to={rota.home}>
+                    <Link to={rota.inicio}>
                         <img src={imagemLogo} alt='Perfil' style={{ height: '30px', cursor: 'pointer' }} />
                     </Link>
                 </Col>
-                <Col className='Menu-itens'><Link to={rota.dashboard}>Dashboard</Link></Col>
+                <Col className='Menu-itens'><Link to={rota.inicio}>Início</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.Sugestões}>Sugestões</Link></Col>
-                <Col className='Menu-itens'><Link to={rota.Sobre}>Sobre</Link></Col>
-                <Col className='Menu-itens'><Link to={rota.Avisos}>Avisos</Link></Col>
-                <Col className='Menu-itens'><Link to={rota.Adm}>Adm</Link></Col>
+                <Col className='Menu-itens'><Link to={rota.Tutorial}>Tutorial</Link></Col>
+                <Col className='Menu-itens'><Link to={rota.Gerenciar}>Gerenciar</Link></Col>
                 <Col className='Menu-itens'><Link to={rota.login}>Login</Link></Col>
+                <Col className='Menu-itens'>{null}</Col>
                 <Col className='Menu-itens'>{null}</Col>
             </Row>
         </div>

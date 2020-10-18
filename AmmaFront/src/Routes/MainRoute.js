@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import rota from './../Helpers/Const/Links'
 import Menu from './../Components/MenuTopo/Menu';
 import Perfil from './../Components/Perfil/Perfil';
-import Home from './../Pages/Home/Home';
 import Login from './../Pages/Login/Login';
 import Adicionar from './../Pages/Adicionar/Adicionar';
 import Loading from './../Components/Carregando/Loading';
@@ -20,13 +19,12 @@ const MainRoute = () => {
             <Menu />
             <Perfil />
             <Switch>
-                <Route path='/' component={Home} exact />
-                <Route path={rota.home} component={Home} />
+                <Route path='/' component={Dashboard} exact />
                 <Route path={rota.login} component={Login} />
                 <Route path={rota.Sugestões} component={Adicionar} />
-                <Route path={rota.dashboard} component={Dashboard} />
+                <Route path={rota.inicio} component={Dashboard} />
                 <Route path={rota.novaConta} component={CriarConta} />
-                <Route path={rota.Adm} component={Gerenciar} />
+                <Route path={rota.Gerenciar} component={Gerenciar} />
                 <Route path={rota.pageNotFound} component={pageNotFound} />
                 <Redirect to={rota.pageNotFound} />
             </Switch>

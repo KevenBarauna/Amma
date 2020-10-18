@@ -4,8 +4,8 @@ export default class Link {
         return '/404';
     }
 
-    static get home() {
-        return '/home';
+    static get inicio() {
+        return '/inicio';
     }
 
     static get login() {
@@ -16,24 +16,16 @@ export default class Link {
         return '/novaConta';
     }
 
-    static get dashboard() {
-        return '/dashboard';
-    }
-
     static get Sugestões() {
         return '/sugestoes';
     }
 
-    static get Sobre() {
-        return '/sobre';
+    static get Tutorial() {
+        return '/tutorial';
     }
 
-    static get Avisos() {
-        return '/avisos';
-    }
-
-    static get Adm() {
-        return '/adm';
+    static get Gerenciar() {
+        return '/gerenciar';
     }
 
 }
