@@ -1,6 +1,6 @@
 
-import { TICKET } from './../Helpers/Const/ActionType';
-import { AlertaModal } from './../Helpers/FuncaoPadrao/Index';
+import { TICKET,GERENCIAR } from './../Helpers/Const/ActionType';
+import { AlertaModal,mensagemFlash } from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import ticketService from './../Services/TicketService';
 
@@ -69,7 +69,7 @@ const buscarGraficoTopTicket = () => dispatch => {
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
-const buscarNovosTickets = () => dispatch => {
+const buscarTickets = () => dispatch => {
     dispatch(loadingAction.exibirLoading())
     ticketService.buscarNovosTickets()
         .then(response => {
@@ -82,6 +82,29 @@ const buscarNovosTickets = () => dispatch => {
         .finally(() => dispatch(loadingAction.fecharLoading()))
 }
 
+const buscarTodosTicketsPendentes = () => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    ticketService.buscarTodosTicketsPendentes()
+        .then(response => {
+            dispatch({
+                type: GERENCIAR.TODOS_TICKETS,
+                payload: response.data
+            });
+        })
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao buscar todos os tickets'))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
+}
+
+const aprovarTicket = () => dispatch => {
+    dispatch(loadingAction.exibirLoading())
+    ticketService.aprovarTicket()
+        .then(response => {
+            mensagemFlash('success', 'Ticket aprovado!', null,null)
+        })
+        .catch(erro => AlertaModal('error', erro, null,'Erro ao buscar todos os tickets'))
+        .finally(() => dispatch(loadingAction.fecharLoading()))
+}
+
 
 export default {
     buscarTiposTicket,
@@ -89,5 +112,7 @@ export default {
     buscarGraficoCategorias,
     buscarGraficoSolucionados,
     buscarGraficoTopTicket,
-    buscarNovosTickets,
+    buscarTickets,
+    buscarTodosTicketsPendentes,
+    aprovarTicket,
 }

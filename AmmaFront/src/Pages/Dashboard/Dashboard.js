@@ -40,7 +40,7 @@ const Dashboard = () => {
         dispatch(ticketAction.buscarGraficoCategorias());
         dispatch(ticketAction.buscarGraficoSolucionados());
         dispatch(ticketAction.buscarGraficoTopTicket());
-        dispatch(ticketAction.buscarNovosTickets());
+        dispatch(ticketAction.buscarTickets());
     }, [dispatch]);
     useEffect(() => {
         primeiroAcesso();

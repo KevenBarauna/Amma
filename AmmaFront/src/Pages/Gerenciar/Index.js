@@ -1,7 +1,7 @@
 import React, {useCallback,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CardSugestao from './../../Components/CardSugestao/Index';
-import gerenciarAction from './../../Actions/GerenciarAction';
+import ticketAction from './../../Actions/TicketAction';
 import './Gerenciar.css'
 
 const Gerenciar = () => {
@@ -16,15 +16,11 @@ const Gerenciar = () => {
 
     
     const primeiroAcesso = useCallback(() => {
-        dispatch(gerenciarAction.buscarTodosTicketsPendentes());
+        dispatch(ticketAction.buscarTodosTicketsPendentes());
     }, [dispatch]);
     useEffect(() => {
         primeiroAcesso();
     }, [primeiroAcesso]);
-
-    const montarObjetoCard = () => {
-
-    }
 
     return (
         <div >

@@ -23,7 +23,7 @@ const verificarLogin = (user) => dispatch => {
 
 const buscarTopTicket = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
-    usuarioService.buscarTopTicket(user)
+    usuarioService.buscarTopTicket(user?.id)
         .then(response => {
             dispatch({
                 type: USUARIO.TOP_TICKET,

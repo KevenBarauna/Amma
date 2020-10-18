@@ -24,20 +24,19 @@ export const verificarLogin = (user) => {
 }
 
 
-export const buscarTopTicket = (usuario) => {
+export const buscarTopTicket = (idUsuario) => {
     return new Promise((resolve, reject) => {
         axios({
             method: "GET",
-            url: `${API_HOST}${CONTROLLER_USER}/buscarTopTicket`,
+            url: `${API_HOST}${CONTROLLER_USER}/buscarTopTicket?idUsuario=${idUsuario}`,
             headers: { "content-type": "application/json", },
-            data: JSON.stringify(usuario),
         })
             .then(res =>
                 resolve(res)
             )
             .catch(error =>
                 //reject(error)
-                resolve({ data: usuarioServiceMock(usuario, 'buscarTopTicket') })
+                resolve({ data: usuarioServiceMock(idUsuario, 'buscarTopTicket') })
             )
     })
 }
@@ -46,9 +45,8 @@ export const buscarTicketsFavoritos = (idUsuario) => {
     return new Promise((resolve, reject) => {
         axios({
             method: "GET",
-            url: `${API_HOST}${CONTROLLER_USER}/buscarTicketsFavoritos`,
+            url: `${API_HOST}${CONTROLLER_USER}/buscarTicketsFavoritos?idUsuario=${idUsuario}`,
             headers: { "content-type": "application/json", },
-            data: JSON.stringify(idUsuario),
         })
             .then(res =>
                 resolve(res)

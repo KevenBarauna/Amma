@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import usuarioAction from './../../Actions/UsuarioAction';
-import gerenciarAction from './../../Actions/GerenciarAction';
+import ticketAction from './../../Actions/TicketAction';
 import './CardSugestao.css';
-import { AlertaModal, mensagemFlash } from './../../Helpers/FuncaoPadrao/Index';
+import { AlertaModal } from './../../Helpers/FuncaoPadrao/Index';
 import imagemTemp from './../../assets/image/temp2.png';
 import imagemfavoritoTrue from './../../assets/image/favorito-true.png';
 import imagemfavoritoFalse from './../../assets/image/favorito-false.png';
@@ -25,7 +25,7 @@ const CardSugestao = (props) => {
     }
 
     const handleAprovarTicket = (idTicket) => {
-        dispatch(gerenciarAction.aprovarTicket(idTicket));
+        dispatch(ticketAction.aprovarTicket(idTicket));
     }
 
     const handleApagarTicket = () => {

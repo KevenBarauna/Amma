@@ -93,7 +93,7 @@ export const buscarNovosTickets = () => {
     return new Promise((resolve, reject) => {
         axios({
             method: "GET",
-            url: `${API_HOST}${CONTROLLER_TICKET}/buscarNovosTickets`,
+            url: `${API_HOST}${CONTROLLER_TICKET}/buscarTicketsAtivos`,
             headers: { "content-type": "application/json", },
         })
             .then(res =>
@@ -101,7 +101,43 @@ export const buscarNovosTickets = () => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({ data: ticketServiceMock('buscarNovosTickets') })
+                resolve({ data: ticketServiceMock('buscarTicketsAtivos') })
+            )
+    })
+}
+
+
+export const buscarTodosTicketsPendentes = () => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "GET",
+            url: `${API_HOST}${CONTROLLER_TICKET}/buscarTodosTicketsPendentes`,
+            headers: { "content-type": "application/json", },
+        })
+            .then(res =>
+                resolve(res)
+            )
+            .catch(error =>
+                //reject(error)
+                resolve({ data: ticketServiceMock('buscarTodosTicketsPendentes') })
+            )
+    })
+}
+
+export const aprovarTicket = (idTicket) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "POST",
+            url: `${API_HOST}${CONTROLLER_TICKET}/aprovarTicket`,
+            headers: { "content-type": "application/json", },
+            data: JSON.stringify(idTicket),
+        })
+            .then(res =>
+                resolve(res)
+            )
+            .catch(error =>
+                //reject(error)
+                resolve("tudo certo")
             )
     })
 }
@@ -115,4 +151,6 @@ export default {
     buscarGraficoSolucionados,
     buscarGraficoTopTicket,
     buscarNovosTickets,
+    buscarTodosTicketsPendentes,
+    aprovarTicket,
 }
