@@ -5,7 +5,7 @@ import usuarioAction from './../../Actions/UsuarioAction';
 import ticketAction from './../../Actions/TicketAction';
 import './CardSugestao.css';
 import { AlertaModal } from './../../Helpers/FuncaoPadrao/Index';
-import imagemTemp from './../../assets/image/temp2.png';
+import {selecionarImagemAvatar} from './../../Helpers/FuncaoPadrao/ImagemUsuario';
 import imagemfavoritoTrue from './../../assets/image/favorito-true.png';
 import imagemfavoritoFalse from './../../assets/image/favorito-false.png';
 import imagemApagar from './../../assets/image/icone-apagar.svg';
@@ -79,7 +79,7 @@ const CardSugestao = (props) => {
                     <Col sm={4} lg={4} md={4} xs={4}>
                         <Row>
                             <div className={getCorTitulo()}>
-                                <img className='CardSugestao-imagem' src={ticket?.usuario?.imagem || imagemTemp} alt='Menu' />
+                                <img className='CardSugestao-imagem' src={selecionarImagemAvatar(ticket?.usuario?.idImagem)} alt='Menu' />
                             </div>
                             <Col className='CardSugestao-col-usuario'>
                                 <Row>
