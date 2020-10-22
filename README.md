@@ -54,6 +54,8 @@ Fonte padão - [Baloo 2](https://fonts.google.com/specimen/Baloo+2?sidebar.open=
 
 ### Menções :page_with_curl:
  Ícones do [Flaticon](https://www.flaticon.com/br/)
+ 
+ - [favicon](https://www.flaticon.com/free-icon/folder_1208856?term=archive&page=1&position=85)
  - [Ícone ajuda]()
  - [Imagem perfil](https://www.flaticon.com/br/packs/fairytale-42?k=1599781706295)
  - [Ícone favorito](ttps://www.flaticon.com/br/icone-gratis/ame_2913252)
