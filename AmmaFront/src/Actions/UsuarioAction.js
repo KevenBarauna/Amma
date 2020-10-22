@@ -1,7 +1,6 @@
 
 import { USUARIO } from './../Helpers/Const/ActionType';
 import { AlertaModal, mensagemFlash } from './../Helpers/FuncaoPadrao/Index';
-import {exibirMensagemSucesso} from './../Helpers/FuncaoPadrao/Index';
 import loadingAction from './LoadingAction';
 import usuarioService from './../Services/UsuarioService';
 
@@ -65,7 +64,7 @@ const adicionarUsuario = (user) => dispatch => {
     dispatch(loadingAction.exibirLoading())
     usuarioService.adicionarUsuario(user)
         .then(response => {
-            exibirMensagemSucesso(response)
+            mensagemFlash('success', response)
         })
         .catch(erro => AlertaModal('error', erro, null,'Erro ao adicionar usuário'))
         .finally(() => dispatch(loadingAction.fecharLoading()))
