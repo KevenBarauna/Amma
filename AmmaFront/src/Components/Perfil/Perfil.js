@@ -23,7 +23,7 @@ const Perfil = () => {
                     <Col className='perfil-coluna-sub-principal'>
                         <div className='perfil-container'>
                             <div className='perfil-imagem-jogador' onClick={() => tempAlterarAvatar()}>
-                                <img className='perfil-imagem' src={selecionarImagemAvatar(usuario?.idImagem)} alt='Menu' />
+                                <img className='perfil-imagem' src={selecionarImagemAvatar(usuario?.idImagem)} alt='Avatar' />
                             </div>
                             <div className='perfil-nome'>
                                 {usuario?.nome}

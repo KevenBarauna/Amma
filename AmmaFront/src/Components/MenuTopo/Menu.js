@@ -12,7 +12,7 @@ const Menu = () => {
             <Row className='Menu-row'>
                 <Col className='Menu-itens'>
                     <Link to={rota.inicio}>
-                        <img src={imagemLogo} alt='Perfil' style={{ height: '30px', cursor: 'pointer' }} />
+                        <img src={imagemLogo} alt='Logo' style={{ height: '30px', cursor: 'pointer' }} />
                     </Link>
                 </Col>
                 <Col className='Menu-itens'><Link to={rota.inicio}>Início</Link></Col>

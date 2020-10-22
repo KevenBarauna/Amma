@@ -46,7 +46,7 @@ const CardSugestao = (props) => {
         //ID = 1
         return (
             <>
-                <div onClick={() => handleClickFavorito(ticket?.id)}> <img className='CardSugestao-favorito' src={ticketsFavoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Menu' /></div>
+                <div onClick={() => handleClickFavorito(ticket?.id)}> <img className='CardSugestao-favorito' src={ticketsFavoritos?.indexOf(ticket?.id) !== -1 ? imagemfavoritoTrue : imagemfavoritoFalse} alt='Ícone favorito' /></div>
                 <div className='CardSugestao-numero-voto'>{ticket?.votos}</div>
             </>
         );
@@ -56,7 +56,7 @@ const CardSugestao = (props) => {
         //ID = 2
         return (
             <>
-                <div> <img className='CardSugestao-favorito' src={imagemfavoritoFalse} alt='Menu' /></div>
+                <div> <img className='CardSugestao-favorito' src={imagemfavoritoFalse} alt='Ícone favorito' /></div>
                 <div className='CardSugestao-numero-voto'>{0}</div>
             </>
         );
@@ -66,8 +66,8 @@ const CardSugestao = (props) => {
         //ID = 3
         return (
             <>
-                <div onClick={() => handleApagarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Menu' /></div>
-                <div onClick={() => handleAprovarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Menu' /></div>
+                <div onClick={() => handleApagarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Ícone apagar' /></div>
+                <div onClick={() => handleAprovarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Ícone aprovado' /></div>
             </>
         );
     };
@@ -79,7 +79,7 @@ const CardSugestao = (props) => {
                     <Col sm={4} lg={4} md={4} xs={4}>
                         <Row>
                             <div className={getCorTitulo()}>
-                                <img className='CardSugestao-imagem' src={selecionarImagemAvatar(ticket?.usuario?.idImagem)} alt='Menu' />
+                                <img className='CardSugestao-imagem' src={selecionarImagemAvatar(ticket?.usuario?.idImagem)} alt='Avatar' />
                             </div>
                             <Col className='CardSugestao-col-usuario'>
                                 <Row>
