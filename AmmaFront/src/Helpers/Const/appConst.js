@@ -1,20 +1,26 @@
+const verde = '#51FA5B';
+const vermelho = '#e4292f';
+const amarelo = '#F5F545';
+const azul = '#33a3f9';
+const cinza = '#767676';
+
 export const coresTickets = [
-    '#c6f295',
-    '#e4292f',
-    '#facf62',
-    '#33a3f9',
-    '#767676',
+    verde,
+    vermelho,
+    amarelo,
+    azul,
+    cinza,
 ];
 
 export const coresTicketsPorId = [
-    '#c6f295',
-    '#33a3f9',
-    '#facf62',
-    '#e4292f',
-    '#767676',
+    verde,
+    azul,
+    amarelo,
+    vermelho,
+    cinza,
 ];
 
-export default{
+export default {
     coresTickets,
     coresTicketsPorId,
 }

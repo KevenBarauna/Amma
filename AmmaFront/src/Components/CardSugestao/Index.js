@@ -32,6 +32,16 @@ const CardSugestao = (props) => {
         AlertaModal('info', 'Excluir tarefa?');
     }
 
+    const getCorTitulo = () => {
+        switch (ticket?.tipo) {
+            case 1: return 'CardSugestao-imagem-jogador CardSugestao-imagem-tipoAdicionar';
+            case 2: return 'CardSugestao-imagem-jogador CardSugestao-imagem-tipoManter';
+            case 3: return 'CardSugestao-imagem-jogador CardSugestao-imagem-tipoMelhorar';
+            case 4: return 'CardSugestao-imagem-jogador CardSugestao-imagem-tipoAbandonar';
+            default: return 'CardSugestao-imagem-jogador'
+        }
+    }
+
     const renderVotos = () => {
         //ID = 1
         return (
@@ -68,18 +78,18 @@ const CardSugestao = (props) => {
                 <Row>
                     <Col sm={4} lg={4} md={4} xs={4}>
                         <Row>
-                            <div className='CardSugestao-imagem-jogador'>
+                            <div className={getCorTitulo()}>
                                 <img className='CardSugestao-imagem' src={ticket?.usuario?.imagem || imagemTemp} alt='Menu' />
                             </div>
                             <Col className='CardSugestao-col-usuario'>
                                 <Row>
                                     <div className='CardSugestao-nomeUsuario'>
-                                        {ticket?.usuario?.nome}
+                                        {ticket?.usuario?.nome || 'Anônimo'}
                                     </div>
                                 </Row>
                                 <Row>
                                     <div>
-                                        {ticket?.usuario?.cargo}
+                                        {ticket?.usuario?.cargo || null}
                                     </div>
                                 </Row>
                             </Col>
