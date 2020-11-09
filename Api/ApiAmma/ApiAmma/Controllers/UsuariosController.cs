@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiAmma.DAO;
 using ApiAmma.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,20 +13,19 @@ namespace ApiAmma.Controllers
     public class UsuariosController : ControllerBase
     {
 
-        UsuarioDAO userDao = new UsuarioDAO();
-
         [HttpGet]
         [Route("buscarTodosUsuarios")]
         public List<UsuarioModel> buscarTodosUsuarios()
         {
-            return userDao.SelectAll();
+            List<UsuarioModel> usuarios = new List<UsuarioModel>();
+            return usuarios;
         }
 
         [HttpPost]
         [Route("adicionarNovoUsuario")]
         public bool adicionarNovoUsuario(UsuarioModel usuario)
         {
-            return userDao.Insert(usuario); ;
+            return true;
         }
 
         [HttpDelete]
