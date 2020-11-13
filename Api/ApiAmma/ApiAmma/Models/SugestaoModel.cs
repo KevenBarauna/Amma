@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ApiAmma.Models
 {
     public class SugestaoModel
     {
+        [Key]
         public int id { get; set; }
         public int idTipo { get; set; }
         public int idStatus { get; set; }
