@@ -2,17 +2,22 @@ import { USUARIO } from "./../Helpers/Const/ActionType";
 import { AlertaModal, mensagemFlash } from "./../Helpers/FuncaoPadrao/Index";
 import loadingAction from "./LoadingAction";
 import usuarioService from "./../Services/UsuarioService";
+import mensagem from './../Helpers/Const/Mensagem';
 
 const verificarLogin = (user) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   usuarioService
     .verificarLogin(user)
     .then((response) => {
-      dispatch({
-        type: USUARIO.DADOS_USER,
-        payload: response?.data,
-      });
-      salvarUsuarioLocalStorage(user);
+      if (response?.data?.id === 0) {
+        AlertaModal("error", null, null, mensagem.NENHUM_USUARIO());
+      } else {
+        dispatch({
+          type: USUARIO.DADOS_USER,
+          payload: response?.data,
+        });
+        salvarUsuarioLocalStorage(response?.data);
+      }
     })
     .catch((erro) =>
       AlertaModal("error", erro, null, "Erro na verificação do login")
