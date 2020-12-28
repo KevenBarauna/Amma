@@ -6,10 +6,12 @@ import './Login.css';
 import usuarioAction from './../../Actions/UsuarioAction';
 import rota from './../../Helpers/Const/Links';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const Login = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const usuarioLogado = useSelector(
         state => state.usuarioReducer.usuario
@@ -18,17 +20,18 @@ const Login = () => {
     const [usuario, setUsuario] = useState('');
     const [senha, setSenha] = useState('');
 
+    const alterarTela = () => {
+        history.push('/Amma');
+    }
 
     function onsubmit() {
-        dispatch(usuarioAction.verificarLogin());
+        dispatch(usuarioAction.verificarLogin({nome: usuario, senha: senha}));
         console.log('$ usuário: ', usuario)
         console.log('$ senha: ', senha)
+        alterarTela();
     }
 
-    const alterarTela = () => {
-        //window.location.href = rota.dashboard;
-        window.history.pushState("object or string", "Title", rota.dashboard);
-    }
+
 
     return (
         <>

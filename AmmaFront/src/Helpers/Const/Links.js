@@ -5,7 +5,7 @@ export default class Link {
     }
 
     static get inicio() {
-        return '/inicio';
+        return '/Amma';
     }
 
     static get login() {

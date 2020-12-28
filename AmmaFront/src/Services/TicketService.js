@@ -16,7 +16,8 @@ export const buscarTiposTicket = () => {
             )
             .catch(error =>
                 //reject(error)
-                resolve({ data: ticketServiceMock('buscarTiposTicket') })
+                console.log('O erro: ', error)
+                //resolve({ data: ticketServiceMock('buscarTiposTicket') })
             )
     })
 }

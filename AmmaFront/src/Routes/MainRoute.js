@@ -20,9 +20,9 @@ const MainRoute = () => {
             <Perfil />
             <Switch>
                 <Route path='/' component={Dashboard} exact />
+                <Route path={rota.inicio} component={Dashboard} />
                 <Route path={rota.login} component={Login} />
                 <Route path={rota.Sugestões} component={Adicionar} />
-                <Route path={rota.inicio} component={Dashboard} />
                 <Route path={rota.novaConta} component={CriarConta} />
                 <Route path={rota.Gerenciar} component={Gerenciar} />
                 <Route path={rota.pageNotFound} component={pageNotFound} />
