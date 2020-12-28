@@ -5,13 +5,26 @@ using System.Threading.Tasks;
 using ApiAmma.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using ApiAmma.DTO;
+using ApiAmma.Data;
 namespace ApiAmma.Controllers
 {
     [Route("api/usuario")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
+
+       // private readonly UsuarioData _servicoUsuario;
+
+        [HttpPost]
+        [Route("login")]
+        public UsuarioModel login(LoginDto dto)
+        {
+             var usuarioDataTeste = new UsuarioData();
+             var user = usuarioDataTeste.SelectNomeSenha("cc","dd");
+             return new UsuarioModel();
+            // return _servicoUsuario.SelectNomeSenha("aa", "bb");
+        }
 
         [HttpGet]
         [Route("buscarTodosUsuarios")]

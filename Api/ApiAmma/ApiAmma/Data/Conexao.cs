@@ -12,7 +12,7 @@ namespace ApiAmma.Data
         SqlConnection con = new SqlConnection();
         public Conexao()
         {
-            con.ConnectionString = "Server=localhost;Database=master;Trusted_Connection=True;";
+            con.ConnectionString = "Server=localhost;Database=Amma;Trusted_Connection=True;";
         }
 
         public SqlConnection Conectar()
