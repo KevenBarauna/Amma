@@ -1,0 +1,37 @@
+CREATE TABLE ticket
+(
+    [id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [titulo] VARCHAR(30) NOT NULL, 
+)
+
+CREATE TABLE sugestao
+(
+    [id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [idTipo] INT NOT NULL, 
+	[idUsuario] INT NOT NULL, 
+	[idStatus] INT NOT NULL, 
+	[data] VARCHAR(25) NOT NULL, 
+	[titulo] VARCHAR(60) NOT NULL, 
+	[descricao] VARCHAR(115) NULL, 
+	[votos] INT NULL, 
+)
+
+CREATE TABLE status
+(
+    [id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [tipo] VARCHAR(20) NOT NULL, 
+)
+
+CREATE TABLE usuario_votos
+(
+    [id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [idUsuario] INT NOT NULL, 
+	[idTicket] INT NOT NULL, 
+)
+
+ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idTipo FOREIGN KEY (idTipo) REFERENCES ticket (id)
+ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario (id)
+ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idStatus FOREIGN KEY (idStatus) REFERENCES status (id)
+
+ALTER TABLE usuario_votos ADD CONSTRAINT fk_usuario_votos_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario (id)
+ALTER TABLE usuario_votos ADD CONSTRAINT fk_usuario_votos_idTicket FOREIGN KEY (idTicket) REFERENCES ticket (id)
