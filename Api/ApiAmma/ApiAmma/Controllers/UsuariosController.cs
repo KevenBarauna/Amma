@@ -7,23 +7,41 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApiAmma.DTO;
 using ApiAmma.Data;
+using ApiAmma.Interface;
+using ApiAmma.Excecao;
+
 namespace ApiAmma.Controllers
 {
     [Route("api/usuario")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-
-       // private readonly UsuarioData _servicoUsuario;
+        private UsuarioData _usuarioDataTemp = new UsuarioData();
 
         [HttpPost]
         [Route("login")]
         public UsuarioModel login(LoginDto dto)
         {
-             var usuarioDataTeste = new UsuarioData();
-             var user = usuarioDataTeste.SelectNomeSenha("cc","dd");
-             return new UsuarioModel();
-            // return _servicoUsuario.SelectNomeSenha("aa", "bb");
+            UsuarioModel user = _usuarioDataTemp.SelectNomeSenha(dto.nome, dto.senha);
+            if (user.id == 0)
+            {
+                //throw new ResultadoException(Alerta.WARNING, Alerta.NENHUM_USUARIO);
+            }
+
+            return user;
+        }
+
+        [HttpPost]
+        [Route("novoUsuario")]
+        public UsuarioModel adicionarNovoUsuario(UsuarioModel usuario)
+        {
+            bool sucess = _usuarioDataTemp.Insert(usuario);
+            if (!sucess)
+            {
+                //throw new ResultadoException(Alerta.WARNING, Alerta.ERRO_CADASTRAR_USUARIO);
+            }
+            usuario.senha = null;
+            return usuario;
         }
 
         [HttpGet]
@@ -34,16 +52,9 @@ namespace ApiAmma.Controllers
             return usuarios;
         }
 
-        [HttpPost]
-        [Route("adicionarNovoUsuario")]
-        public bool adicionarNovoUsuario(UsuarioModel usuario)
-        {
-            return true;
-        }
-
         [HttpDelete]
         [Route("removerUsuario")]
-        public void removerUsuario([FromBody]UsuarioModel usuario)
+        public void removerUsuario([FromBody] UsuarioModel usuario)
         {
             //usuarios.RemoveAt(usuarios.IndexOf(usuarios.First(x => x.Equals(usuario))));
         }

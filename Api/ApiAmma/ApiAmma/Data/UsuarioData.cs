@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using ApiAmma.Models;
 using ApiAmma.Data;
+using ApiAmma.Interface;
+using ApiAmma.DTO;
 
 namespace ApiAmma.Data
 {
-    public class UsuarioData
+    public class UsuarioData : IUsuarioData
     {
         Conexao conexao = new Conexao();
         SqlCommand cmd = new SqlCommand();
@@ -17,8 +19,8 @@ namespace ApiAmma.Data
         string id = "id";
         string nome = "nome";
         string senha = "senha";
-        string tema = "tema";
-        string idAvatar = "id_avatar";
+        string tema = "idTema";
+        string idAvatar = "idAvatar";
         string cargo = "cargo";
 
 
@@ -165,8 +167,6 @@ namespace ApiAmma.Data
         //VERIFICA LOGIN
         public UsuarioModel SelectNomeSenha(String nomeBuscar, String senhaBuscar)
         {
-             Console.WriteLine($"###################################### nome : {nomeBuscar}");
-             Console.WriteLine($"###################################### senha : {senhaBuscar}");
             var user = new UsuarioModel();
 
             try
@@ -187,7 +187,6 @@ namespace ApiAmma.Data
 
                     user.id = Convert.ToInt32(row[id]);
                     user.nome = Convert.ToString(row[nome]);
-                    user.senha = Convert.ToString(row[senha]);
                     user.idTema = Convert.ToInt32(row[tema]);
                     user.cargo = Convert.ToString(row[cargo]);
                     user.idAvatar = Convert.ToInt32(row[idAvatar]);
@@ -201,7 +200,6 @@ namespace ApiAmma.Data
             }
             cmd.Parameters.Clear();
             conexao.Desconectar();
-             Console.WriteLine($"######################################: {user}");
             return user;
         }
 
