@@ -2,7 +2,7 @@ import { USUARIO } from './../Helpers/Const/ActionType';
 import { exibirDadosRedux } from './../Helpers/FuncaoPadrao/Index';
 
 const INITIAL_STATE = {
-    usuario: null,//{ nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', idImagem: Math.floor(Math.random() * 50 + 1), favoritos: [1, 3, 5] },
+    usuario: JSON.parse(localStorage.getItem("usuario")),//null,//{ nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', idImagem: Math.floor(Math.random() * 50 + 1), favoritos: [1, 3, 5] },
     topTicket: [],
     ticketsFavoritos: [],
 };
