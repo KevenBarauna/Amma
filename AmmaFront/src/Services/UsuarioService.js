@@ -4,6 +4,7 @@ import { usuarioServiceMock } from "./../Helpers/Const/ConstMock";
 
 const API_HOST = process.env.REACT_APP_API_SERVER;
 const CONTROLLER_USER = "usuario";
+const CONTROLLER_SUGESAO = "sugestao";
 
 export const verificarLogin = (user) => {
   return new Promise((resolve, reject) => {
@@ -23,16 +24,9 @@ export const adicionarUsuario = (usuario) => {
 
 export const buscarTopTicket = (idUsuario) => {
   return new Promise((resolve, reject) => {
-    axios({
-      method: "GET",
-      url: `${API_HOST}${CONTROLLER_USER}/buscarTopTicket?idUsuario=${idUsuario}`,
-      headers: { "content-type": "application/json" },
-    })
+    axios(http.getRequest(CONTROLLER_SUGESAO, `/buscaTopTicketUsuario?idUsuario=${idUsuario}` ))
       .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve({ data: usuarioServiceMock(idUsuario, "buscarTopTicket") })
-      );
+      .catch((error) => reject(error));
   });
 };
 

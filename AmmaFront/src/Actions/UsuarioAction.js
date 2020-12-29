@@ -58,14 +58,14 @@ const removerUsuarioLocalStorage = () => {
   localStorage.removeItem("usuario");
 };
 
-const buscarTopTicket = (user) => (dispatch) => {
+const buscarTopTicket = (userId) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   usuarioService
-    .buscarTopTicket(user?.id)
+    .buscarTopTicket(userId)
     .then((response) => {
       dispatch({
         type: USUARIO.TOP_TICKET,
-        payload: response.data,
+        payload: response?.data,
       });
     })
     .catch((erro) =>
