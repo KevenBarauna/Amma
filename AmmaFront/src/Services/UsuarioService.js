@@ -6,9 +6,16 @@ const API_HOST = process.env.REACT_APP_API_SERVER;
 const CONTROLLER_USER = "usuario";
 
 export const verificarLogin = (user) => {
-  console.log(user);
   return new Promise((resolve, reject) => {
     axios(http.postRequest(CONTROLLER_USER, "/login", user))
+      .then((res) => resolve(res))
+      .catch((error) => reject(error));
+  });
+};
+
+export const adicionarUsuario = (usuario) => {
+  return new Promise((resolve, reject) => {
+    axios(http.postRequest(CONTROLLER_USER, "/novoUsuario", usuario))
       .then((res) => resolve(res))
       .catch((error) => reject(error));
   });
@@ -40,22 +47,6 @@ export const buscarTicketsFavoritos = (idUsuario) => {
       .catch((error) =>
         //reject(error)
         resolve({ data: usuarioServiceMock(null, "buscarTicketsFavoritos") })
-      );
-  });
-};
-
-export const adicionarUsuario = (usuario) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: "POST",
-      url: `${API_HOST}${CONTROLLER_USER}/adicionarNovoUsuario`,
-      headers: { "content-type": "application/json" },
-      data: JSON.stringify(usuario),
-    })
-      .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve({ data: usuarioServiceMock(usuario, "adicionarUsuario") })
       );
   });
 };

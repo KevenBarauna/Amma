@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import {mensagemFlash} from './../../Helpers/FuncaoPadrao/Index';
 import './CriarConta.css';
 import usuarioAction from './../../Actions/UsuarioAction';
+import { useHistory } from "react-router-dom";
 
 
 const CriarConta = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const usuarioLogado = useSelector((state) => state.usuarioReducer.usuario);
 
     const [usuario, setUsuario] = useState('');
     const [cargo, setCargo] = useState('');
@@ -19,6 +23,7 @@ const CriarConta = () => {
         senha !== senhaConfirme
             ? mensagemFlash('error','Senhas diferentes',null,null)
             : dispatch(usuarioAction.adicionarUsuario({ nome: usuario, cargo: cargo, senha: senha, }));
+        if (usuarioLogado !== null) history.push("/Amma");
     }
 
     return (
