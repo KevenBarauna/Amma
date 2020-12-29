@@ -36,6 +36,8 @@ const Adicionar = () => {
         console.log('$ categoria: ', categoria);
         console.log('$ descricao: ', descricao);
         console.log('$ exibirNome: ', exibirNome);
+        let cardSalvar = {usuario: usuario, idUsuario: usuario?.id, titulo: titulo, descricao: descricao, data: new Date(), idTipo: categoria?.value};
+        dispatch(ticketAction.salvarNovoTicket(cardSalvar))
     }
 
     const montarObjetoCard = () => {
@@ -89,7 +91,7 @@ const Adicionar = () => {
                                         options={tiposCategoria?.map(tipo => {
                                             return {
                                                 value: tipo.id,
-                                                label: tipo.nome,
+                                                label: tipo.titulo,
                                             };
                                         })}
                                     />

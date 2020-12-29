@@ -79,7 +79,7 @@ const CardSugestao = (props) => {
                     <Col sm={4} lg={4} md={4} xs={4}>
                         <Row>
                             <div className={getCorTitulo()}>
-                                <img className='CardSugestao-imagem' src={selecionarImagemAvatar(ticket?.usuario?.idImagem)} alt='Avatar' />
+                                <img className='CardSugestao-imagem' src={selecionarImagemAvatar(usuario?.idAvatar)} alt='Avatar' />
                             </div>
                             <Col className='CardSugestao-col-usuario'>
                                 <Row>
