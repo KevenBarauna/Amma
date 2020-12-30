@@ -2,6 +2,7 @@ import { TICKET, GERENCIAR } from "./../Helpers/Const/ActionType";
 import { AlertaModal, mensagemFlash } from "./../Helpers/FuncaoPadrao/Index";
 import loadingAction from "./LoadingAction";
 import ticketService from "./../Services/TicketService";
+import {STATUS_PENDENTE} from './../Helpers/Const/appConst';
 
 const buscarTiposTicket = () => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
@@ -137,7 +138,7 @@ const buscarTickets = () => (dispatch) => {
 const buscarTodosTicketsPendentes = () => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   ticketService
-    .buscarTodosTicketsPendentes()
+    .buscarTodosTicketsPendentes(STATUS_PENDENTE)
     .then((response) => {
       dispatch({
         type: GERENCIAR.TODOS_TICKETS,
@@ -150,15 +151,20 @@ const buscarTodosTicketsPendentes = () => (dispatch) => {
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const aprovarTicket = () => (dispatch) => {
+const aprovarTicket = (ticket) => (dispatch) => {
+  console.log('Action ', ticket)
   dispatch(loadingAction.exibirLoading());
   ticketService
-    .aprovarTicket()
+    .aprovarTicket(ticket)
     .then((response) => {
-      mensagemFlash("success", "Ticket aprovado!", null, null);
+      if(response){
+        mensagemFlash("success", "Ticket aprovado!", null, null);
+      }else{
+        mensagemFlash("error", "Erro ao aprovar ticket", null, null);
+      }
     })
     .catch((erro) =>
-      AlertaModal("error", erro, null, "Erro ao buscar todos os tickets")
+      AlertaModal("error", erro, null, "Erro ao aprovar ticket")
     )
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };

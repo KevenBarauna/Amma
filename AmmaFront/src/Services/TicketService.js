@@ -16,7 +16,7 @@ export const buscarTiposTicket = () => {
 
 export const salvarNovoTicket = (sugestao) => {
   return new Promise((resolve, reject) => {
-    axios(http.postRequest(CONTROLLER_SUGESTAO, `/adicionar`,sugestao))
+    axios(http.postRequest(CONTROLLER_SUGESTAO, `/adicionar`, sugestao))
       .then((res) => resolve(res))
       .catch((error) => reject(error));
   });
@@ -97,34 +97,25 @@ export const buscarNovosTickets = () => {
   });
 };
 
-export const buscarTodosTicketsPendentes = () => {
+export const buscarTodosTicketsPendentes = (status) => {
   return new Promise((resolve, reject) => {
-    axios({
-      method: "GET",
-      url: `${API_HOST}${CONTROLLER_TICKET}/buscarTodosTicketsPendentes`,
-      headers: { "content-type": "application/json" },
-    })
+    axios(
+      http.getRequest(
+        CONTROLLER_SUGESTAO,
+        `/buscaSugestoesPorStatus?status=${status}`
+      )
+    )
       .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve({ data: ticketServiceMock("buscarTodosTicketsPendentes") })
-      );
+      .catch((error) => reject(error));
   });
 };
 
-export const aprovarTicket = (idTicket) => {
+export const aprovarTicket = (ticket) => {
+  console.log("Service", ticket);
   return new Promise((resolve, reject) => {
-    axios({
-      method: "POST",
-      url: `${API_HOST}${CONTROLLER_TICKET}/aprovarTicket`,
-      headers: { "content-type": "application/json" },
-      data: JSON.stringify(idTicket),
-    })
+    axios(http.postRequest(CONTROLLER_SUGESTAO, "/aprovar", ticket))
       .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve("tudo certo")
-      );
+      .catch((error) => reject(error));
   });
 };
 

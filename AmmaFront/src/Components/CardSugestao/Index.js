@@ -24,8 +24,9 @@ const CardSugestao = (props) => {
         dispatch(usuarioAction.favoritarTicket(usuario, idFavorito));
     }
 
-    const handleAprovarTicket = (idTicket) => {
-        dispatch(ticketAction.aprovarTicket(idTicket));
+    const handleAprovarTicket = (ticket) => {
+        console.log('Componente ', ticket)
+        dispatch(ticketAction.aprovarTicket(ticket));
     }
 
     const handleApagarTicket = () => {
@@ -66,8 +67,8 @@ const CardSugestao = (props) => {
         //ID = 3
         return (
             <>
-                <div onClick={() => handleApagarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Ícone apagar' /></div>
-                <div onClick={() => handleAprovarTicket(ticket?.id)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Ícone aprovado' /></div>
+                <div onClick={() => handleApagarTicket(ticket)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemApagar} alt='Ícone apagar' /></div>
+                <div onClick={() => handleAprovarTicket(ticket)}> <img style={{ height: '30px', marginLeft: '4px', cursor: 'pointer' }} src={imagemAprovado} alt='Ícone aprovado' /></div>
             </>
         );
     };
