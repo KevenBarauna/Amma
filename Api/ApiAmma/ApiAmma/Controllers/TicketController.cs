@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApiAmma.DTO;
 using ApiAmma.Data;
-using ApiAmma.Interface;
 using ApiAmma.Excecao;
 
 namespace ApiAmma.Controllers

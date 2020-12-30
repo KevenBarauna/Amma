@@ -7,25 +7,27 @@ using ApiAmma.DTO;
 
 namespace ApiAmma.Data
 {
-    public class TicketData
+    public class StatusData
     {
         Conexao conexao = new Conexao();
         SqlCommand cmd = new SqlCommand();
 
         //TABELA
-        string tabela = "TICKET";
+        string tabela = "STATUS";
         //COLUNAS TABELA
         string id = "id";
-        string titulo = "titulo";
+        string tipo = "tipo";
 
-        public List<TicketModel> SelectAll()
+        public StatusModel SelectPorNome(string status)
         {
             SqlDataReader row;
-            List<TicketModel> ticketsModels = new List<TicketModel>();
+            StatusModel statusModel = new StatusModel();
 
             try
             {
-                cmd.CommandText = $"SELECT * FROM {tabela}";
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {tipo} = @status";
+
+                cmd.Parameters.AddWithValue("@status", status);
 
                 cmd.Connection = conexao.Conectar();
                 row = cmd.ExecuteReader();
@@ -35,12 +37,8 @@ namespace ApiAmma.Data
 
                     foreach (var linha in row)
                     {
-                        var ticket = new TicketModel();
-
-                        ticket.id = Convert.ToInt32(row[id]);
-                        ticket.titulo = Convert.ToString(row[titulo]);
-
-                        ticketsModels.Add(ticket);
+                        statusModel.id = Convert.ToInt32(row[id]);
+                        statusModel.tipo = Convert.ToString(row[tipo]);
                     }
                 }
 
@@ -52,7 +50,7 @@ namespace ApiAmma.Data
             cmd.Parameters.Clear();
             conexao.Desconectar();
 
-            return ticketsModels;
+            return statusModel;
         }
 
     }

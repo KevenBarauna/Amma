@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApiAmma.DTO;
 using ApiAmma.Data;
-using ApiAmma.Interface;
 using ApiAmma.Excecao;
 
 namespace ApiAmma.Controllers
@@ -35,13 +34,8 @@ namespace ApiAmma.Controllers
         [Route("novoUsuario")]
         public UsuarioModel adicionarNovoUsuario(UsuarioModel usuario)
         {
-            bool sucess = _usuarioDataTemp.Insert(usuario);
-            if (!sucess)
-            {
-                //throw new ResultadoException(Alerta.WARNING, Alerta.ERRO_CADASTRAR_USUARIO);
-            }
-            usuario.senha = null;
-            return usuario;
+            return _usuarioDataTemp.Insert(usuario);
+
         }
 
         [HttpGet]

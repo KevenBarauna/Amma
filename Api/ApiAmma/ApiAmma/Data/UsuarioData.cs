@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using ApiAmma.Models;
 using ApiAmma.Data;
-using ApiAmma.Interface;
 using ApiAmma.DTO;
 
 namespace ApiAmma.Data
 {
-    public class UsuarioData : IUsuarioData
+    public class UsuarioData
     {
         Conexao conexao = new Conexao();
         SqlCommand cmd = new SqlCommand();
@@ -24,8 +23,10 @@ namespace ApiAmma.Data
         string cargo = "cargo";
 
 
-        public bool Insert(UsuarioModel user)
+        public UsuarioModel Insert(UsuarioModel user)
         {
+            bool sucess = false;
+            var usuario = new UsuarioModel();
             try
             {
                 cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{tema},{idAvatar},{cargo}) VALUES (@nome,@senha,@tema,@idAvatar,@cargo)";
@@ -40,14 +41,54 @@ namespace ApiAmma.Data
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 conexao.Desconectar();
+                sucess = true;
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine($"Erro: {e}");
-                return false;
             }
-            return true;
+            if(sucess){
+                usuario = SelectLast();
+            }
+              
+            return usuario;
+        }
+
+        public UsuarioModel SelectLast()
+        {
+            var user = new UsuarioModel();
+
+            try
+            {
+                SqlDataReader row;
+
+                cmd.CommandText = $"SELECT * FROM {tabela} ORDER BY {id} DESC";
+
+                cmd.Connection = conexao.Conectar();
+                row = cmd.ExecuteReader();
+
+                if (row.HasRows)
+                {
+                    row.Read();
+
+                    user.id = Convert.ToInt32(row[id]);
+                    user.nome = Convert.ToString(row[nome]);
+                    user.idTema = Convert.ToInt32(row[tema]);
+                    user.cargo = Convert.ToString(row[cargo]);
+                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
+
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e}");
+            }
+            cmd.Parameters.Clear();
+            conexao.Desconectar();
+
+            return user;
         }
 
         public UsuarioModel SelectId(string idBusca)
