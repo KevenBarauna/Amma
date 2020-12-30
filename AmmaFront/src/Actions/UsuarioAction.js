@@ -58,60 +58,60 @@ const removerUsuarioLocalStorage = () => {
   localStorage.removeItem("usuario");
 };
 
-const buscarTopTicket = (userId) => (dispatch) => {
+const buscarTopSugestoesUsuario = (userId) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   usuarioService
-    .buscarTopTicket(userId)
+    .buscarTopSugestoesUsuario(userId)
     .then((response) => {
       dispatch({
-        type: USUARIO.TOP_TICKET,
+        type: USUARIO.TOP_SUGESTOES,
         payload: response?.data,
       });
     })
     .catch((erro) =>
-      AlertaModal("error", erro, null, "Erro ao buscar top ticket")
+      AlertaModal("error", erro, null, mensagem.ERRO_TOP_SUGESTOES_USUARIO)
     )
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const buscarTicketsFavoritos = (user) => (dispatch) => {
+const buscarSugestoesFavoritas = (user) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   usuarioService
-    .buscarTicketsFavoritos(user?.id)
+    .buscarSugestoesFavoritas(user?.id)
     .then((response) => {
       dispatch({
-        type: USUARIO.TICKETS_FAVORITOS,
+        type: USUARIO.SUGESTOES_FAVORITAS,
         payload: response.data,
       });
     })
     .catch((erro) =>
-      AlertaModal("error", erro, null, "Erro ao buscar tickets favoritos")
+      AlertaModal("error", erro, null, mensagem.ERRO_SUGESTOES_FAVORITAS_USUARIO)
     )
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const favoritarTicket = (user, idTicket) => (dispatch) => {
+const favoritarSugestao = (user, idTicket) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   usuarioService
-    .favoritarTicket(user?.id, idTicket)
+    .favoritarSugestao(user?.id, idTicket)
     .then((response) => {
       dispatch({
-        type: USUARIO.TICKETS_FAVORITOS,
-        payload: response.data,
+        type: USUARIO.SUGESTOES_FAVORITAS,
+        payload: response?.data,
       });
-      mensagemFlash("success", "Ticket marcado com sucesso", null, null);
+      mensagemFlash("success", mensagem.FAVORITAR_SUGESTAO, null, null);
     })
     .catch((erro) =>
-      AlertaModal("error", erro, null, "Erro ao favoritar ticket")
+      AlertaModal("error", erro, null, mensagem.FAVORITAR_SUGESTAO_ERRO)
     )
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
 export default {
   verificarLogin,
-  buscarTicketsFavoritos,
-  buscarTopTicket,
-  favoritarTicket,
+  buscarTopSugestoesUsuario,
+  buscarSugestoesFavoritas,
+  favoritarSugestao,
   adicionarUsuario,
   sairConta,
 };

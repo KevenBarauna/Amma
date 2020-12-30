@@ -22,15 +22,20 @@ export const adicionarUsuario = (usuario) => {
   });
 };
 
-export const buscarTopTicket = (idUsuario) => {
+export const buscarTopSugestoesUsuario = (idUsuario) => {
   return new Promise((resolve, reject) => {
-    axios(http.getRequest(CONTROLLER_SUGESAO, `/buscaTopTicketUsuario?idUsuario=${idUsuario}` ))
+    axios(
+      http.getRequest(
+        CONTROLLER_SUGESAO,
+        `/buscaTopTicketUsuario?idUsuario=${idUsuario}`
+      )
+    )
       .then((res) => resolve(res))
       .catch((error) => reject(error));
   });
 };
 
-export const buscarTicketsFavoritos = (idUsuario) => {
+export const buscarSugestoesFavoritas = (idUsuario) => {
   return new Promise((resolve, reject) => {
     axios({
       method: "GET",
@@ -45,7 +50,7 @@ export const buscarTicketsFavoritos = (idUsuario) => {
   });
 };
 
-export const favoritarTicket = (idUsuario, idTicket) => {
+export const favoritarSugestao = (idUsuario, idTicket) => {
   return new Promise((resolve, reject) => {
     axios({
       method: "POST",
@@ -63,8 +68,8 @@ export const favoritarTicket = (idUsuario, idTicket) => {
 
 export default {
   verificarLogin,
-  buscarTopTicket,
-  buscarTicketsFavoritos,
+  buscarTopSugestoesUsuario,
+  buscarSugestoesFavoritas,
   adicionarUsuario,
-  favoritarTicket,
+  favoritarSugestao,
 };

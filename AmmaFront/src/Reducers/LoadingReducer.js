@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     exibirLoading: false,
 };
 
-export default function UsuarioReducer(state = INITIAL_STATE, action) {
+export default function LoadingReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case LOADING.EXIBIR_LOADING:
             return {

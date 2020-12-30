@@ -1,41 +1,36 @@
-import React, {useCallback,useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import CardSugestao from './../../Components/CardSugestao/Index';
-import ticketAction from './../../Actions/TicketAction';
-import './Gerenciar.css'
+import React, { useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import CardSugestao from "./../../Components/CardSugestao/Index";
+import sugestaoAction from "./../../Actions/SugestaoAction";
+import "./Gerenciar.css";
 
 const Gerenciar = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const usuario = useSelector(
-        state => state.usuarioReducer.usuario
-    );
-    const todosTickets = useSelector(
-        state => state.gerenciarReducer.todosTickets
-    );
+  const novasSugestoesPendentes = useSelector(
+    (state) => state.sugestaoReducer.novosPendentes
+  );
 
-    
-    const primeiroAcesso = useCallback(() => {
-        dispatch(ticketAction.buscarTodosTicketsPendentes());
-    }, [dispatch]);
-    useEffect(() => {
-        primeiroAcesso();
-    }, [primeiroAcesso]);
+  const primeiroAcesso = useCallback(() => {
+    dispatch(sugestaoAction.buscarTodasSugestoesPendentes());
+  }, [dispatch]);
+  useEffect(() => {
+    primeiroAcesso();
+  }, [primeiroAcesso]);
 
-    return (
-        <div >
-            <h2 className='gerenciar-titulo'>Aprove ou reprove os novos tickets</h2>
-            {todosTickets.map((ticket, index) => (
-                <CardSugestao
-                    key={index}
-                    ticket={ticket}
-                    usuario={usuario}
-                    codRender={3}
-                />
-            ))}
-
-        </div>
-    );
-}
+  return (
+    <div>
+      <h2 className="gerenciar-titulo">Aprove ou reprove as novas sugestões</h2>
+      {novasSugestoesPendentes.map((ticket, index) => (
+        <CardSugestao
+          key={index}
+          ticket={ticket}
+          usuario={ticket?.usuario}
+          codRender={3}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Gerenciar;

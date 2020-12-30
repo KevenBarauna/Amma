@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import rota from "./../Helpers/Const/Links";
 import Menu from "./../Components/MenuTopo/Menu";
 import Perfil from "./../Components/Perfil/Perfil";
+import Modal from "./../Components/Modal/Index";
 import Login from "./../Pages/Login/Login";
 import Adicionar from "./../Pages/Adicionar/Adicionar";
 import Loading from "./../Components/Carregando/Loading";
@@ -26,6 +27,7 @@ const MainRoute = () => {
   return (
     <BrowserRouter>
       <Loading />
+      <Modal/>
       <Menu />
       <Perfil />
       <Switch>

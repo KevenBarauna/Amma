@@ -10,15 +10,15 @@ import usuarioAction from './../../Actions/UsuarioAction';
 const TopoFivePerfil = () => {
     const dispatch = useDispatch();
 
-    const topTicketUsuario = useSelector(
-        state => state.usuarioReducer.topTicket
+    const topSugestoesUsuario = useSelector(
+        state => state.usuarioReducer.topSugestoes
     );
     const usuario = useSelector(
         state => state.usuarioReducer.usuario
     );
 
     const primeiroAcesso = useCallback(() => {
-        dispatch(usuarioAction.buscarTopTicket(usuario?.id));
+        dispatch(usuarioAction.buscarTopSugestoesUsuario(usuario?.id));
     }, [dispatch,usuario]);
     useEffect(() => {
         primeiroAcesso();
@@ -32,7 +32,7 @@ const TopoFivePerfil = () => {
                </div>
             </Row>
             <div className='TopFivePerfil-container-list'>
-                {topTicketUsuario?.map((dados, index) => (
+                {topSugestoesUsuario?.map((dados, index) => (
                     <ListTopFive
                         key={index}
                         tipoTicket={dados.idTipo}

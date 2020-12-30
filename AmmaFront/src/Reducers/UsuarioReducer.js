@@ -1,33 +1,29 @@
-import { USUARIO } from './../Helpers/Const/ActionType';
-import { exibirDadosRedux } from './../Helpers/FuncaoPadrao/Index';
+import { USUARIO } from "./../Helpers/Const/ActionType";
 
 const INITIAL_STATE = {
-    usuario: JSON.parse(localStorage.getItem("usuario")),//null,//{ nome: 'Keven Pacheco Baraúna', cargo: 'Corder II', idImagem: Math.floor(Math.random() * 50 + 1), favoritos: [1, 3, 5] },
-    topTicket: [],
-    ticketsFavoritos: [],
+  usuario: JSON.parse(localStorage.getItem("usuario")),
+  topSugestoes: [],
+  favoritos: [],
 };
 
 export default function UsuarioReducer(state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case USUARIO.DADOS_USER:
-            exibirDadosRedux(action)
-            return {
-                ...state,
-                usuario: action.payload
-            };
-        case USUARIO.TOP_TICKET:
-            exibirDadosRedux(action)
-            return {
-                ...state,
-                topTicket: action.payload
-            };
-        case USUARIO.TICKETS_FAVORITOS:
-            exibirDadosRedux(action)
-            return {
-                ...state,
-                ticketsFavoritos: action.payload
-            };
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case USUARIO.DADOS_USER:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
+    case USUARIO.TOP_SUGESTOES:
+      return {
+        ...state,
+        topSugestoes: action.payload,
+      };
+    case USUARIO.SUGESTOES_FAVORITAS:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    default:
+      return state;
+  }
+}
