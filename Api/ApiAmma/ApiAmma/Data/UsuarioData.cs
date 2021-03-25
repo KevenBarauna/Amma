@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using ApiAmma.Models;
-using ApiAmma.Data;
-using ApiAmma.DTO;
 
 namespace ApiAmma.Data
 {
@@ -18,77 +16,40 @@ namespace ApiAmma.Data
         string id = "id";
         string nome = "nome";
         string senha = "senha";
-        string tema = "idTema";
-        string idAvatar = "idAvatar";
+        string email = "email";
         string cargo = "cargo";
-
+        string idAvatar = "idAvatar";
 
         public UsuarioModel Insert(UsuarioModel user)
         {
-            bool sucess = false;
             var usuario = new UsuarioModel();
             try
             {
-                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{tema},{idAvatar},{cargo}) VALUES (@nome,@senha,@tema,@idAvatar,@cargo)";
+                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{email},{idAvatar},{cargo}) VALUES (@nome,@senha,@email,@idAvatar,@cargo)";
 
                 cmd.Parameters.AddWithValue("@nome", user.nome);
                 cmd.Parameters.AddWithValue("@senha", user.senha);
-                cmd.Parameters.AddWithValue("@tema", user.idTema);
+                cmd.Parameters.AddWithValue("@email", user.email);
                 cmd.Parameters.AddWithValue("@idAvatar", user.idAvatar);
                 cmd.Parameters.AddWithValue("@cargo", user.cargo);
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("Insert", nameof(e.Message));
+            }
+            finally
+            {
                 cmd.Parameters.Clear();
                 conexao.Desconectar();
-                sucess = true;
+                usuario = SelectByName(user.nome);
+            }
 
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine($"Erro: {e}");
-            }
-            if(sucess){
-                usuario = SelectLast();
-            }
-              
             return usuario;
-        }
-
-        public UsuarioModel SelectLast()
-        {
-            var user = new UsuarioModel();
-
-            try
-            {
-                SqlDataReader row;
-
-                cmd.CommandText = $"SELECT * FROM {tabela} ORDER BY {id} DESC";
-
-                cmd.Connection = conexao.Conectar();
-                row = cmd.ExecuteReader();
-
-                if (row.HasRows)
-                {
-                    row.Read();
-
-                    user.id = Convert.ToInt32(row[id]);
-                    user.nome = Convert.ToString(row[nome]);
-                    user.idTema = Convert.ToInt32(row[tema]);
-                    user.cargo = Convert.ToString(row[cargo]);
-                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
-
-                }
-
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine($"Erro: {e}");
-            }
-            cmd.Parameters.Clear();
-            conexao.Desconectar();
-
-            return user;
         }
 
         public UsuarioModel SelectId(string idBusca)
@@ -113,7 +74,7 @@ namespace ApiAmma.Data
                     user.id = Convert.ToInt32(row[id]);
                     user.nome = Convert.ToString(row[nome]);
                     user.senha = Convert.ToString(row[senha]);
-                    user.idTema = Convert.ToInt32(row[tema]);
+                    user.email = Convert.ToString(row[email]);
                     user.cargo = Convert.ToString(row[cargo]);
                     user.idAvatar = Convert.ToInt32(row[idAvatar]);
 
@@ -122,17 +83,62 @@ namespace ApiAmma.Data
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"Erro: {e}");
+                Console.WriteLine($"Erro: {e.Message}");
+                throw new ArgumentException("SelectId", nameof(e.Message));
             }
+            finally{
             cmd.Parameters.Clear();
             conexao.Desconectar();
+            }
+
+
+            return user;
+        }
+
+        public UsuarioModel SelectByName(string nomeBusca)
+        {
+            var user = new UsuarioModel();
+
+            try
+            {
+                SqlDataReader row;
+
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {nome} = @nome";
+
+                cmd.Parameters.AddWithValue("@nome", nomeBusca);
+
+                cmd.Connection = conexao.Conectar();
+                row = cmd.ExecuteReader();
+
+                if (row.HasRows)
+                {
+                    row.Read();
+
+                    user.id = Convert.ToInt32(row[id]);
+                    user.nome = Convert.ToString(row[nome]);
+                    user.senha = Convert.ToString(row[senha]);
+                    user.email = Convert.ToString(row[email]);
+                    user.cargo = Convert.ToString(row[cargo]);
+                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
+
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n\n");
+                throw new ArgumentException("SelectByName", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
 
             return user;
         }
 
 
-
-        //RETORNA TODOS OS PRODUTOS
         public List<UsuarioModel> SelectAll()
         {
             SqlDataReader row;
@@ -140,7 +146,7 @@ namespace ApiAmma.Data
 
             try
             {
-                cmd.CommandText = $"SELECT * {tabela}";
+                cmd.CommandText = $"SELECT * FROM {tabela}";
 
                 cmd.Connection = conexao.Conectar();
                 row = cmd.ExecuteReader();
@@ -155,7 +161,7 @@ namespace ApiAmma.Data
                         user.id = Convert.ToInt32(row[id]);
                         user.nome = Convert.ToString(row[nome]);
                         user.senha = Convert.ToString(row[senha]);
-                        user.idTema = Convert.ToInt32(row[tema]);
+                        user.email = Convert.ToString(row[email]);
                         user.cargo = Convert.ToString(row[cargo]);
                         user.idAvatar = Convert.ToInt32(row[idAvatar]);
 
@@ -166,10 +172,14 @@ namespace ApiAmma.Data
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"Erro: {e}");
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("SelectAll", nameof(e.Message));
             }
-            cmd.Parameters.Clear();
-            conexao.Desconectar();
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
 
             return usuariosModel;
         }
@@ -180,11 +190,11 @@ namespace ApiAmma.Data
             try
             {
 
-                cmd.CommandText = $"UPDATE {tabela} SET nome = @nome, senha = @senha, tema = @tema, idAvatar = @idAvatar, cargo = @cargo WHERE id = @id";
+                cmd.CommandText = $"UPDATE {tabela} SET nome = @nome, senha = @senha, email = @email, idAvatar = @idAvatar, cargo = @cargo WHERE id = @id";
 
                 cmd.Parameters.AddWithValue("@nome", user.nome);
                 cmd.Parameters.AddWithValue("@senha", user.senha);
-                cmd.Parameters.AddWithValue("@tema", user.idTema);
+                cmd.Parameters.AddWithValue("@email", user.email);
                 cmd.Parameters.AddWithValue("@idAvatar", user.idAvatar);
                 cmd.Parameters.AddWithValue("@cargo", user.cargo);
                 cmd.Parameters.AddWithValue("@id", user.id);
@@ -228,7 +238,7 @@ namespace ApiAmma.Data
 
                     user.id = Convert.ToInt32(row[id]);
                     user.nome = Convert.ToString(row[nome]);
-                    user.idTema = Convert.ToInt32(row[tema]);
+                    user.email = Convert.ToString(row[email]);
                     user.cargo = Convert.ToString(row[cargo]);
                     user.idAvatar = Convert.ToInt32(row[idAvatar]);
 
@@ -237,10 +247,15 @@ namespace ApiAmma.Data
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"Erro: {e}");
+                Console.WriteLine($"Erro: {e.Message}\n\n\n");
+                throw new ArgumentException("SelectNomeSenha", nameof(e.Message));
             }
-            cmd.Parameters.Clear();
-            conexao.Desconectar();
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
             return user;
         }
 

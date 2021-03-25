@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ApiAmma.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApiAmma.DTO;
 using ApiAmma.Data;
 using ApiAmma.Excecao;
+using System;
 
 namespace ApiAmma.Controllers
 {
@@ -16,15 +13,17 @@ namespace ApiAmma.Controllers
     public class UsuariosController : ControllerBase
     {
         private UsuarioData _usuarioDataTemp = new UsuarioData();
+        private ValidarUsuario _validar = new ValidarUsuario();
 
         [HttpPost]
         [Route("login")]
         public UsuarioModel login(LoginDto dto)
         {
-            UsuarioModel user = _usuarioDataTemp.SelectNomeSenha(dto.nome, dto.senha);
+            LoginDto userValido = _validar.login(dto);
+            UsuarioModel user = _usuarioDataTemp.SelectNomeSenha(userValido.nome, userValido.senha);
             if (user.id == 0)
             {
-                //throw new ResultadoException(Alerta.WARNING, Alerta.NENHUM_USUARIO);
+                throw new ArgumentException("Usuário não encontrado", nameof(dto.nome));
             }
 
             return user;
@@ -34,7 +33,8 @@ namespace ApiAmma.Controllers
         [Route("novoUsuario")]
         public UsuarioModel adicionarNovoUsuario(UsuarioModel usuario)
         {
-            return _usuarioDataTemp.Insert(usuario);
+
+            return _usuarioDataTemp.Insert(_validar.adicionarNovoUsuario(usuario));
 
         }
 
@@ -42,8 +42,7 @@ namespace ApiAmma.Controllers
         [Route("buscarTodosUsuarios")]
         public List<UsuarioModel> buscarTodosUsuarios()
         {
-            List<UsuarioModel> usuarios = new List<UsuarioModel>();
-            return usuarios;
+            return _usuarioDataTemp.SelectAll();
         }
 
         [HttpDelete]
