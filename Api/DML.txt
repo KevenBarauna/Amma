@@ -1,10 +1,12 @@
-INSERT INTO ticket (titulo) VALUES ('Adicionar')
-INSERT INTO ticket (titulo) VALUES ('Manter')
-INSERT INTO ticket (titulo) VALUES ('Melhorar')
-INSERT INTO ticket (titulo) VALUES ('Abandonar')
+INSERT INTO categoria (descricao) VALUES ('Adicionar')
+INSERT INTO categoria (descricao) VALUES ('Manter')
+INSERT INTO categoria (descricao) VALUES ('Melhorar')
+INSERT INTO categoria (descricao) VALUES ('Abandonar')
 
-INSERT INTO status (tipo) VALUES ('Pendente')
-INSERT INTO status (tipo) VALUES ('Solucionada')
-INSERT INTO status (tipo) VALUES ('Avaliacao')
+INSERT INTO status (descricao) VALUES ('Aguardando análise')
+INSERT INTO status (descricao) VALUES ('Solucionado')
+INSERT INTO status (descricao) VALUES ('Em análise')
+INSERT INTO status (descricao) VALUES ('Não estamos prontos')
+
 
 INSERT INTO Usuario (nome,senha,email,cargo,idAvatar,idTema) VALUES ('adm','ammasolutis2020','keven.barauna@solutis.com.br','Admin','1','1')
