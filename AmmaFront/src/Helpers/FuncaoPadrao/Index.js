@@ -1,8 +1,18 @@
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-export function exibirMensagemErro(erro) {
+export function exibirMensagemErroConsole(erro) {
   console.log("$ ERRO: - ", erro);
+}
+
+export function exibirMensagemErro(error) {
+  console.log('Mensagem exibir toas: ', error)
+  toast.configure();
+
+  const notify = () => toast(error.toString() || "");
+  notify();
+
 }
 
 export function exibirDadosRedux(action) {

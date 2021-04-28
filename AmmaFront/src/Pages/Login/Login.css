@@ -1,51 +1,62 @@
-.login-fundo{
-    background-color:  var(--cor-background);
-    height: 95vh;
-    width: 100%;
-    background-size: cover;
+.login-fundo {
+  background-color: #ffffff;
+  width: 100%;
+  background-size: cover;
 }
 
-.login-container-transparente{
-    height: 10%;
+.login-container-form {
+  margin-bottom: 3%;
+  margin-top: 55px;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 80%;
+  height: 80%;
+  width: 35%;
 }
 
-.login-container-form{
-    margin-bottom: 3%;
-    padding: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(255, 255, 255, 0.548);
-    min-height: 80%;
-    height: 80%;
-    min-width: 50%;
-    width: 50%;
-    border-radius: 8px;
+.login-logo {
+  text-align: center;
+  margin-bottom: 23px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
 }
 
-.login-logo{
+#login-imagem-logo {
+  height: 100px;
+}
+
+.login-criar-conta {
+  text-align: center;
+  font-weight: 600;
+  font-size: 12pt;
+  cursor: pointer;
+  color: var(--cor-preto-n1);
+}
+
+.login-criar-conta:hover {
+    color: var(--cor-cinza-n1);
+  }
+
+.login-container-criar-conta{
     text-align: center;
-    margin-bottom: 23px;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
 }
 
-#login-imagem-logo{
-    height: 100px;
+.login-button {
+  text-align: center;
+  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.login-criar-conta{
-    text-align: center;
-    font-weight: 100;
-    font-size: 10pt;
-    cursor: pointer;
+.login-textField {
+  width: 100%;
 }
 
-.login-button{
-    text-align: center;
-    margin-top: 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+.login-container-textField {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

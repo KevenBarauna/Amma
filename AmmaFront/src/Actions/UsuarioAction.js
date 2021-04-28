@@ -3,23 +3,21 @@ import { AlertaModal, mensagemFlash } from "./../Helpers/FuncaoPadrao/Index";
 import loadingAction from "./LoadingAction";
 import usuarioService from "./../Services/UsuarioService";
 import mensagem from "./../Helpers/Const/Mensagem";
+import { exibirMensagemErro } from "./../Helpers/FuncaoPadrao/Index";
 
 const verificarLogin = (user) => (dispatch) => {
+  //exibirMensagemErro('erro')
   dispatch(loadingAction.exibirLoading());
   usuarioService
     .verificarLogin(user)
     .then((response) => {
-      if (response?.data?.id === 0) {
-        AlertaModal("error", null, null, mensagem.NENHUM_USUARIO);
-      } else {
-        dispatch({
-          type: USUARIO.DADOS_USER,
-          payload: response?.data,
-        });
-        salvarUsuarioLocalStorage(response?.data);
-      }
+      dispatch({
+        type: USUARIO.DADOS_USER,
+        payload: response?.data,
+      });
+      salvarUsuarioLocalStorage(response?.data);
     })
-    .catch((erro) => AlertaModal("error", erro, null, mensagem.ERRO_LOGIN))
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
@@ -85,7 +83,12 @@ const buscarSugestoesFavoritas = (user) => (dispatch) => {
       });
     })
     .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.ERRO_SUGESTOES_FAVORITAS_USUARIO)
+      AlertaModal(
+        "error",
+        erro,
+        null,
+        mensagem.ERRO_SUGESTOES_FAVORITAS_USUARIO
+      )
     )
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Button } from "react-bootstrap";
-import imagemLogo from "./../../assets/image/logoAmma.png";
+import { Form } from "react-bootstrap";
+import Button from '@material-ui/core/Button';
+import imagemLogo from "./../../assets/image/logo.png";
 import "./Login.css";
 import usuarioAction from "./../../Actions/UsuarioAction";
 import rota from "./../../Helpers/Const/Links";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,54 +32,53 @@ const Login = () => {
     <>
       {usuarioLogado === null ? (
         <div className="login-fundo">
-          <div className="login-container-transparente" />
-          <div>
-            <div className="login-container-form">
-              <Form>
-                <div className="login-logo">
-                  <img
-                    src={imagemLogo}
-                    alt="Imagem logo"
-                    id="login-imagem-logo"
-                  ></img>
-                </div>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Nome</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Usuário de rede"
-                    onChange={(e) => setUsuario(e.target.value)}
-                  />
-                </Form.Group>
+          <div className="login-container-form">
+            <Form>
+              <div className="login-logo">
+                <img
+                  src={imagemLogo}
+                  alt="Imagem logo"
+                  id="login-imagem-logo"
+                ></img>
+              </div>
+              <div className="login-container-textField">
+                <TextField
+                  id="outlined-basic"
+                  className="login-textField"
+                  type="text"
+                  label="Nome"
+                  variant="outlined"
+                  onChange={(e) => setUsuario(e.target.value)}
+                />
+              </div>
+              <div className="login-container-textField">
+                <TextField
+                  id="outlined-basic"
+                  className="login-textField"
+                  type="password"
+                  label="Senha"
+                  variant="outlined"
+                  onChange={(e) => setSenha(e.target.value)}
+                />
+              </div>
 
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Senha</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Senha"
-                    onChange={(e) => setSenha(e.target.value)}
-                  />
-                </Form.Group>
+              <div className="login-container-criar-conta">
+                <Link to={rota.novaConta}>
+                  <Form.Label className="login-criar-conta">
+                    Criar conta
+                  </Form.Label>
+                </Link>
+              </div>
 
-                <Form.Group className="login-criar-conta">
-                  <Link to={rota.novaConta}>
-                    <Form.Label className="login-criar-conta">
-                      Criar conta
-                    </Form.Label>
-                  </Link>
-                </Form.Group>
-
-                <div className="login-button">
-                  <Button
-                    variant="danger"
-                    className="btn-padrao"
-                    onClick={() => onsubmit()}
-                  >
-                    Entrar
-                  </Button>
-                </div>
-              </Form>
-            </div>
+              <div className="login-button">
+                <Button
+                  variant="contained"
+                  onClick={() => onsubmit()}
+                >
+                  Entrar
+                </Button>
+              </div>
+            </Form>
           </div>
         </div>
       ) : (
