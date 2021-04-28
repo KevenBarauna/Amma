@@ -6,7 +6,6 @@ import mensagem from "./../Helpers/Const/Mensagem";
 import { exibirMensagemErro } from "./../Helpers/FuncaoPadrao/Index";
 
 const verificarLogin = (user) => (dispatch) => {
-  //exibirMensagemErro('erro')
   dispatch(loadingAction.exibirLoading());
   usuarioService
     .verificarLogin(user)
@@ -42,9 +41,7 @@ const adicionarUsuario = (user) => (dispatch) => {
       });
       salvarUsuarioLocalStorage(response?.data);
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.ERRO_NOVO_USUARIO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 

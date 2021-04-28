@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Button } from "react-bootstrap";
-import { mensagemFlash } from "./../../Helpers/FuncaoPadrao/Index";
+import Button from "@material-ui/core/Button";
+import { exibirMensagemErro } from "./../../Helpers/FuncaoPadrao/Index";
 import "./CriarConta.css";
 import usuarioAction from "./../../Actions/UsuarioAction";
 import { useHistory } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { selecionarImagemAvatar } from "./../../Helpers/FuncaoPadrao/ImagemUsuario";
 
 const CriarConta = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const CriarConta = () => {
   const [cargo, setCargo] = useState("");
   const [senha, setSenha] = useState("");
   const [senhaConfirme, setSenhaConfirme] = useState("");
+  const [email, setEmail] = useState("");
 
   const primeiroAcesso = useCallback(() => {
     if (usuarioLogado !== null) history.push("/Amma");
@@ -24,72 +27,109 @@ const CriarConta = () => {
     primeiroAcesso();
   }, [primeiroAcesso]);
 
+  function validar() {
+    let msgErro = null;
+    if (usuario === "") {
+      msgErro = "Informe o nome de usuário";
+    } else if (senha === "") {
+      msgErro = "Informe seu senha";
+    } else if (senhaConfirme === "") {
+      msgErro = "Informe a confirmação de senha";
+    } else if (email === "") {
+      msgErro = "Informe seu email";
+    } else if (cargo === "") {
+      msgErro = "Informe seu cargo atual";
+    } else if (senhaConfirme !== senha) {
+      msgErro = "Senhas diferentes";
+    }
+
+    if (msgErro !== null) {
+      exibirMensagemErro(msgErro);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   function onsubmit() {
-    senha !== senhaConfirme
-      ? mensagemFlash("error", "Senhas diferentes", null, null)
-      : dispatch(
-          usuarioAction.adicionarUsuario({
-            nome: usuario,
-            cargo: cargo,
-            senha: senha,
-          })
-        );
+    if (validar()) {
+      dispatch(
+        usuarioAction.adicionarUsuario({
+          nome: usuario,
+          cargo: cargo,
+          senha: senha,
+          email: email,
+        })
+      );
+    }
   }
 
   return (
     <div className="criarConta-fundo">
-      <div className="criarConta-container-transparente" />
       <div className="criarConta-container">
-        <div className="criarConta-titulo">Criar nova conta</div>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control
+        <div className="criarConta-imagem-jogador">
+          <img
+            className="criarConta-imagem"
+            src={selecionarImagemAvatar(1)}
+            alt="Avatar"
+          />
+        </div>
+          <div className="criarConta-container-textField">
+            <TextField
+              id="outlined-basic"
+              className="criarConta-textField"
               type="text"
-              placeholder="Usuário de rede"
+              label="Nome"
+              variant="outlined"
               onChange={(e) => setUsuario(e.target.value)}
             />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Cargo</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Cargo atual"
-              onChange={(e) => setCargo(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control
+          </div>
+          <div className="criarConta-container-textField">
+            <TextField
+              id="outlined-basic"
+              className="criarConta-textField"
               type="password"
-              autoComplete="false"
-              placeholder="Digite uma senha"
+              label="Senha"
+              variant="outlined"
               onChange={(e) => setSenha(e.target.value)}
             />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Confirmação de senha</Form.Label>
-            <Form.Control
+          </div>
+          <div className="criarConta-container-textField">
+            <TextField
+              id="outlined-basic"
+              className="criarConta-textField"
               type="password"
-              autoComplete="false"
-              placeholder="Digite uma senha novamente"
+              label="Confirmação de Senha"
+              variant="outlined"
               onChange={(e) => setSenhaConfirme(e.target.value)}
             />
-          </Form.Group>
+          </div>
+          <div className="criarConta-container-textField">
+            <TextField
+              id="outlined-basic"
+              className="criarConta-textField"
+              type="email"
+              label="E-mail"
+              variant="outlined"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="criarConta-container-textField">
+            <TextField
+              id="outlined-basic"
+              className="criarConta-textField"
+              type="text"
+              label="Cargo"
+              variant="outlined"
+              onChange={(e) => setCargo(e.target.value)}
+            />
+          </div>
 
           <div className="criarConta-button">
-            <Button
-              variant="danger"
-              className="btn-padrao"
-              onClick={() => onsubmit()}
-            >
+            <Button variant="contained" onClick={() => onsubmit()}>
               Criar conta
             </Button>
           </div>
-        </Form>
       </div>
     </div>
   );
