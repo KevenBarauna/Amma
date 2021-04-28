@@ -23,8 +23,6 @@ namespace ApiAmma.Data
         string descricao = "descricao";
         string quantidadeVotos = "quantidadeVotos";
 
-        private StatusData _statusDataTemp = new StatusData();
-
         private SugestaoModel ConverRowToModel(SqlDataReader row)
         {
             row.Read();
