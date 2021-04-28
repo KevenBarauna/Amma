@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import rota from "./../Helpers/Const/Links";
 import Menu from "./../Components/MenuTopo/Menu";
-import Perfil from "./../Components/Perfil/Perfil";
+// import Perfil from "./../Components/Perfil/Perfil";
 import Modal from "./../Components/Modal/Index";
 import Login from "./../Pages/Login/Login";
 import Adicionar from "./../Pages/Adicionar/Adicionar";
@@ -29,7 +29,7 @@ const MainRoute = () => {
       <Loading />
       <Modal/>
       <Menu />
-      <Perfil />
+      {/* <Perfil /> */}
       <Switch>
         {verificarUsuarioLogado()}
         <Route path="/" component={Dashboard} exact />

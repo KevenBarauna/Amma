@@ -6,6 +6,7 @@ import rota from "./../../Helpers/Const/Links";
 import imagemLogo from "./../../assets/image/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import usuarioAction from "./../../Actions/UsuarioAction";
+import { selecionarImagemAvatar } from "./../../Helpers/FuncaoPadrao/ImagemUsuario";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -16,22 +17,37 @@ const Menu = () => {
     dispatch(usuarioAction.sairConta());
   };
 
+  const tempAlterarAvatar = () => {
+    alert('Abrir página altererar avatar')
+}
+
   const renderLoginSair = () => {
     if (usuarioLogado === null) {
       return (
-        <Col className="Menu-itens">
-          <Link id="link" to={rota.login}>Login</Link>
-        </Col>
+        <></>
       );
     } else {
       return (
-        <Col className="Menu-itens">
           <Link id="link" to={rota.login} onClick={() => sair()}>
             Sair
           </Link>
-        </Col>
       );
     }
+  };
+
+  const renderFotoUsuario = () => {
+    return (
+      <div className="Menu-container-imagem-jogador" onClick={() => tempAlterarAvatar()}>
+        <div className="Menu-imagem-jogador">
+          <img
+            className="Menu-imagem"
+            src={selecionarImagemAvatar(usuarioLogado?.idAvatar)}
+            alt="Avatar"
+          />
+        </div>
+        <p className="Menu-nome-usuario">{usuarioLogado.nome}</p>
+      </div>
+    );
   };
 
   return (
@@ -47,18 +63,27 @@ const Menu = () => {
           </Link>
         </Col>
         <Col className="Menu-itens">
-          <Link id="link" to={rota.inicio}>Início</Link>
+          <Link id="link" to={rota.inicio}>
+            Início
+          </Link>
         </Col>
         <Col className="Menu-itens">
-          <Link id="link" to={rota.Sugestões}>Sugestões</Link>
+          <Link id="link" to={rota.Sugestões}>
+            Sugestões
+          </Link>
         </Col>
         <Col className="Menu-itens">
-          <Link id="link" to={rota.Tutorial}>Tutorial</Link>
+          <Link id="link" to={rota.Tutorial}>
+            Tutorial
+          </Link>
         </Col>
         <Col className="Menu-itens">
-          <Link id="link" to={rota.Gerenciar}>Gerenciar</Link>
+          <Link id="link" to={rota.Gerenciar}>
+            Gerenciar
+          </Link>
         </Col>
-        {renderLoginSair()}
+        <Col className="Menu-itens">{renderLoginSair()}</Col>
+        <Col className="Menu-itens">{renderFotoUsuario()}</Col>
       </Row>
     </div>
   );
