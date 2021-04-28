@@ -20,13 +20,13 @@ const Menu = () => {
     if (usuarioLogado === null) {
       return (
         <Col className="Menu-itens">
-          <Link to={rota.login}>Login</Link>
+          <Link id="link" to={rota.login}>Login</Link>
         </Col>
       );
     } else {
       return (
         <Col className="Menu-itens">
-          <Link to={rota.login} onClick={() => sair()}>
+          <Link id="link" to={rota.login} onClick={() => sair()}>
             Sair
           </Link>
         </Col>
@@ -47,20 +47,18 @@ const Menu = () => {
           </Link>
         </Col>
         <Col className="Menu-itens">
-          <Link to={rota.inicio}>Início</Link>
+          <Link id="link" to={rota.inicio}>Início</Link>
         </Col>
         <Col className="Menu-itens">
-          <Link to={rota.Sugestões}>Sugestões</Link>
+          <Link id="link" to={rota.Sugestões}>Sugestões</Link>
         </Col>
         <Col className="Menu-itens">
-          <Link to={rota.Tutorial}>Tutorial</Link>
+          <Link id="link" to={rota.Tutorial}>Tutorial</Link>
         </Col>
         <Col className="Menu-itens">
-          <Link to={rota.Gerenciar}>Gerenciar</Link>
+          <Link id="link" to={rota.Gerenciar}>Gerenciar</Link>
         </Col>
         {renderLoginSair()}
-        <Col className="Menu-itens">{null}</Col>
-        <Col className="Menu-itens">{null}</Col>
       </Row>
     </div>
   );

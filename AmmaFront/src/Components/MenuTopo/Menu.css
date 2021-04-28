@@ -13,6 +13,11 @@
   color: var(--cor-preto-n1);
 }
 
+#link{
+  color: var(--cor-preto-n1);
+  text-decoration: none;
+}
+
 .Menu-row{
   padding-top: 0.5%;
   margin-top: auto;
