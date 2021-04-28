@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row } from "react-bootstrap";
 import usuarioAction from "./../../Actions/UsuarioAction";
@@ -31,6 +31,9 @@ const Dashboard = () => {
   );
   const usuario = useSelector((state) => state.usuarioReducer.usuario);
 
+  const [mensagemHorario, setMensagemHorario] = useState("");
+  const [mensagemNotificacao, setMensagemNotificacao] = useState("");
+
   const primeiroAcesso = useCallback(() => {
     dispatch(usuarioAction.buscarSugestoesFavoritas());
     dispatch(sugestaoAction.buscarGraficoPendente());
@@ -38,12 +41,35 @@ const Dashboard = () => {
     dispatch(sugestaoAction.buscarGraficoSolucionados());
     dispatch(sugestaoAction.buscarGraficoTopSugestoes());
   }, [dispatch]);
+
+  const carregarMensagem = useCallback(() => {
+    var data = new Date();
+    var hora = data.getHours();
+
+    if (hora >= 6 && hora < 12) {
+      setMensagemHorario(`Bom dia, ${usuario?.nome}`);
+    } else if (hora >= 12 && hora < 18) {
+      setMensagemHorario(`Boa tarde, ${usuario?.nome}`);
+    } else if (hora >= 18 && hora < 23) {
+      setMensagemHorario(`Boa noite, ${usuario?.nome}`);
+    } else if (hora >= 23 && hora < 6) {
+      setMensagemHorario(`Boa madrugada, ${usuario?.nome}`);
+    }
+    setMensagemNotificacao("Você tem novas nofiticações")
+  }, [usuario]);
+
   useEffect(() => {
+    carregarMensagem();
     primeiroAcesso();
-  }, [primeiroAcesso]);
+  }, [primeiroAcesso,carregarMensagem]);
 
   return (
     <>
+      <div className="inicio-mensagem">
+        <p className="inicio-mensagem-horario"> {mensagemHorario}</p>
+        <p className="inicio-mensagem-notificacao"> {mensagemNotificacao}</p>
+      </div>
+
       <Row className="grafico-pizza-row">
         <GraficoPizzaGenerico dados={dadosPendente} titulo={"Pendente"} />
         <GraficoPizzaGenerico dados={dadosCategorias} titulo={"Categorias"} />
