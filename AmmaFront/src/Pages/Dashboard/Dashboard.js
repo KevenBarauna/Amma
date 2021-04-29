@@ -17,7 +17,7 @@ const Dashboard = () => {
   const dadosCategorias = useSelector(
     (state) => state.sugestaoReducer.graficoCategorias
   );
-  const dadosAguardando = useSelector(
+  const dadosStatus = useSelector(
     (state) => state.sugestaoReducer.graficoAguardando
   );
   const dadosGraficoBarra = useSelector(
@@ -73,11 +73,12 @@ const Dashboard = () => {
       <Row className="grafico-pizza-row">
         <GraficoPizzaGenerico dados={dadosPendente} titulo={"Pendente"} />
         <GraficoPizzaGenerico dados={dadosCategorias} titulo={"Categorias"} />
-        <GraficoPizzaGenerico dados={dadosAguardando} titulo={"Solucionados"} />
+        <GraficoPizzaGenerico dados={dadosStatus} titulo={"Status"} />
       </Row>
       <GraficoBarra dados={dadosGraficoBarra} titulo={"Votos"} />
       {todosTickets.map((ticket, index) => (
         <CardSugestao
+          index={index}
           ticketsFavoritos={sugestoesFavoritas}
           ticket={ticket}
           usuario={usuario}

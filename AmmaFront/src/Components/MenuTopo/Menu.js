@@ -18,36 +18,41 @@ const Menu = () => {
   };
 
   const tempAlterarAvatar = () => {
-    alert('Abrir página altererar avatar')
-}
+    alert("Abrir página altererar avatar");
+  };
 
   const renderLoginSair = () => {
     if (usuarioLogado === null) {
-      return (
-        <></>
-      );
+      return <></>;
     } else {
       return (
-          <Link id="link" to={rota.login} onClick={() => sair()}>
-            Sair
-          </Link>
+        <Link id="link" to={rota.login} onClick={() => sair()}>
+          Sair
+        </Link>
       );
     }
   };
 
   const renderFotoUsuario = () => {
-    return (
-      <div className="Menu-container-imagem-jogador" onClick={() => tempAlterarAvatar()}>
-        <div className="Menu-imagem-jogador">
-          <img
-            className="Menu-imagem"
-            src={selecionarImagemAvatar(usuarioLogado?.idAvatar)}
-            alt="Avatar"
-          />
+    if (usuarioLogado === null) {
+      return <></>;
+    } else {
+      return (
+        <div
+          className="Menu-container-imagem-jogador"
+          onClick={() => tempAlterarAvatar()}
+        >
+          <div className="Menu-imagem-jogador">
+            <img
+              className="Menu-imagem"
+              src={selecionarImagemAvatar(usuarioLogado?.idAvatar)}
+              alt="Avatar"
+            />
+          </div>
+          <p className="Menu-nome-usuario">{usuarioLogado.nome}</p>
         </div>
-        <p className="Menu-nome-usuario">{usuarioLogado.nome}</p>
-      </div>
-    );
+      );
+    }
   };
 
   return (
