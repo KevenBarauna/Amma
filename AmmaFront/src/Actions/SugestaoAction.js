@@ -2,23 +2,54 @@ import { SUGESTAO } from "./../Helpers/Const/ActionType";
 import loadingAction from "./LoadingAction";
 import sugestaoService from "./../Services/SugestaoService";
 import mensagem from "./../Helpers/Const/Mensagem";
-import { AlertaModal, mensagemFlash } from "./../Helpers/FuncaoPadrao/Index";
-import { STATUS_PENDENTE } from "./../Helpers/Const/appConst";
+import { exibirMensagemSucesso, exibirMensagemErro } from "./../Helpers/FuncaoPadrao/Index";
+
+const buscarTodasSugestoes = () => (dispatch) => {
+  dispatch(loadingAction.exibirLoading());
+  sugestaoService
+    .buscarTodasSugestoes()
+    .then((response) => {
+      dispatch({
+        type: SUGESTAO.TODAS_SUGESTOES,
+        payload: response?.data,
+      });
+    })
+    .catch((erro) => exibirMensagemErro(erro))
+    .finally(() => dispatch(loadingAction.fecharLoading()));
+};
 
 const salvarNovaSugestao = (sugestao) => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   sugestaoService
     .salvarNovaSugestao(sugestao)
     .then((response) => {
-      if (response?.data) {
-        mensagemFlash("success", mensagem.SUGESTAO_ENVIADA, null, null);
-      } else {
-        mensagemFlash("error", mensagem.SUGESTAO_ENVIADA_ERRO, null, null);
-      }
+      exibirMensagemSucesso(`${mensagem.SUGESTAO_ENVIADA} - ${response?.data}`);
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.SUGESTAO_ENVIADA_ERRO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
+    .finally(() => dispatch(loadingAction.fecharLoading()));
+};
+
+const editarSugestao = (sugestao) => (dispatch) => {
+  dispatch(loadingAction.exibirLoading());
+  sugestaoService
+    .editarSugestao(sugestao)
+    .then((response) => {
+      dispatch(buscarTodasSugestoes());
+      exibirMensagemSucesso(`${response?.data}`);
+    })
+    .catch((erro) => exibirMensagemErro(erro))
+    .finally(() => dispatch(loadingAction.fecharLoading()));
+};
+
+const apagarSugestao = (idSugestao) => (dispatch) => {
+  dispatch(loadingAction.exibirLoading());
+  sugestaoService
+    .apagarSugestao(idSugestao)
+    .then((response) => {
+      dispatch(buscarTodasSugestoes());
+      exibirMensagemSucesso(`${response?.data}`);
+    })
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
@@ -32,9 +63,7 @@ const buscarGraficoPendente = () => (dispatch) => {
         payload: response?.data,
       });
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.GRAFICO_PENDENTE_ERRO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
@@ -48,107 +77,47 @@ const buscarGraficoCategorias = () => (dispatch) => {
         payload: response?.data,
       });
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.GRAFICO_CATEGORIA_ERRO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const buscarGraficoSolucionados = () => (dispatch) => {
-  dispatch({
-    type: SUGESTAO.GRAFICO_AGUARDANDO,
-    payload: [],
-  });
-};
-
-const buscarGraficoTopSugestoes = () => (dispatch) => {
+const buscarGraficoStatus = () => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   sugestaoService
-    .buscarGraficoTopSugestoes()
+    .buscarGraficoStatus()
     .then((response) => {
       dispatch({
-        type: SUGESTAO.GRAFICO_TOP_FAVORITOS,
+        type: SUGESTAO.GRAFICO_STATUS,
         payload: response?.data,
       });
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.GRAFICO_TOP_SUGESTAO_ERRO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const buscarTodasSugestoes = () => (dispatch) => {
+const buscarGraficoBarras = () => (dispatch) => {
   dispatch(loadingAction.exibirLoading());
   sugestaoService
-    .buscarTodasSugestoes()
+    .buscarGraficoBarras()
     .then((response) => {
       dispatch({
-        type: SUGESTAO.NOVAS_SUGESTAO,
+        type: SUGESTAO.GRAFICO_BARRAS,
         payload: response?.data,
       });
     })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.SUGESTAO_BUSCAR_ERRO)
-    )
+    .catch((erro) => exibirMensagemErro(erro))
     .finally(() => dispatch(loadingAction.fecharLoading()));
 };
 
-const buscarTodasSugestoesPendentes = () => (dispatch) => {
-  dispatch(loadingAction.exibirLoading());
-  sugestaoService
-    .buscarTodasSugestoesPendentes(STATUS_PENDENTE)
-    .then((response) => {
-      dispatch({
-        type: SUGESTAO.PENDENTES,
-        payload: response?.data,
-      });
-    })
-    .catch((erro) =>
-      AlertaModal("error", erro, null, mensagem.SUGESTAO_BUSCAR_ERRO)
-    )
-    .finally(() => dispatch(loadingAction.fecharLoading()));
-};
 
-const aprovarSugestao = (ticket) => (dispatch) => {
-  dispatch(loadingAction.exibirLoading());
-  sugestaoService
-    .aprovarSugestao(ticket)
-    .then((response) => {
-      if (response?.data) {
-        dispatch(buscarTodasSugestoesPendentes());
-        mensagemFlash("success", mensagem.SUGESTAO_APROVADA, null, null);
-      } else {
-        mensagemFlash("error", mensagem.SUGESTAO_APROVADA_ERRO, null, null);
-      }
-    })
-    .catch((erro) => AlertaModal("error", erro, null, mensagem.SUGESTAO_APROVADA_ERRO))
-    .finally(() => dispatch(loadingAction.fecharLoading()));
-};
-
-const apagarSugestao = (idSugestao) => (dispatch) => {
-  dispatch(loadingAction.exibirLoading());
-  sugestaoService
-    .apagarSugestao(idSugestao)
-    .then((response) => {
-      if (response?.data) {
-        dispatch(buscarTodasSugestoesPendentes());
-        mensagemFlash("success", mensagem.APAGAR_SUGESTAO, null, null);
-      } else {
-        mensagemFlash("error", mensagem.APAGAR_SUGESTAO_ERRO, null, null);
-      }
-    })
-    .catch((erro) => AlertaModal("error", erro, null, mensagem.APAGAR_SUGESTAO_ERRO))
-    .finally(() => dispatch(loadingAction.fecharLoading()));
-};
 
 export default {
   salvarNovaSugestao,
   buscarGraficoPendente,
   buscarGraficoCategorias,
-  buscarGraficoSolucionados,
-  buscarGraficoTopSugestoes,
   buscarTodasSugestoes,
-  buscarTodasSugestoesPendentes,
-  aprovarSugestao,
   apagarSugestao,
+  editarSugestao,
+  buscarGraficoBarras,
+  buscarGraficoStatus,
 };

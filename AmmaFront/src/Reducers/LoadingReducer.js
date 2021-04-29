@@ -1,4 +1,5 @@
 import { LOADING } from './../Helpers/Const/ActionType';
+import { exibirDadosRedux } from './../Helpers/FuncaoPadrao/Index';
 
 const INITIAL_STATE = {
     exibirLoading: false,
@@ -7,11 +8,13 @@ const INITIAL_STATE = {
 export default function LoadingReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case LOADING.EXIBIR_LOADING:
+            exibirDadosRedux(action)
             return {
                 ...state,
                 exibirLoading: action.payload//TRUE
             };
         case LOADING.FECHAR_LOADING:
+            exibirDadosRedux(action)
             return {
                 ...state,
                 exibirLoading: action.payload//FALSE

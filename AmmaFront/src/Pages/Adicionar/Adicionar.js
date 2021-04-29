@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import "./Adicionar.css";
 import CardSugestao from "./../../Components/CardSugestao/Index";
 import sugestaoAction from "./../../Actions/SugestaoAction";
-import ticketAction from "./../../Actions/TicketAction";
+import ticketAction from "./../../Actions/SugestaoAction";
 import Select from "react-select";
+import "./Adicionar.scss";
 
 const Adicionar = () => {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ const Adicionar = () => {
 
   return (
     <>
-      <div className="adicionar-fundo">
+      <div className="adicionar-fundo pageAdicionar">
         <div className="adicionar-container-transparente" />
         <div>
           <div className="adicionar-container-form">

@@ -2,6 +2,8 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const showDebug = process.env.SHOW_DEBUG_CONSOLE;
+
 export function exibirMensagemErroConsole(erro) {
   console.log("$ ERRO: - ", erro);
 }
@@ -15,8 +17,21 @@ export function exibirMensagemErro(error) {
 
 }
 
+export function exibirMensagemSucesso(mensagem) {
+  console.log('Mensagem exibir toas sucesso: ', mensagem)
+  toast.configure();
+
+  const notify = () => toast(mensagem.toString() || "");
+  notify();
+
+}
+
 export function exibirDadosRedux(action) {
-  mensagemFlash("info", `${action.type} - ${action.payload}`, "top");
+  console.log(showDebug)
+  if(showDebug === true){
+    mensagemFlash("info", `${action.type} - ${action.payload}`, "top");
+  }
+
 }
 
 export const AlertaModal = (icone, texto, button, titulo) => {

@@ -1,7 +1,6 @@
 import axios from "axios";
 import http from "./../Config/http/Request";
 
-const API_HOST = process.env.REACT_APP_API_SERVER;
 const CONTROLLER = "usuario";
 
 export const verificarLogin = (user) => {
