@@ -1,14 +1,12 @@
 import axios from "axios";
 import http from "./../Config/http/Request";
-import { usuarioServiceMock } from "./../Helpers/Const/ConstMock";
 
 const API_HOST = process.env.REACT_APP_API_SERVER;
-const CONTROLLER_USER = "usuario";
-const CONTROLLER_SUGESAO = "sugestao";
+const CONTROLLER = "usuario";
 
 export const verificarLogin = (user) => {
   return new Promise((resolve, reject) => {
-    axios(http.postRequest(CONTROLLER_USER, "/login", user))
+    axios(http.postRequest(CONTROLLER, "/login", user))
       .then((res) => resolve(res))
       .catch((error) => reject(error));
   });
@@ -16,60 +14,22 @@ export const verificarLogin = (user) => {
 
 export const adicionarUsuario = (usuario) => {
   return new Promise((resolve, reject) => {
-    axios(http.postRequest(CONTROLLER_USER, "/novoUsuario", usuario))
+    axios(http.postRequest(CONTROLLER, "/novoUsuario", usuario))
       .then((res) => resolve(res))
       .catch((error) => reject(error));
   });
 };
 
-export const buscarTopSugestoesUsuario = (idUsuario) => {
+export const editarUsuario = (usuario) => {
   return new Promise((resolve, reject) => {
-    axios(
-      http.getRequest(
-        CONTROLLER_SUGESAO,
-        `/buscaTopTicketUsuario?idUsuario=${idUsuario}`
-      )
-    )
+    axios(http.postRequest(CONTROLLER, "/editar", usuario))
       .then((res) => resolve(res))
       .catch((error) => reject(error));
-  });
-};
-
-export const buscarSugestoesFavoritas = (idUsuario) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: "GET",
-      url: `${API_HOST}${CONTROLLER_USER}/buscarTicketsFavoritos?idUsuario=${idUsuario}`,
-      headers: { "content-type": "application/json" },
-    })
-      .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve({ data: usuarioServiceMock(null, "buscarTicketsFavoritos") })
-      );
-  });
-};
-
-export const favoritarSugestao = (idUsuario, idTicket) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: "POST",
-      url: `${API_HOST}${CONTROLLER_USER}/favoritarTicket`,
-      headers: { "content-type": "application/json" },
-      data: JSON.stringify(idUsuario, idTicket),
-    })
-      .then((res) => resolve(res))
-      .catch((error) =>
-        //reject(error)
-        resolve({ data: usuarioServiceMock(idTicket, "favoritarTicket") })
-      );
   });
 };
 
 export default {
   verificarLogin,
-  buscarTopSugestoesUsuario,
-  buscarSugestoesFavoritas,
   adicionarUsuario,
-  favoritarSugestao,
+  editarUsuario,
 };
