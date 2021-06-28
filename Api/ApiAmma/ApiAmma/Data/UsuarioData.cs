@@ -20,6 +20,42 @@ namespace ApiAmma.Data
         string cargo = "cargo";
         string idAvatar = "idAvatar";
 
+        private UsuarioModel ConverRowToModel(SqlDataReader row, bool showSenha = true)
+        {
+            row.Read();
+            UsuarioModel usuario = new UsuarioModel();
+
+            usuario.id = Convert.ToInt32(row[id]);
+            usuario.nome = Convert.ToString(row[nome]);
+            usuario.email = Convert.ToString(row[email]);
+            usuario.cargo = Convert.ToString(row[cargo]);
+            usuario.idAvatar = Convert.ToInt32(row[idAvatar]);
+            if (showSenha) { usuario.senha = Convert.ToString(row[senha]); }
+
+            return usuario;
+        }
+
+        private List<UsuarioModel> ConverRowToListModel(SqlDataReader row)
+        {
+            List<UsuarioModel> usuarioList = new List<UsuarioModel>();
+
+            foreach (var linha in row)
+            {
+                var user = new UsuarioModel();
+
+                user.id = Convert.ToInt32(row[id]);
+                user.nome = Convert.ToString(row[nome]);
+                user.senha = Convert.ToString(row[senha]);
+                user.email = Convert.ToString(row[email]);
+                user.cargo = Convert.ToString(row[cargo]);
+                user.idAvatar = Convert.ToInt32(row[idAvatar]);
+
+                usuarioList.Add(user);
+            }
+
+            return usuarioList;
+        }
+
         public UsuarioModel Insert(UsuarioModel user)
         {
             var usuario = new UsuarioModel();
@@ -30,8 +66,8 @@ namespace ApiAmma.Data
                 cmd.Parameters.AddWithValue("@nome", user.nome);
                 cmd.Parameters.AddWithValue("@senha", user.senha);
                 cmd.Parameters.AddWithValue("@email", user.email);
-                cmd.Parameters.AddWithValue("@idAvatar", user.idAvatar);
                 cmd.Parameters.AddWithValue("@cargo", user.cargo);
+                cmd.Parameters.AddWithValue("@idAvatar", user.idAvatar);
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();
@@ -69,15 +105,7 @@ namespace ApiAmma.Data
 
                 if (row.HasRows)
                 {
-                    row.Read();
-
-                    user.id = Convert.ToInt32(row[id]);
-                    user.nome = Convert.ToString(row[nome]);
-                    user.senha = Convert.ToString(row[senha]);
-                    user.email = Convert.ToString(row[email]);
-                    user.cargo = Convert.ToString(row[cargo]);
-                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
-
+                    user = ConverRowToModel(row);
                 }
 
             }
@@ -86,9 +114,10 @@ namespace ApiAmma.Data
                 Console.WriteLine($"Erro: {e.Message}");
                 throw new ArgumentException("SelectId", nameof(e.Message));
             }
-            finally{
-            cmd.Parameters.Clear();
-            conexao.Desconectar();
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
             }
 
 
@@ -112,15 +141,7 @@ namespace ApiAmma.Data
 
                 if (row.HasRows)
                 {
-                    row.Read();
-
-                    user.id = Convert.ToInt32(row[id]);
-                    user.nome = Convert.ToString(row[nome]);
-                    user.senha = Convert.ToString(row[senha]);
-                    user.email = Convert.ToString(row[email]);
-                    user.cargo = Convert.ToString(row[cargo]);
-                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
-
+                    user = ConverRowToModel(row);
                 }
 
             }
@@ -154,19 +175,7 @@ namespace ApiAmma.Data
                 if (row.HasRows)
                 {
 
-                    foreach (var linha in row)
-                    {
-                        var user = new UsuarioModel();
-
-                        user.id = Convert.ToInt32(row[id]);
-                        user.nome = Convert.ToString(row[nome]);
-                        user.senha = Convert.ToString(row[senha]);
-                        user.email = Convert.ToString(row[email]);
-                        user.cargo = Convert.ToString(row[cargo]);
-                        user.idAvatar = Convert.ToInt32(row[idAvatar]);
-
-                        usuariosModel.Add(user);
-                    }
+                    usuariosModel = ConverRowToListModel(row);
                 }
 
             }
@@ -185,7 +194,7 @@ namespace ApiAmma.Data
         }
 
         //EDITAR
-        public bool Update(UsuarioModel user)
+        public UsuarioModel Update(UsuarioModel user)
         {
             try
             {
@@ -201,17 +210,20 @@ namespace ApiAmma.Data
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                conexao.Desconectar();
 
             }
             catch (SqlException e)
             {
-                Console.WriteLine($"Erro: {e}");
-                return false;
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("Update", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
             }
 
-            return true;
+            return SelectId(Convert.ToString(user.id));
         }
 
 
@@ -234,14 +246,7 @@ namespace ApiAmma.Data
 
                 if (row.HasRows)
                 {
-                    row.Read();
-
-                    user.id = Convert.ToInt32(row[id]);
-                    user.nome = Convert.ToString(row[nome]);
-                    user.email = Convert.ToString(row[email]);
-                    user.cargo = Convert.ToString(row[cargo]);
-                    user.idAvatar = Convert.ToInt32(row[idAvatar]);
-
+                    user = ConverRowToModel(row, false);
                 }
 
             }

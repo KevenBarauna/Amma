@@ -22,6 +22,7 @@ namespace ApiAmma.Data
         string titulo = "titulo";
         string descricao = "descricao";
         string quantidadeVotos = "quantidadeVotos";
+        string notificacao = "notificacao";
 
         private SugestaoModel ConverRowToModel(SqlDataReader row)
         {
@@ -37,6 +38,7 @@ namespace ApiAmma.Data
             sugestao.descricao = Convert.ToString(row[descricao]);
             sugestao.quantidadeVotos = Convert.ToInt32(row[quantidadeVotos]);
             sugestao.data = Convert.ToString(row[data]);
+            sugestao.notificacao = Convert.ToString(row[notificacao]);
 
             return sugestao;
         }
@@ -58,6 +60,7 @@ namespace ApiAmma.Data
                 sugestao.descricao = Convert.ToString(row[descricao]);
                 sugestao.quantidadeVotos = Convert.ToInt32(row[quantidadeVotos]);
                 sugestao.data = Convert.ToString(row[data]);
+                sugestao.notificacao = Convert.ToString(row[notificacao]);
 
                 if (top > 0)
                 {
@@ -81,7 +84,6 @@ namespace ApiAmma.Data
             return sugestoes;
         }
 
-
         //INSERT
         public bool Insert(SugestaoModel sugestao)
         {
@@ -103,8 +105,6 @@ namespace ApiAmma.Data
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                conexao.Desconectar();
 
             }
             catch (SqlException e)
@@ -162,7 +162,7 @@ namespace ApiAmma.Data
 
             try
             {
-                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {idUsuario} = @idUsuarioPesquisar ORDER BY {quantidadeVotos}";
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {idUsuario} = @idUsuarioPesquisar AND {quantidadeVotos} > 0 ORDER BY {quantidadeVotos}";
 
                 cmd.Parameters.AddWithValue("@idUsuarioPesquisar", idUsuarioPesquisar);
 
@@ -195,7 +195,7 @@ namespace ApiAmma.Data
 
             try
             {
-                cmd.CommandText = $"SELECT * FROM {tabela} ORDER BY {quantidadeVotos}";
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {quantidadeVotos} > 0 ORDER BY {quantidadeVotos}";
 
                 cmd.Connection = conexao.Conectar();
                 row = cmd.ExecuteReader();
@@ -317,28 +317,91 @@ namespace ApiAmma.Data
 
             return sugestoesModels;
         }
-
-        //UPDATE
-        public bool UpdateStatus(int idStatus, int idSugestao)
+        public List<SugestaoModel> SelectCategoria(int idCategoriaPesquisar)
         {
+            SqlDataReader row;
+            List<SugestaoModel> sugestoesModels = new List<SugestaoModel>();
+
             try
             {
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {idCategoria} = @idCategoria";
 
-                cmd.CommandText = $"UPDATE {tabela} SET idStatus = @idStatus WHERE id = @id";
-
-                cmd.Parameters.AddWithValue("@id", idSugestao);
-                cmd.Parameters.AddWithValue("@idStatus", idStatus);
+                cmd.Parameters.AddWithValue("@idCategoria", idCategoriaPesquisar);
 
                 cmd.Connection = conexao.Conectar();
-                cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                conexao.Desconectar();
+                row = cmd.ExecuteReader();
+
+                if (row.HasRows)
+                {
+
+                    sugestoesModels = ConverRowToListModel(row, 0);
+                }
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine($"Erro: {e.Message}\n\n");
-                throw new ArgumentException("Update", nameof(e.Message));
+                throw new ArgumentException("SelectCategoria", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
+            return sugestoesModels;
+        }
+        public List<SugestaoModel> SelectNotificacao(int idUser)
+        {
+            SqlDataReader row;
+            List<SugestaoModel> sugestaoModelList = new List<SugestaoModel>();
+
+            try
+            {
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {idUsuario} = @idPesquisar AND {notificacao} = 'S'";
+
+                cmd.Parameters.AddWithValue("@idPesquisar", idUser);
+
+                cmd.Connection = conexao.Conectar();
+                row = cmd.ExecuteReader();
+
+                if (row.HasRows)
+                {
+                    sugestaoModelList = ConverRowToListModel(row);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("SelectNotificacao", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
+            return sugestaoModelList;
+        }
+        //UPDATE
+        public bool UpdateStatus(int idStatusUpdade, int idSugestaoUpdade)
+        {
+            try
+            {
+
+                cmd.CommandText = $"UPDATE {tabela} SET idStatus = @idStatus, {notificacao} = 'S' WHERE {id} = @id";
+
+                cmd.Parameters.AddWithValue("@id", idSugestaoUpdade);
+                cmd.Parameters.AddWithValue("@idStatus", idStatusUpdade);
+
+                cmd.Connection = conexao.Conectar();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("UpdateStatus", nameof(e.Message));
             }
             finally
             {
@@ -348,20 +411,43 @@ namespace ApiAmma.Data
 
             return true;
         }
-        public bool UpdateVotos(int qtdVotos, int idSugestao)
+        public bool updateNotificacao(int idSugestaoUpdade)
         {
             try
             {
 
-                cmd.CommandText = $"UPDATE {tabela} SET votos = @votos WHERE id = @id";
+                cmd.CommandText = $"UPDATE {tabela} SET {notificacao} = 'N' WHERE {id} = @id";
 
-                cmd.Parameters.AddWithValue("@id", idSugestao);
+                cmd.Parameters.AddWithValue("@id", idSugestaoUpdade);
+
+                cmd.Connection = conexao.Conectar();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("updateNotificacao", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
+            return true;
+        }
+        public bool UpdateVotos(int qtdVotos, int idSugestaoUpdate)
+        {
+            try
+            {
+
+                cmd.CommandText = $"UPDATE {tabela} SET {quantidadeVotos} = @votos WHERE {id} = @id";
+
+                cmd.Parameters.AddWithValue("@id", idSugestaoUpdate);
                 cmd.Parameters.AddWithValue("@votos", qtdVotos);
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                conexao.Desconectar();
 
             }
             catch (SqlException e)
@@ -412,7 +498,6 @@ namespace ApiAmma.Data
 
             return true;
         }
-
         //DELETE
         public bool apagar(string idSugestao)
         {

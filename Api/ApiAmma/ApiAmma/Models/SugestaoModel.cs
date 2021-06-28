@@ -11,7 +11,7 @@ namespace ApiAmma.Models
         public string descricao { get; set; }
         public int quantidadeVotos { get; set; }
         public string data { get; set; }
-        public UsuarioModel usuario { get; set; }
+        public string notificacao { get; set; }
 
     }
 }

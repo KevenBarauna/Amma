@@ -9,7 +9,6 @@ CREATE TABLE usuario
 [idPermissao] integer NOT NULL,
 )
 
-
 CREATE TABLE sugestoes
 (
 [id] INT NOT NULL PRIMARY KEY IDENTITY, 
@@ -20,9 +19,9 @@ CREATE TABLE sugestoes
 [titulo] VARCHAR(30) NOT NULL, 
 [descricao] VARCHAR(90) NOT NULL, 
 [quantidadeVotos] INT NOT NULL, 
-[data] DATE, 
+[data] DATE,
+[notificacao] VARCHAR(1)DEFAULT 'N',
 )
-
 
 CREATE TABLE status
 (
@@ -42,22 +41,10 @@ CREATE TABLE permissao
 [descricao] VARCHAR(10) NOT NULL, 
 )
 
-
-
-
-
-
-
 CREATE TABLE usuario_votos
 (
-    [id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [idUsuario] INT NOT NULL, 
-	[idTicket] INT NOT NULL, 
+[id] INT NOT NULL PRIMARY KEY IDENTITY, 
+[idUsuario] INT NOT NULL, 
+[idSugestao] INT NOT NULL, 
 )
 
-ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idTipo FOREIGN KEY (idTipo) REFERENCES ticket (id)
-ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario (id)
-ALTER TABLE sugestao ADD CONSTRAINT fk_sugestao_idStatus FOREIGN KEY (idStatus) REFERENCES status (id)
-
-ALTER TABLE usuario_votos ADD CONSTRAINT fk_usuario_votos_idUsuario FOREIGN KEY (idUsuario) REFERENCES usuario (id)
-ALTER TABLE usuario_votos ADD CONSTRAINT fk_usuario_votos_idTicket FOREIGN KEY (idTicket) REFERENCES ticket (id)

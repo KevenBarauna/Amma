@@ -6,9 +6,8 @@ namespace ApiAmma.Models
     {
         [Key]
         public int id { get; set; }
-        public int idTicket { get; set; }
+        public int idSugestao { get; set; }
         public int idUsuario { get; set; }
-        public UsuarioModel usuario { get; set; }
 
     }
 }

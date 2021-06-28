@@ -33,9 +33,7 @@ namespace ApiAmma.Controllers
         [Route("novoUsuario")]
         public UsuarioModel adicionarNovoUsuario(UsuarioModel usuario)
         {
-
             return _usuarioDataTemp.Insert(_validar.adicionarNovoUsuario(usuario));
-
         }
 
         [HttpGet]
@@ -45,11 +43,11 @@ namespace ApiAmma.Controllers
             return _usuarioDataTemp.SelectAll();
         }
 
-        [HttpDelete]
-        [Route("removerUsuario")]
-        public void removerUsuario([FromBody] UsuarioModel usuario)
+        [HttpPut]
+        [Route("editarUsuario")]
+        public UsuarioModel editarUsuario(UsuarioModel user)
         {
-            //usuarios.RemoveAt(usuarios.IndexOf(usuarios.First(x => x.Equals(usuario))));
+            return _usuarioDataTemp.Update(user);
         }
     }
 }

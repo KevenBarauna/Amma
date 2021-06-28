@@ -14,6 +14,7 @@ namespace ApiAmma.Controllers
     public class SugestaoController : ControllerBase
     {
         private SugestaoData _sugestaoDataTemp = new SugestaoData();
+        private VotosUsuarioData _votosUsuarioDataTemp = new VotosUsuarioData();
         private ValidarSugestao _validar = new ValidarSugestao();
 
         [HttpPost]
@@ -25,56 +26,96 @@ namespace ApiAmma.Controllers
         }
 
         [HttpGet]
-        [Route("buscaTopTicketUsuario")]
-        public List<SugestaoModel> buscaTopTicketUsuario(int idUsuario)
+        [Route("buscarTopSugestaoUsuario")]
+        public List<SugestaoModel> buscarTopSugestaoUsuario(int idUsuario)
         {
+            if (idUsuario == 0)
+            {
+                throw new ArgumentException("Usuário não encontrado", nameof(idUsuario));
+            }
             return _sugestaoDataTemp.SelectTopTres(idUsuario);
         }
 
         [HttpGet]
-        [Route("buscaTopDez")]
-        public List<SugestaoModel> buscaTopDez()
+        [Route("buscarTopDez")]
+        public List<SugestaoModel> buscarTopDez()
         {
             return _sugestaoDataTemp.SelectTopDez();
         }
 
         [HttpGet]
-        [Route("buscaTodos")]
-        public List<SugestaoModel> buscaTodos()
+        [Route("buscarTodos")]
+        public List<SugestaoModel> buscarTodos()
         {
             return _sugestaoDataTemp.SelectAll();
         }
 
-        // [HttpGet]
-        // [Route("graficoPendenteSolucionado")]
-        // public List<GraficoDto> graficoPendenteSolucionado()
-        // {
-        //     List<SugestaoModel> totalBruto = _sugestaoDataTemp.SelectAllSolucionadoPendente();
-        //     List<SugestaoModel> totalBrutoPendente = _sugestaoDataTemp.SelectGrafico(1);
+        [HttpGet]
+        [Route("buscarPorcentagemPorCategoria")]
+        public int buscarPorcentagemPorCategoria(int idCategoria)
+        {
+            List<SugestaoModel> totalBruto = _sugestaoDataTemp.SelectStatus(1);
+            List<SugestaoModel> totalBrutoCategoria = _sugestaoDataTemp.SelectCategoria(idCategoria);
 
-        //      List<GraficoDto> listaFinal = new  List<GraficoDto>();
-        //      GraficoDto grafico = new  GraficoDto();
+            return ((totalBrutoCategoria.Count() * 100) / totalBruto.Count());
 
-        //     int total = ((totalBrutoPendente.Count()*100)/totalBruto.Count());
+        }
 
-        //     Console.WriteLine("\n\n\n");
-        //     Console.WriteLine("totalBrutoPendente " + totalBrutoPendente.Count());
-        //     Console.WriteLine("\n\n\n");
-        //      Console.WriteLine("\n\n\n");
-        //     Console.WriteLine("total " + total);
-        //     Console.WriteLine("\n\n\n");
+        [HttpGet]
+        [Route("buscarPorcentagemPorStatus")]
+        public int buscarPorcentagemPorStatus(int idStatus)
+        {
+            List<SugestaoModel> totalBruto = _sugestaoDataTemp.SelectAll();
+            List<SugestaoModel> totalBrutoStatus = _sugestaoDataTemp.SelectStatus(idStatus);
 
-        //     grafico.legenda = "Pendente";
-        //     grafico.porcentagem = total.ToString();
-        //     listaFinal.Add(grafico);
+            return ((totalBrutoStatus.Count() * 100) / totalBruto.Count());
 
-        //     grafico.legenda = "Solucionado";
-        //     grafico.porcentagem = ((total - 100)*-1).ToString();
-        //     listaFinal.Add(grafico);
+        }
 
 
-        //     return listaFinal;
-        // }
+        [HttpPut]
+        [Route("votar")]
+        public bool votar(int idUsuario, int idSugestao)
+        {
+            SugestaoModel sugestao = _sugestaoDataTemp.SelectId(idSugestao);
+            int quantidadeAtual = sugestao.quantidadeVotos;
+            bool removerVoto = _votosUsuarioDataTemp.Select(idUsuario, idSugestao);
+            if (removerVoto)
+            {
+                int votos = quantidadeAtual - 1;
+                _votosUsuarioDataTemp.Delete(idUsuario, idSugestao);
+                _sugestaoDataTemp.UpdateVotos(votos, idSugestao);
+            }
+            else
+            {
+                int votos = quantidadeAtual + 1;
+                _votosUsuarioDataTemp.Insert(idUsuario, idSugestao);
+                _sugestaoDataTemp.UpdateVotos(votos, idSugestao);
 
+            }
+            return true;
+
+        }
+
+        [HttpPut]
+        [Route("alterarStatus")]
+        public bool alterarStatus(int idStatus, int idSugestao)
+        {
+            return _sugestaoDataTemp.UpdateStatus(idStatus, idSugestao);
+        }
+
+        [HttpGet]
+        [Route("verificarNotificacao")]
+        public List<SugestaoModel> verificarNotificacao(int idUser)
+        {
+            return _sugestaoDataTemp.SelectNotificacao(idUser);
+        }
+
+        [HttpPut]
+        [Route("lerNotificacao")]
+        public bool lerNotificacao(int idSugestao)
+        {
+            return _sugestaoDataTemp.updateNotificacao(idSugestao);
+        }
     }
 }
