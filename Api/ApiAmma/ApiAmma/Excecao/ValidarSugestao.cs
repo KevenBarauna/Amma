@@ -34,6 +34,7 @@ namespace ApiAmma.Excecao
 
             sugestao.quantidadeVotos = 0;
             sugestao.idStatus = 1;
+            sugestao.notificacao = "N";
 
             return sugestao;
 

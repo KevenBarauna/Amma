@@ -14,6 +14,7 @@ namespace ApiAmma.Controllers
     public class SugestaoController : ControllerBase
     {
         private SugestaoData _sugestaoDataTemp = new SugestaoData();
+        private CategoriaData _categoriaDataTemp = new CategoriaData();
         private VotosUsuarioData _votosUsuarioDataTemp = new VotosUsuarioData();
         private ValidarSugestao _validar = new ValidarSugestao();
 
@@ -52,13 +53,22 @@ namespace ApiAmma.Controllers
 
         [HttpGet]
         [Route("buscarPorcentagemPorCategoria")]
-        public int buscarPorcentagemPorCategoria(int idCategoria)
+        public List<GraficoDto> buscarPorcentagemPorCategoria()
         {
             List<SugestaoModel> totalBruto = _sugestaoDataTemp.SelectStatus(1);
-            List<SugestaoModel> totalBrutoCategoria = _sugestaoDataTemp.SelectCategoria(idCategoria);
-
-            return ((totalBrutoCategoria.Count() * 100) / totalBruto.Count());
-
+            List<CategoriaModel> todasCategorias = _categoriaDataTemp.SelectAll();
+            List<GraficoDto> graficoCalculado = new List<GraficoDto>();
+            if(totalBruto.Count == 0) return graficoCalculado;
+            foreach (var item in todasCategorias)
+            {
+                List<SugestaoModel> totalBrutoCategoria = _sugestaoDataTemp.SelectCategoria(item.id);
+                GraficoDto grafico = new GraficoDto();
+                grafico.id = item.id;
+                grafico.nome = item.descricao;
+                grafico.porcentagem = ((totalBrutoCategoria.Count() * 100) / totalBruto.Count()).ToString();
+                graficoCalculado.Add(grafico);
+            }
+            return graficoCalculado;
         }
 
         [HttpGet]
