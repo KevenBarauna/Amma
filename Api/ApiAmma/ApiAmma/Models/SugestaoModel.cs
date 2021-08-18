@@ -12,6 +12,7 @@ namespace ApiAmma.Models
         public int quantidadeVotos { get; set; }
         public string data { get; set; }
         public string notificacao { get; set; }
+        public string justificativa { get; set; }
 
     }
 }

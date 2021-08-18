@@ -19,6 +19,7 @@ namespace ApiAmma.Data
         string email = "email";
         string cargo = "cargo";
         string idAvatar = "idAvatar";
+         string idPermissao = "idPermissao";
 
         private UsuarioModel ConverRowToModel(SqlDataReader row, bool showSenha = true)
         {
@@ -30,6 +31,7 @@ namespace ApiAmma.Data
             usuario.email = Convert.ToString(row[email]);
             usuario.cargo = Convert.ToString(row[cargo]);
             usuario.idAvatar = Convert.ToInt32(row[idAvatar]);
+            usuario.idPermissao = Convert.ToInt32(row[idPermissao]);
             if (showSenha) { usuario.senha = Convert.ToString(row[senha]); }
 
             return usuario;
@@ -49,6 +51,7 @@ namespace ApiAmma.Data
                 user.email = Convert.ToString(row[email]);
                 user.cargo = Convert.ToString(row[cargo]);
                 user.idAvatar = Convert.ToInt32(row[idAvatar]);
+                user.idPermissao = Convert.ToInt32(row[idPermissao]);
 
                 usuarioList.Add(user);
             }
@@ -61,13 +64,14 @@ namespace ApiAmma.Data
             var usuario = new UsuarioModel();
             try
             {
-                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{email},{idAvatar},{cargo}) VALUES (@nome,@senha,@email,@idAvatar,@cargo)";
+                cmd.CommandText = $"INSERT INTO {tabela} ({nome},{senha},{email},{idAvatar},{cargo},{idPermissao}) VALUES (@nome,@senha,@email,@idAvatar,@cargo, @idPermissao)";
 
                 cmd.Parameters.AddWithValue("@nome", user.nome);
                 cmd.Parameters.AddWithValue("@senha", user.senha);
                 cmd.Parameters.AddWithValue("@email", user.email);
                 cmd.Parameters.AddWithValue("@cargo", user.cargo);
                 cmd.Parameters.AddWithValue("@idAvatar", user.idAvatar);
+                cmd.Parameters.AddWithValue("@idPermissao", 1);
 
                 cmd.Connection = conexao.Conectar();
                 cmd.ExecuteNonQuery();

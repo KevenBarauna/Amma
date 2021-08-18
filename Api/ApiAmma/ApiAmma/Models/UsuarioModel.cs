@@ -8,5 +8,6 @@
         public string email { get; set; }
         public string cargo { get; set; }
         public int idAvatar { get; set; }
+        public int idPermissao { get; set; }
     }
 }

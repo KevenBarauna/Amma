@@ -23,6 +23,7 @@ namespace ApiAmma.Data
         string descricao = "descricao";
         string quantidadeVotos = "quantidadeVotos";
         string notificacao = "notificacao";
+        string justificativa = "justificativa";
 
         private SugestaoModel ConverRowToModel(SqlDataReader row)
         {
@@ -39,6 +40,7 @@ namespace ApiAmma.Data
             sugestao.quantidadeVotos = Convert.ToInt32(row[quantidadeVotos]);
             sugestao.data = Convert.ToString(row[data]);
             sugestao.notificacao = Convert.ToString(row[notificacao]);
+            sugestao.justificativa = Convert.ToString(row[justificativa]);
 
             return sugestao;
         }
@@ -61,6 +63,7 @@ namespace ApiAmma.Data
                 sugestao.quantidadeVotos = Convert.ToInt32(row[quantidadeVotos]);
                 sugestao.data = Convert.ToString(row[data]);
                 sugestao.notificacao = Convert.ToString(row[notificacao]);
+                sugestao.justificativa = Convert.ToString(row[justificativa]);
 
                 if (top > 0)
                 {
@@ -283,6 +286,39 @@ namespace ApiAmma.Data
 
             return sugestoesModels;
         }
+
+        public List<SugestaoModel> SelectAllPorStatus(int idStatusPesquisar)
+        {
+            SqlDataReader row;
+            List<SugestaoModel> sugestoesModels = new List<SugestaoModel>();
+
+            try
+            {
+                cmd.CommandText = $"SELECT * FROM {tabela} WHERE {idStatus} = @idStatusPesquisar ORDER BY {data}";
+                cmd.Parameters.AddWithValue("@idStatusPesquisar", idStatusPesquisar);
+
+                cmd.Connection = conexao.Conectar();
+                row = cmd.ExecuteReader();
+
+                if (row.HasRows)
+                {
+                    sugestoesModels = ConverRowToListModel(row, 0);
+                }
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("SelectAllPorStatus", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
+            return sugestoesModels;
+        }
         public List<SugestaoModel> SelectStatus(int idStatusPesquisar)
         {
             SqlDataReader row;
@@ -390,7 +426,7 @@ namespace ApiAmma.Data
             try
             {
 
-                cmd.CommandText = $"UPDATE {tabela} SET idStatus = @idStatus, {notificacao} = 'S' WHERE {id} = @id";
+                cmd.CommandText = $"UPDATE {tabela} SET {idStatus} = @idStatus, {notificacao} = 'S' WHERE {id} = @id";
 
                 cmd.Parameters.AddWithValue("@id", idSugestaoUpdade);
                 cmd.Parameters.AddWithValue("@idStatus", idStatusUpdade);
@@ -402,6 +438,32 @@ namespace ApiAmma.Data
             {
                 Console.WriteLine($"Erro: {e.Message}\n\n");
                 throw new ArgumentException("UpdateStatus", nameof(e.Message));
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                conexao.Desconectar();
+            }
+
+            return true;
+        }
+
+        public bool UpdateStatusJustificativa(int idSugestao, string justificativaUpdade)
+        {
+            try
+            {
+                cmd.CommandText = $"UPDATE {tabela} SET {justificativa} = @justificativa, {notificacao} = 'S', {idStatus} = 5 WHERE {id} = @id";
+
+                cmd.Parameters.AddWithValue("@id", idSugestao);
+                cmd.Parameters.AddWithValue("@justificativa", justificativaUpdade);
+
+                cmd.Connection = conexao.Conectar();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}\n\n");
+                throw new ArgumentException("UpdateStatusJustificativa", nameof(e.Message));
             }
             finally
             {

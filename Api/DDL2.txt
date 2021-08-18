@@ -1,12 +1,12 @@
 CREATE TABLE usuario
 (
-[id] integer NOT NULL,
-[nome] string(40) NOT NULL,
-[senha] string(30) NOT NULL,
-[email] string(35),
-[cargo] string(35),
-[idAvatar] integer NOT NULL,
-[idPermissao] integer NOT NULL,
+[id] INT NOT NULL PRIMARY KEY IDENTITY, 
+[nome] VARCHAR(40) NOT NULL,
+[senha] VARCHAR(30) NOT NULL,
+[email] VARCHAR(35),
+[cargo] VARCHAR(35),
+[idAvatar] INT NOT NULL,
+[idPermissao] INT NOT NULL,
 )
 
 CREATE TABLE sugestoes
@@ -17,10 +17,11 @@ CREATE TABLE sugestoes
 [idStatus] INT NOT NULL, 
 [anonimo] VARCHAR(1)DEFAULT 'N',
 [titulo] VARCHAR(30) NOT NULL, 
-[descricao] VARCHAR(90) NOT NULL, 
+[descricao] VARCHAR(150) NOT NULL, 
 [quantidadeVotos] INT NOT NULL, 
 [data] DATE,
 [notificacao] VARCHAR(1)DEFAULT 'N',
+[justificativa] VARCHAR(100), 
 )
 
 CREATE TABLE status
@@ -38,7 +39,7 @@ CREATE TABLE categoria
 CREATE TABLE permissao
 (
 [id] INT NOT NULL PRIMARY KEY IDENTITY, 
-[descricao] VARCHAR(10) NOT NULL, 
+[descricao] VARCHAR(15) NOT NULL, 
 )
 
 CREATE TABLE usuario_votos

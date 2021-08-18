@@ -8,6 +8,7 @@ namespace ApiAmma.DTO
         public string cargo { get; set; }
         public int idAvatar { get; set; }
         public int idTema { get; set; }
+        public int idPermissao { get; set; }
 
     }
 }
